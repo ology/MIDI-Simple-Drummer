@@ -1,7 +1,8 @@
 Revision history for MIDI-Simple-Drummer
 
 {{$NEXT}}
-    - Add bitmask representation handling.
+    - Added bitmask representation handling.
+    - Improved documentation!
 
 0.03 2013.01.27
     - Added time signature support and tests.
