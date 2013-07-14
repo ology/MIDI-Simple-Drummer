@@ -1,0 +1,27 @@
+MIDI-Simple-Drummer=~/dev/Music/MIDI-Simple-Drummer CD=. {
+ lib=lib/MIDI/Simple {
+  Drummer.pm
+  Drummer/Rock.pm
+  Drummer/Jazz.pm
+  Drummer/Rudiments.pm
+ }
+ t=t {
+  00-load.t
+  01-Drummer.t
+  02-Rock.t
+  03-Jazz.t
+  04-Rudiments.t
+ }
+ eg=eg {
+  basics
+  bitmask-drums
+  durations
+  jazz-drummer
+  metronome
+  ts-metronome
+  multi-track
+  rock-drummer
+ }
+ Changes
+ dist.ini
+}
