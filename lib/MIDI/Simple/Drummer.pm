@@ -126,7 +126,7 @@ sub channel { # The general MIDI drumkit is often channel 9.
     $self->{-channel} = shift if @_;
     return $self->{-channel};
 }
-sub pan { # (1) Left - Middle - Right (127)
+sub pan { # [1 Left-Middle-Right 127]
     my $self = shift;
     $self->{-pan} = shift if @_;
     $self->{-score}->control_change($self->{-channel}, 10, $self->{-pan});
@@ -497,7 +497,7 @@ __END__
 
 =head1 NAME
 
-MIDI::Simple::Drummer - Glorified metronome
+MIDI::Simple::Drummer - An algorithmic MIDI drummer
 
 =head1 SYNOPSIS
 
@@ -568,7 +568,7 @@ MIDI::Simple::Drummer - Glorified metronome
 =head1 DESCRIPTION
 
 This is a "robotic" drummer that provides algorithmic methods to make beats,
-rhythms, noise, what have you.
+rhythms, noise, what have you.  It is also a glorified metronome.
 
 This is not a traditional "drum machine" that is controlled in a mechanical
 or "arithmetic" sense.  It is a "sufficiently intelligent" drummer, with which
@@ -576,17 +576,17 @@ you can practice, improvise, compose, record and experiment.
 
 The "beats" are entirely constructed with Perl, and as such, any algorithmic
 procedure can be used to generate the phrases - Bayesian stochastic,
-evolutionary game simulation, L-system, recursive descent grammar, Markov,
+evolutionary game simulation, L-system, recursive descent grammar, Markov chain,
 L<Quantumm::Whatever>...
 
 Note that B<you>, the programmer (and de facto drummer), should know what the
 kit elements are named and what the patterns do.  For these things, "Use The
 Source, Luke."  Also, check out the included style sub-classes, the F<eg/*>
-files and the F<*.mid> files they produce.
+files (and the F<*.mid> files they produce).
 
-So the default drum kit is the B<exciting>, general MIDI channel 9 (but
-sometimes 10).  Fortunately, you can import the F<.mid> file into your new
-fangled DAW with auto-separated tracks of "virtual instruments." B<Harumph!>
+The default drum kit is the B<exciting>, General MIDI Kit.  Fortunately, you can
+import the F<.mid> file into your new fangled DAW with auto-separated tracks of
+"virtual instruments." B<Harumph!>
 
 =head1 METHODS
 
@@ -614,8 +614,8 @@ Return a new C<MIDI::Simple::Drummer> instance with these default arguments:
   -patterns  => {}
   -score     => MIDI::Simple->new_score
 
-These arguments can all be overridden with the OO constuctor or accessors of the
-same name.
+These arguments can all be overridden in the constuctor or accessors of the same
+name.
 
 =head2 volume(), pan(), bpm()
 
@@ -673,7 +673,7 @@ Return or set known style patterns.
   $x = $d->score('V127');
 
 Return or set the L<MIDI::Simple/score> if provided as the first argument.  If
-there are any other arguments, they are set as score no-ops.
+there are any other arguments, they are treated as MIDI score settings.
 
 =head2 accent()
 
@@ -724,7 +724,7 @@ Add a rest to the score.  This is a pass-through to L<MIDI::Simple/r>.
   $d->metronome;
   $d->metronome('Mute Triangle');
 
-Add beats * phases of the C<Pedal Hi-Hat>, unless another patch is provided.
+Add (beats * phrases) of the C<Pedal Hi-Hat>, unless another patch is provided.
 
 =head2 count_in()
 
@@ -732,10 +732,9 @@ Add beats * phases of the C<Pedal Hi-Hat>, unless another patch is provided.
   $d->count_in(2);
   $d->count_in(1, 'Side Stick');
 
-And a-one and a-two and a-one, two, three!E<lt>E<sol>Lawrence WelkE<gt>
-..11E<lt>E<sol>FZE<gt>
+And a-one and a-two!E<lt>E<sol>Lawrence WelkE<gt> ..11E<lt>E<sol>FZE<gt>
 
-If No arguments are provided, the C<Closed Hi-Hat> is used.
+If No arguments are provided, the C<Closed Hi-Hat> patch is used.
 
 =head2 rotate()
 
@@ -750,13 +749,23 @@ backbeat patches)
 
   $x = $d->backbeat_rhythm;
   $x = $d->backbeat_rhythm(-beat => $y);
-  $x = $d->backbeat_rhythm(-fill => $z);
-  $x = $d->backbeat_rhythm(-patches => ['Cowbell','Hand Clap']);
   $x = $d->backbeat_rhythm(-backbeat => ['Bass Drum 1','Electric Snare']);
+  $x = $d->backbeat_rhythm(-patches => ['Cowbell','Hand Clap']);
   $x = $d->backbeat_rhythm(-tick => ['Claves']);
+  $x = $d->backbeat_rhythm(-fill => $z);
 
-Return the rotating C<backbeat> with either the C<tick> or an option patch
-(default crashes), if it's the first beat and we just filled.
+Add a rotating backbeat to the score.
+
+Arguments:
+
+B<beat> is the beat we are on.
+B<backbeat> is the list of patches to use instead of the stock bass and snare.
+B<patches> is a list of possible patches to use instead of the crash cymbals.
+B<tick> is the patch to use instead of the closed hi-hat.
+B<fill> is the fill pattern we last played.
+
+Two patches in the B<backbeat> are said to alternate, as in 4/4 time.  Three
+patches rotate in 3/4 time, etc.
 
 =head2 beat()
 
@@ -783,14 +792,16 @@ For C<-type =E<gt> 'fill'>, we append a named fill to the MIDI score.
 
 =head2 fill()
 
-This is an alias to the C<beat> method with
-C<-type =E<gt> 'fill'> added.
+This is an alias to C<beat(-type =E<gt> 'fill')>.
 
 =head2 patterns()
 
   $x = $d->patterns;
   $x = $d->patterns('rock_1');
-  @x = $d->patterns(paraflamaramadiddle => \&code, 'foo fill' => \&foo_fill);
+  @x = $d->patterns(
+    paraflamaramadiddle => \&paraflamaramadiddle,
+    'foo fill' => \&foo_fill,
+  );
 
 Return or set the code references to the named patterns.  If no argument is
 given, all the known patterns are returned.
@@ -889,7 +900,7 @@ C<kick> and C<snare> patches.
 These are meant to avoid literal strings and the need to remember and type the
 relevant MIDI variables.
 
-=head2 WHOLE or 1st
+=head2 WHOLE or _1st
 
   $x = $d->WHOLE;
   $x = $d->_1st;
