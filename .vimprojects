@@ -1,8 +1,9 @@
 MIDI-Simple-Drummer=~/dev/Music/MIDI-Simple-Drummer CD=. {
  lib=lib/MIDI/Simple {
   Drummer.pm
-  Drummer/Rock.pm
+  Drummer/Euclidean.pm
   Drummer/Jazz.pm
+  Drummer/Rock.pm
   Drummer/Rudiments.pm
  }
  t=t {
