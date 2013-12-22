@@ -51,12 +51,15 @@ BEGIN {
 
 sub new { # Is there a drummer in the house?
     my $class = shift;
+warn "V:'@_'\n";
     # Our drummer is a set of attributes.
     my $self  = {
         # MIDI
         -channel    => 9,   # MIDI-perl drum channel
         -volume     => 100, # 120 max
         -pan        => 64,  # L 1 - R 127
+        -reverb     => 64,  # 
+        -chorus     => 64,  # 
         # Rhythm
         -accent     => 30,  # Volume increment
         -bpm        => 120, # 1 qn = .5 seconds = 500,000 microseconds
@@ -112,6 +115,10 @@ sub _setup { # Where's my roadies, Man?
         }
     }
 
+    # Set effects.
+    $self->reverb();
+    $self->chorus();
+
     return $self;
 }
 
@@ -125,6 +132,20 @@ sub channel { # The general MIDI drumkit is often channel 9.
     my $self = shift;
     $self->{-channel} = shift if @_;
     return $self->{-channel};
+}
+sub reverb { # [?]
+    my $self = shift;
+    $self->{-reverb} = shift if @_;
+warn "R: $self->{-reverb}\n";
+    $self->{-score}->control_change($self->{-channel}, 91, $self->{-reverb});
+    return $self->{-reverb};
+}
+sub chorus { # [?]
+    my $self = shift;
+    $self->{-chorus} = shift if @_;
+warn "C: $self->{-chorus}\n";
+    $self->{-score}->control_change($self->{-channel}, 93, $self->{-chorus});
+    return $self->{-chorus};
 }
 sub pan { # [1 Left-Middle-Right 127]
     my $self = shift;
