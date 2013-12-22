@@ -135,14 +135,12 @@ sub channel { # The general MIDI drumkit is often channel 9.
 sub reverb { # [?]
     my $self = shift;
     $self->{-reverb} = shift if @_;
-warn "R: $self->{-reverb}\n";
     $self->{-score}->control_change($self->{-channel}, 91, $self->{-reverb});
     return $self->{-reverb};
 }
 sub chorus { # [?]
     my $self = shift;
     $self->{-chorus} = shift if @_;
-warn "C: $self->{-chorus}\n";
     $self->{-score}->control_change($self->{-channel}, 93, $self->{-chorus});
     return $self->{-chorus};
 }
