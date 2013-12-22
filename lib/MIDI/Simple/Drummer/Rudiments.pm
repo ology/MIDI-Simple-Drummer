@@ -22,13 +22,20 @@ MIDI::Simple::Drummer::Rudiments - Drum rudiments
 
 This package contains rudiment patterns.
 
+Defaults are to pan full left and right for each hand, and to have no MIDI
+effects.
+
 =head1 METHODS
 
 =cut
 
-sub _setup {
+sub new {
     my $self = shift;
-    $self->SUPER::_setup(@_);
+    $self->SUPER::new(
+        -reverb => 1,
+        -chorus => 0,
+        @_,
+    );
 }
 
 sub _default_patterns {
