@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use base 'MIDI::Simple::Drummer';
 
-use constant PAN_CENTER => 63;
+use constant PAN_CENTER => 64;
 
 =head1 NAME
 
@@ -32,8 +32,9 @@ effects.
 sub new {
     my $self = shift;
     $self->SUPER::new(
-        -reverb => 1,
-        -chorus => 0,
+        -pan_width => 32, # [ 0 .. 64 ] # From center
+        -chorus    => 0,
+        -reverb    => 1,
         @_,
     );
 }
@@ -101,7 +102,7 @@ sub single_stroke_roll {
     my $self = shift;
     my %args = @_;
     for my $beat (1 .. 8) {
-        $self->alternate_pan($beat % 2, $args{pan_width});
+        $self->alternate_pan($beat % 2, $self->pan_width);
         $self->note($self->THIRTYSECOND, $self->strike);
     }
 }
@@ -116,7 +117,7 @@ sub single_stroke_four {
     my $self = shift;
     my %args = @_;
     for my $beat (1 .. 8) {
-        $self->alternate_pan($beat % 2, $args{pan_width});
+        $self->alternate_pan($beat % 2, $self->pan_width);
         if ($beat == 4 || $beat == 8) {
             $self->note($self->EIGHTH, $self->strike);
         }
@@ -136,7 +137,7 @@ sub single_stroke_seven {
     my $self = shift;
     my %args = @_;
     for my $beat (1 .. 7) {
-        $self->alternate_pan($beat % 2, $args{pan_width});
+        $self->alternate_pan($beat % 2, $self->pan_width);
         if ($beat == 7) {
             $self->note($self->EIGHTH, $self->strike);
         }
@@ -171,7 +172,7 @@ sub triple_stroke_roll {
     my %args = @_;
     for my $beat (1 .. 12) {
         # Pan after groups of three.
-        $self->alternate_pan(_groups_of($beat, 3), $args{pan_width});
+        $self->alternate_pan(_groups_of($beat, 3), $self->pan_width);
         $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
     }
 }
@@ -189,7 +190,7 @@ sub double_stroke_open_roll {
     my %args = @_;
     for my $beat (1 .. 8) {
         # Pan after groups of two.
-        $self->alternate_pan(_groups_of($beat, 2), $args{pan_width});
+        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
         $self->note($self->THIRTYSECOND, $self->strike);
     }
 }
@@ -621,7 +622,7 @@ sub pan_left {
     $self->pan(PAN_CENTER - $width);
 }
 sub pan_center {
-    my ($self, $width) = @_;
+    my $self = shift;
     $self->pan(PAN_CENTER);
 }
 sub pan_right {
@@ -647,12 +648,16 @@ A B<width> of B<64> means "stereo pan 100% left/right."
 
 sub alternate_pan {
     my ($self, $pan, $width) = @_;
+
     # Pan hard left if not given.
     $pan = 0 unless defined $pan;
-    # Set balance to 100% if necessary.
-    $width = PAN_CENTER + 1 unless defined $width;
+
+    # Set balance to center unless a width is given.
+    $width = PAN_CENTER unless defined $width;
+
     # Pan the stereo balance.
     $self->pan( $pan ? abs($width - PAN_CENTER) : PAN_CENTER + $width );
+
     # Return the pan dimensions.
     return $pan, $width;
 }
