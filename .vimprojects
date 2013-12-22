@@ -17,12 +17,14 @@ MIDI-Simple-Drummer=~/dev/Music/MIDI-Simple-Drummer CD=. {
  eg=eg {
   basics
   bitmask-drums
+  bitmask-drums-comb
   durations
   jazz-drummer
   metronome
-  ts-metronome
   multi-track
   rock-drummer
+  ts-metronome
+  rudiments
  }
  Changes
  dist.ini
