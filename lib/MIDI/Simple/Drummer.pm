@@ -1,7 +1,7 @@
 package MIDI::Simple::Drummer;
 # ABSTRACT: Glorified metronome
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 use strict;
 use warnings;
@@ -51,7 +51,6 @@ BEGIN {
 
 sub new { # Is there a drummer in the house?
     my $class = shift;
-warn "V:'@_'\n";
     # Our drummer is a set of attributes.
     my $self  = {
         # MIDI
