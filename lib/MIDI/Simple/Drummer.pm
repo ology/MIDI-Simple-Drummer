@@ -959,7 +959,7 @@ The I<MIDI::Simple::Drummer::*> styles, which you can make (and upload).
 
 L<MIDI::Simple> itself, of course.
 
-L<https://en.wikipedia.org/wiki/General_MIDI#Percussive>
+L<https://en.wikipedia.org/wiki/General_MIDI#Percussion>
 
 L<http://maps.google.com/maps?q=mike+avery+joplin> - my drum teacher.
 
