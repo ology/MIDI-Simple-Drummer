@@ -1,13 +1,14 @@
-#!perl -T
+#!/usr/bin/env perl
 use strict;
 use warnings;
+
 use Test::More;
 
 BEGIN { use_ok('MIDI::Simple::Drummer::Rudiments') }
 
 my $d = eval {
     MIDI::Simple::Drummer::Rudiments->new(
-        -bpm => 30,
+        -bpm => 60,
         -phrases => 1,
     )
 };
