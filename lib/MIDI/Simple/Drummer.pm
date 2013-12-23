@@ -55,7 +55,7 @@ sub new { # Is there a drummer in the house?
     my $self  = {
         # MIDI
         -channel    => 9,   # MIDI-perl drum channel
-        -patch      => 0,   # 
+        -patch      => 0,   # The drum kit
         -volume     => 100, # 120 max
         -pan        => 64,  # L 1 - R 127
         -reverb     => 64,  # 
