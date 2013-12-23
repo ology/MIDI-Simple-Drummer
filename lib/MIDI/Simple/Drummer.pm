@@ -57,7 +57,8 @@ sub new { # Is there a drummer in the house?
         -channel    => 9,   # MIDI-perl drum channel
         -patch      => 0,   # The drum kit
         -volume     => 100, # 120 max
-        -pan_width  => 64,  # 0L .. 64M .. 127R
+        -pan        => 64,  # 0L .. 64M .. 127R
+        -pan_width  => 0,   # 0 .. 64 Center
         -reverb     => 20,  # Effect 0-127
         -chorus     => 0,   # "
         # Rhythm
@@ -469,6 +470,13 @@ sub fill {
 sub sync_tracks {
     my $self = shift;
     $self->{-score}->synch(@_);
+}
+
+sub pan { # [0 Left-Middle-Right 127]
+    my $self = shift;
+    $self->{-pan} = shift if @_;
+    $self->{-score}->control_change($self->{-channel}, 10, $self->{-pan});
+    return $self->{-pan};
 }
 
 sub write { # You gotta get it out there, you know. Make some buzz, Man.
