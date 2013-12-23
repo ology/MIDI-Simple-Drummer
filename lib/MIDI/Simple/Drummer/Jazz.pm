@@ -1,12 +1,18 @@
 package MIDI::Simple::Drummer::Jazz;
-our $VERSION = '0.0101';
+our $VERSION = '0.02';
 use strict;
 use warnings;
 use base 'MIDI::Simple::Drummer';
 
-sub _setup {
+sub new {
     my $self = shift;
-    $self->SUPER::_setup(@_);
+    $self->SUPER::new(
+        -brushes => 0,
+        -patch   => 33,
+        @_
+    );
+    # Use the brushes if requested.
+    $self->patch(41) if $self->{-brushes};
 }
 
 sub _default_patterns {
