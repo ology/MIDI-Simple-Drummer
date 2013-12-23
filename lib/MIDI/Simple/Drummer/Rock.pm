@@ -1,8 +1,25 @@
 package MIDI::Simple::Drummer::Rock;
-our $VERSION = '0.0101';
+our $VERSION = '0.02';
 use strict;
 use warnings;
 use base 'MIDI::Simple::Drummer';
+
+sub new {
+    my $self = shift;
+    $self->SUPER::new(
+        -patch => 1,
+        -power => 0,
+        -room  => 0,
+        @_
+    );
+    # Use the requested kit.
+    if ($self->{-room}) {
+        $self->patch(9);
+    }
+    elsif ($self->{-power}) {
+        $self->patch(17);
+    }
+}
 
 # "Quater-note beat" Qn tick. Cym on 1. Kick 1&3. Snare 2&4.
 sub _quarter {
