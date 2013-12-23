@@ -32,12 +32,12 @@ sub euclid {
 
     my $ones = 1 x $m;
     my $zeros = 0 x ($n - $m);
-    
-    if (@k <= 1) {
-        return $m;
+
+    if (@$n) {
+        return euclid($n % $m, $m);
     }
     else {
-        return euclid($n % $m, $m);
+        return $m;
     }
 };
 
