@@ -58,8 +58,8 @@ sub new { # Is there a drummer in the house?
         -patch      => 0,   # The drum kit
         -volume     => 100, # 120 max
         -pan        => 64,  # L 1 - R 127
-        -reverb     => 64,  # 
-        -chorus     => 64,  # 
+        -reverb     => 20,  # Effect 0-127
+        -chorus     => 0,   # "
         # Rhythm
         -accent     => 30,  # Volume increment
         -bpm        => 120, # 1 qn = .5 seconds = 500,000 microseconds
