@@ -55,6 +55,7 @@ sub new { # Is there a drummer in the house?
     my $self  = {
         # MIDI
         -channel    => 9,   # MIDI-perl drum channel
+        -patch      => 0,   # 
         -volume     => 100, # 120 max
         -pan        => 64,  # L 1 - R 127
         -reverb     => 64,  # 
@@ -115,8 +116,12 @@ sub _setup { # Where's my roadies, Man?
     }
 
     # Set effects.
-    $self->reverb();
-    $self->chorus();
+    $self->reverb;
+    $self->chorus;
+    $self->pan_width;
+
+    # Set patch.
+    $self->patch;
 
     return $self;
 }
@@ -132,23 +137,35 @@ sub channel { # The general MIDI drumkit is often channel 9.
     $self->{-channel} = shift if @_;
     return $self->{-channel};
 }
-sub reverb { # [?]
+sub patch { # 
+    my $self = shift;
+    $self->{-patch} = shift if @_;
+    $self->{-score}->patch_change($self->{-channel}, $self->{-patch});
+    return $self->{-patch};
+}
+sub reverb { # [0 .. 127]
     my $self = shift;
     $self->{-reverb} = shift if @_;
     $self->{-score}->control_change($self->{-channel}, 91, $self->{-reverb});
     return $self->{-reverb};
 }
-sub chorus { # [?]
+sub chorus { # [0 .. 127]
     my $self = shift;
     $self->{-chorus} = shift if @_;
     $self->{-score}->control_change($self->{-channel}, 93, $self->{-chorus});
     return $self->{-chorus};
 }
-sub pan { # [1 Left-Middle-Right 127]
+sub pan { # [0 Left-Middle-Right 127]
     my $self = shift;
     $self->{-pan} = shift if @_;
     $self->{-score}->control_change($self->{-channel}, 10, $self->{-pan});
     return $self->{-pan};
+}
+sub pan_width { # [0 .. 64] from center
+    my $self = shift;
+    $self->{-pan_width} = shift if @_;
+    $self->{-score}->control_change($self->{-channel}, 10, $self->{-pan_width});
+    return $self->{-pan_width};
 }
 sub bpm { # Beats per minute
     my $self = shift;
@@ -372,7 +389,8 @@ sub backbeat_rhythm { # AC/DC forever
 sub note {
     my $self = shift;
 #use Data::Dumper;warn Data::Dumper->new([@_])->Indent(1)->Terse(1)->Sortkeys(1)->Dump;
- return $self->{-score}->n(@_) }
+    return $self->{-score}->n(@_)
+}
 sub rest { return shift->{-score}->r(@_) }
 
 sub count_in { # And-a one, and-a two...
