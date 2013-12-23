@@ -57,7 +57,7 @@ sub new { # Is there a drummer in the house?
         -channel    => 9,   # MIDI-perl drum channel
         -patch      => 0,   # The drum kit
         -volume     => 100, # 120 max
-        -pan        => 64,  # L 1 - R 127
+        -pan_width  => 64,  # 0L .. 64M .. 127R
         -reverb     => 20,  # Effect 0-127
         -chorus     => 0,   # "
         # Rhythm
@@ -154,12 +154,6 @@ sub chorus { # [0 .. 127]
     $self->{-chorus} = shift if @_;
     $self->{-score}->control_change($self->{-channel}, 93, $self->{-chorus});
     return $self->{-chorus};
-}
-sub pan { # [0 Left-Middle-Right 127]
-    my $self = shift;
-    $self->{-pan} = shift if @_;
-    $self->{-score}->control_change($self->{-channel}, 10, $self->{-pan});
-    return $self->{-pan};
 }
 sub pan_width { # [0 .. 64] from center
     my $self = shift;
@@ -635,7 +629,10 @@ Return a new C<MIDI::Simple::Drummer> instance with these default arguments:
   # MIDI
   -channel   => 9
   -volume    => 100
-  -pan       => 64
+  -pan_width => 64
+  -patch     => 0
+  -reverb    => 20
+  -chorus    => 0
   # Rhythm metrics
   -accent    => 30
   -bpm       => 120
