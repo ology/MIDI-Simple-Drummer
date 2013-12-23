@@ -650,12 +650,12 @@ Return a new C<MIDI::Simple::Drummer> instance with these default arguments:
 These arguments can all be overridden in the constuctor or accessors of the same
 name.
 
-=head2 volume(), pan(), bpm()
+=head2 volume(), pan_width(), bpm()
 
   $x = $d->method;
   $d->method($x);
 
-Return and set the volume, pan and beats-per-minute methods.
+Return and set the volume, pan_width and beats-per-minute methods.
 
 MIDI pan (C<CC#10>) goes from F<1> left to F<127> right.  That puts the middle
 at F<63>.
