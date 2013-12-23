@@ -98,7 +98,7 @@ sub _groups_of {
 
 =cut
 
-sub single_stroke_roll {
+sub single_stroke_roll { # 1
     my $self = shift;
     my %args = @_;
     for my $beat (1 .. 8) {
@@ -113,13 +113,15 @@ sub single_stroke_roll {
 
 =cut
 
-sub single_stroke_four {
+sub single_stroke_four { # 2
     my $self = shift;
     my %args = @_;
     for my $beat (1 .. 8) {
         $self->alternate_pan($beat % 2, $self->pan_width);
         if ($beat == 4 || $beat == 8) {
+            $self->score('V'.$self->accent); # Accent!
             $self->note($self->EIGHTH, $self->strike);
+            $self->score('V'.$self->volume); # Reset the note volume.
         }
         else {
             $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
@@ -133,13 +135,15 @@ sub single_stroke_four {
 
 =cut
 
-sub single_stroke_seven {
+sub single_stroke_seven { # 3
     my $self = shift;
     my %args = @_;
     for my $beat (1 .. 7) {
         $self->alternate_pan($beat % 2, $self->pan_width);
         if ($beat == 7) {
+            $self->score('V'.$self->accent); # Accent!
             $self->note($self->EIGHTH, $self->strike);
+            $self->score('V'.$self->volume); # Reset the note volume.
         }
         else {
             $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
@@ -155,7 +159,7 @@ TODO: Not yet implemented...
 
 =cut
 
-sub multiple_bounce_roll {
+sub multiple_bounce_roll { # 4
     my $self = shift;
     # TODO Set $multiple and then do a multi-stroke below.
     # TODO Set a random $multiple each X number of times.
@@ -167,7 +171,7 @@ sub multiple_bounce_roll {
 
 =cut
 
-sub triple_stroke_roll {
+sub triple_stroke_roll { # 5
     my $self = shift;
     my %args = @_;
     for my $beat (1 .. 12) {
@@ -185,7 +189,7 @@ sub triple_stroke_roll {
 
 =cut
 
-sub double_stroke_open_roll {
+sub double_stroke_open_roll { # 6
     my $self = shift;
     my %args = @_;
     for my $beat (1 .. 8) {
@@ -201,10 +205,16 @@ sub double_stroke_open_roll {
 
 =cut
 
-sub five_stroke_roll {
+sub five_stroke_roll { # 7
     my $self = shift;
-    for my $beat (1 .. 12) {
+    for my $beat (1 .. 4) {
+        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
+        $self->note($self->THIRTYSECOND, $self->strike);
     }
+    $self->pan_right;
+    $self->score('V'.$self->accent); # Accent!
+    $self->note($self->EIGHTH, $self->strike);
+    $self->score('V'.$self->volume); # Reset the note volume.
 }
 
 =pod
@@ -213,7 +223,7 @@ sub five_stroke_roll {
 
 =cut
 
-sub six_stroke_roll {
+sub six_stroke_roll { # 8
     my $self = shift;
     for my $beat (1 .. $self->beats) {
     }
@@ -225,7 +235,7 @@ sub six_stroke_roll {
 
 =cut
 
-sub seven_stroke_roll {
+sub seven_stroke_roll { # 9
     my $self = shift;
     for my $beat (1 .. $self->beats) {
     }
@@ -237,7 +247,7 @@ sub seven_stroke_roll {
 
 =cut
 
-sub nine_stroke_roll {
+sub nine_stroke_roll { # 10
     my $self = shift;
     for my $beat (1 .. $self->beats) {
     }
@@ -618,16 +628,16 @@ Convenience methods to pan in different directions.
 =cut
 
 sub pan_left {
-    my ($self, $width) = @_;
-    $self->pan(PAN_CENTER - $width);
+    my $self = shift;
+    $self->pan(PAN_CENTER - $self->pan_width);
 }
 sub pan_center {
     my $self = shift;
     $self->pan(PAN_CENTER);
 }
 sub pan_right {
-    my ($self, $width) = @_;
-    $self->pan(PAN_CENTER + $width);
+    my $self = shift;
+    $self->pan(PAN_CENTER + $self->pan_width);
 }
 
 
