@@ -1,7 +1,7 @@
 package MIDI::Simple::Drummer;
 # ABSTRACT: Glorified metronome
 
-our $VERSION = '0.05';
+our $VERSION = '0.04';
 
 use strict;
 use warnings;
