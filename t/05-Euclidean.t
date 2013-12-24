@@ -5,6 +5,7 @@ use Test::More;
 
 BEGIN { use_ok('MIDI::Simple::Drummer::Euclidean') }
 
+done_testing();
 __END__
 # Not Yet Ready for Prime Time:
 my $d = eval { MIDI::Simple::Drummer::Euclidean->new };
