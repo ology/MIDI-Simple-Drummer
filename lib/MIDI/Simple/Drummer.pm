@@ -662,6 +662,9 @@ Return a new C<MIDI::Simple::Drummer> instance with these default arguments:
   -patch     => 0
   -reverb    => 20
   -chorus    => 0
+  -brushes   => 0
+  -power     => 0
+  -room      => 0
   # Rhythm metrics
   -accent    => 30
   -bpm       => 120
@@ -711,9 +714,23 @@ They are just numbers, not objects or lists.
 Get or set the string ratio of B<-beats> over B<-divisions>.  By default this is
 not defined, allowing unbridled free-form expression.
 
+=head2 div_name()
+
+The name of the denominator of the time signature.
+
+=head2 patch()
+
+The drum kit.
+
+1: Standard. 33: Jazz. 41: Brushes. Etc.
+
 =head2 channel()
 
 Get or set the MIDI channel.
+
+=head2 chorus(), reverb()
+
+Effects 0 (off) to 127 (full)
 
 =head2 file()
 
