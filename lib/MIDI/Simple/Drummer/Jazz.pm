@@ -11,8 +11,6 @@ sub new {
         -patch   => 33,
         @_
     );
-    # Use the brushes if requested.
-    $self->patch(41) if $self->{-brushes};
 }
 
 sub _default_patterns {
