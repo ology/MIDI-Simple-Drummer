@@ -61,6 +61,9 @@ sub new { # Is there a drummer in the house?
         -pan_width  => 0,   # 0 .. 64 Center
         -reverb     => 20,  # Effect 0-127
         -chorus     => 0,   # "
+        -power      => 0,   # Rock kit
+        -room       => 0,   # "
+        -brushes    => 0,   # "
         # Rhythm
         -accent     => 30,  # Volume increment
         -bpm        => 120, # 1 qn = .5 seconds = 500,000 microseconds
