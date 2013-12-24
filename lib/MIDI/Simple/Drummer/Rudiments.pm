@@ -561,256 +561,214 @@ sub paradiddle_diddle {
 
 =head2 flam()
 
-20. Flam
+20. Flam * Not yet implemented
 
 =cut
 
 sub flam {
     my $self = shift;
-    for my $beat (1 .. $self->beats) {
-    }
 }
 
 =head2 flam_accent()
 
-21. Flam Accent
+21. Flam Accent * Not yet implemented
 
 =cut
 
 sub flam_accent {
     my $self = shift;
-    for my $beat (1 .. $self->beats) {
-    }
 }
 
 =head2 flam_tap()
 
-22. Flam Tap
+22. Flam Tap * Not yet implemented
 
 =cut
 
 sub flam_tap {
     my $self = shift;
-    for my $beat (1 .. $self->beats) {
-    }
 }
 
 =head2 flamacue()
 
-23. Flamacue
+23. Flamacue * Not yet implemented
 
 =cut
 
 sub flamacue {
     my $self = shift;
-    for my $beat (1 .. $self->beats) {
-    }
 }
 
 =head2 flam_paradiddle()
 
-24. Flam Paradiddle
+24. Flam Paradiddle * Not yet implemented
 
 =cut
 
 sub flam_paradiddle {
     my $self = shift;
-    for my $beat (1 .. $self->beats) {
-    }
 }
 
 =head2 flammed_mill()
 
-25. Flammed Mill
+25. Flammed Mill * Not yet implemented
 
 =cut
 
 sub flammed_mill {
     my $self = shift;
-    for my $beat (1 .. $self->beats) {
-    }
 }
 
 =head2 flam_paradiddle_diddle()
 
-26. Flam Paradiddle-Diddle
+26. Flam Paradiddle-Diddle * Not yet implemented
 
 =cut
 
 sub flam_paradiddle_diddle {
     my $self = shift;
-    for my $beat (1 .. $self->beats) {
-    }
 }
 
 =head2 pataflafla()
 
-27. Pataflafla
+27. Pataflafla * Not yet implemented
 
 =cut
 
 sub pataflafla {
     my $self = shift;
-    for my $beat (1 .. $self->beats) {
-    }
 }
 
 =head2 swiss_army_triplet()
 
-28. Swiss Army Triplet
+28. Swiss Army Triplet * Not yet implemented
 
 =cut
 
 sub swiss_army_triplet {
     my $self = shift;
-    for my $beat (1 .. $self->beats) {
-    }
 }
 
 =head2 inverted_flam_tap()
 
-29. Inverted Flam Tap
+29. Inverted Flam Tap * Not yet implemented
 
 =cut
 
 sub inverted_flam_tap {
     my $self = shift;
-    for my $beat (1 .. $self->beats) {
-    }
 }
 
 =head2 flam_drag()
 
-30. Flam Drag
+30. Flam Drag * Not yet implemented
 
 =cut
 
 sub flam_drag {
     my $self = shift;
-    for my $beat (1 .. $self->beats) {
-    }
 }
 
 =head1 IV. Drag Rudiments
 
 =head2 drag()
 
-31. Drag (Half Drag or Ruff)
+31. Drag (Half Drag or Ruff) * Not yet implemented
 
 =cut
 
 sub drag {
     my $self = shift;
-    for my $beat (1 .. $self->beats) {
-    }
 }
 
 =head2 single_drag_tap()
 
-32. Single Drag Tap
+32. Single Drag Tap * Not yet implemented
 
 =cut
 
 sub single_drag_tap {
     my $self = shift;
-    for my $beat (1 .. $self->beats) {
-    }
 }
 
 =head2 double_drag_tap()
 
-33. Double Drag Tap
+33. Double Drag Tap * Not yet implemented
 
 =cut
 
 sub double_drag_tap {
     my $self = shift;
-    for my $beat (1 .. $self->beats) {
-    }
 }
 
 =head2 lesson_25_two_and_three()
 
-34. Lesson 25 (Two and Three)
+34. Lesson 25 (Two and Three) * Not yet implemented
 
 =cut
 
 sub lesson_25_two_and_three {
     my $self = shift;
-    for my $beat (1 .. $self->beats) {
-    }
 }
 
 =head2 single_dragadiddle()
 
-35. Single Dragadiddle
+35. Single Dragadiddle * Not yet implemented
 
 =cut
 
 sub single_dragadiddle {
     my $self = shift;
-    for my $beat (1 .. $self->beats) {
-    }
 }
 
 =head2 drag_paradiddle_1()
 
-36. Drag Paradiddle #1
+36. Drag Paradiddle #1 * Not yet implemented
 
 =cut
 
 sub drag_paradiddle_1 {
     my $self = shift;
-    for my $beat (1 .. $self->beats) {
-    }
 }
 
 =head2 drag_paradiddle_2()
 
-37. Drag Paradiddle #2
+37. Drag Paradiddle #2 * Not yet implemented
 
 =cut
 
 sub drag_paradiddle_2 {
     my $self = shift;
-    for my $beat (1 .. $self->beats) {
-    }
 }
 
 =head2 single_ratamacue()
 
-38. Single Ratamacue
+38. Single Ratamacue * Not yet implemented
 
 =cut
 
 sub single_ratamacue {
     my $self = shift;
-    for my $beat (1 .. $self->beats) {
-    }
 }
 
 =head2 double_ratamacue()
 
-39. Double Ratamacue
+39. Double Ratamacue * Not yet implemented
 
 =cut
 
 sub double_ratamacue {
     my $self = shift;
-    for my $beat (1 .. $self->beats) {
-    }
 }
 
 =head2 triple_ratamacue()
 
-40. Triple Ratamacue
+40. Triple Ratamacue * Not yet implemented
 
 =cut
 
 sub triple_ratamacue {
     my $self = shift;
-    for my $beat (1 .. $self->beats) {
-    }
 }
 
 =head2 pan_left(), pan_center(), pan_right()
