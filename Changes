@@ -5,6 +5,7 @@ Revision history for MIDI-Simple-Drummer
     - Improved documentation!
     - Enabled reverb and chorus CC effects.
     - Added the -pan_width attribute.
+    - Enabled the accent_note() method.
 
 0.03 2013.01.27
     - Added time signature support and tests.
