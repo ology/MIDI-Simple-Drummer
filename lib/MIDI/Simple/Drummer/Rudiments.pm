@@ -561,22 +561,60 @@ sub paradiddle_diddle {
 
 =head2 flam()
 
-20. Flam * Not yet implemented
+20. Flam
 
 =cut
 
 sub flam {
     my $self = shift;
+
+    $self->pan_left;
+    $self->score('V' . $self->duck); # Duck!
+    $self->note($self->THIRTYSECOND, $self->strike);
+    $self->score('V' . $self->volume); # Reset the note volume.
+    $self->pan_right;
+    $self->note($self->EIGHTH, $self->strike);
+
+    $self->pan_right;
+    $self->score('V' . $self->duck); # Duck!
+    $self->note($self->THIRTYSECOND, $self->strike);
+    $self->score('V' . $self->volume); # Reset the note volume.
+    $self->pan_left;
+    $self->note($self->EIGHTH, $self->strike);
 }
 
 =head2 flam_accent()
 
-21. Flam Accent * Not yet implemented
+21. Flam Accent
 
 =cut
 
 sub flam_accent {
     my $self = shift;
+
+    $self->pan_left;
+    $self->score('V' . $self->duck); # Duck!
+    $self->note($self->THIRTYSECOND, $self->strike);
+    $self->score('V' . $self->volume); # Reset the note volume.
+    $self->pan_right;
+    $self->note($self->EIGHTH, $self->strike);
+    # 2 single strokes.
+    for my $beat (0 .. 1) {
+        $self->alternate_pan($beat % 2, $self->pan_width);
+        $self->note($self->EIGHTH, $self->strike);
+    }
+
+    $self->pan_right;
+    $self->score('V' . $self->duck); # Duck!
+    $self->note($self->THIRTYSECOND, $self->strike);
+    $self->score('V' . $self->volume); # Reset the note volume.
+    $self->pan_left;
+    $self->note($self->EIGHTH, $self->strike);
+    # 2 single strokes.
+    for my $beat (1 .. 2) {
+        $self->alternate_pan($beat % 2, $self->pan_width);
+        $self->note($self->EIGHTH, $self->strike);
+    }
 }
 
 =head2 flam_tap()
@@ -587,6 +625,28 @@ sub flam_accent {
 
 sub flam_tap {
     my $self = shift;
+
+    $self->pan_left;
+    $self->score('V' . $self->duck); # Duck!
+    $self->note($self->THIRTYSECOND, $self->strike);
+    $self->score('V' . $self->volume); # Reset the note volume.
+    $self->pan_right;
+    # 1 diddle
+    for my $beat (0 .. 3) {
+        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
+        $self->note($self->SIXTEENTH, $self->strike);
+    }
+
+    $self->pan_right;
+    $self->score('V' . $self->duck); # Duck!
+    $self->note($self->THIRTYSECOND, $self->strike);
+    $self->score('V' . $self->volume); # Reset the note volume.
+    $self->pan_left;
+    # 1 diddle
+    for my $beat (0 .. 3) {
+        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
+        $self->note($self->SIXTEENTH, $self->strike);
+    }
 }
 
 =head2 flamacue()
