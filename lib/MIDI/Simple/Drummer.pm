@@ -225,6 +225,14 @@ sub score { # The MIDI::Simple score with no-op-ability
     return $self->{-score};
 }
 
+sub accent_note { # Accent a single note.
+    my $self = shift;
+    my $note = shift;
+    $self->score('V' . $self->accent); # Accent!
+    $self->note($note, $self->strike);
+    $self->score('V' . $self->volume); # Reset the note volume.
+}
+
 # API: Subclass and redefine to emit nuance.
 sub accent { # Pump up the Volume!
     my $self = shift;
@@ -715,6 +723,12 @@ Return or set known style patterns.
 
 Return or set the L<MIDI::Simple/score> if provided as the first argument.  If
 there are any other arguments, they are treated as MIDI score settings.
+
+=head2 accent_note()
+
+  $x = $d->accent_note($d->EIGHTH);
+
+Accent a single note.
 
 =head2 accent()
 
