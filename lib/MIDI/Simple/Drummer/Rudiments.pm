@@ -100,7 +100,6 @@ sub _groups_of {
 
 sub single_stroke_roll { # 1
     my $self = shift;
-    my %args = @_;
     for my $beat (1 .. 8) {
         $self->alternate_pan($beat % 2, $self->pan_width);
         $self->note($self->THIRTYSECOND, $self->strike);
@@ -207,14 +206,21 @@ sub double_stroke_open_roll { # 6
 
 sub five_stroke_roll { # 7
     my $self = shift;
+    # Start on left.
+    for my $beat (0 .. 3) {
+        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
+        $self->note($self->THIRTYSECOND, $self->strike);
+    }
+    $self->pan_left;
+    $self->accent_note($self->EIGHTH);
+
+    # Start on right.
     for my $beat (1 .. 4) {
         $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
         $self->note($self->THIRTYSECOND, $self->strike);
     }
     $self->pan_right;
-    $self->score('V'.$self->accent); # Accent!
-    $self->note($self->EIGHTH, $self->strike);
-    $self->score('V'.$self->volume); # Reset the note volume.
+    $self->accent_note($self->EIGHTH);
 }
 
 =pod
@@ -225,8 +231,24 @@ sub five_stroke_roll { # 7
 
 sub six_stroke_roll { # 8
     my $self = shift;
-    for my $beat (1 .. $self->beats) {
+    # Start on left.
+    $self->pan_left;
+    $self->accent_note($self->EIGHTH);
+    for my $beat (0 .. 3) {
+        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
+        $self->note($self->SIXTEENTH, $self->strike);
     }
+    $self->pan_right;
+    $self->accent_note($self->EIGHTH);
+
+    # Start on right.
+    $self->accent_note($self->EIGHTH);
+    for my $beat (1 .. 4) {
+        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
+        $self->note($self->SIXTEENTH, $self->strike);
+    }
+    $self->pan_left;
+    $self->accent_note($self->EIGHTH);
 }
 
 =pod
@@ -237,8 +259,21 @@ sub six_stroke_roll { # 8
 
 sub seven_stroke_roll { # 9
     my $self = shift;
-    for my $beat (1 .. $self->beats) {
+    # 3 diddles
+    for my $beat (0 .. 5) {
+        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
+        $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
     }
+    $self->pan_right;
+    $self->accent_note($self->EIGHTH);
+
+    # 3 diddles
+    for my $beat (1 .. 6) {
+        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
+        $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
+    }
+    $self->pan_left;
+    $self->accent_note($self->EIGHTH);
 }
 
 =pod
@@ -249,8 +284,21 @@ sub seven_stroke_roll { # 9
 
 sub nine_stroke_roll { # 10
     my $self = shift;
-    for my $beat (1 .. $self->beats) {
+    # 4 diddles
+    for my $beat (0 .. 7) {
+        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
+        $self->note($self->SIXTEENTH, $self->strike);
     }
+    $self->pan_right;
+    $self->accent_note($self->EIGHTH);
+
+    # 4 diddles
+    for my $beat (1 .. 8) {
+        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
+        $self->note($self->SIXTEENTH, $self->strike);
+    }
+    $self->pan_left;
+    $self->accent_note($self->EIGHTH);
 }
 
 =pod
@@ -259,10 +307,27 @@ sub nine_stroke_roll { # 10
 
 =cut
 
-sub ten_stroke_roll {
+sub ten_stroke_roll { # 11
     my $self = shift;
-    for my $beat (1 .. $self->beats) {
+    # 4 diddles
+    for my $beat (0 .. 7) {
+        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
+        $self->note($self->SIXTEENTH, $self->strike);
     }
+    $self->pan_right;
+    $self->accent_note($self->EIGHTH);
+    $self->pan_left;
+    $self->accent_note($self->EIGHTH);
+
+    # 4 diddles
+    for my $beat (1 .. 8) {
+        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
+        $self->note($self->SIXTEENTH, $self->strike);
+    }
+    $self->pan_left;
+    $self->accent_note($self->EIGHTH);
+    $self->pan_right;
+    $self->accent_note($self->EIGHTH);
 }
 
 =pod
@@ -271,10 +336,23 @@ sub ten_stroke_roll {
 
 =cut
 
-sub eleven_stroke_roll {
+sub eleven_stroke_roll { # 12
     my $self = shift;
-    for my $beat (1 .. $self->beats) {
+    # 5 diddles
+    for my $beat (0 .. 9) {
+        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
+        $self->note($self->SIXTEENTH, $self->strike);
     }
+    $self->pan_right;
+    $self->accent_note($self->EIGHTH);
+
+    # 5 diddles
+    for my $beat (1 .. 10) {
+        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
+        $self->note($self->SIXTEENTH, $self->strike);
+    }
+    $self->pan_left;
+    $self->accent_note($self->EIGHTH);
 }
 
 =pod
@@ -283,10 +361,23 @@ sub eleven_stroke_roll {
 
 =cut
 
-sub thirteen_stroke_roll {
+sub thirteen_stroke_roll { # 13
     my $self = shift;
-    for my $beat (1 .. $self->beats) {
+    # 6 diddles
+    for my $beat (0 .. 11) {
+        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
+        $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
     }
+    $self->pan_right;
+    $self->accent_note($self->EIGHTH);
+
+    # 6 diddles
+    for my $beat (1 .. 12) {
+        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
+        $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
+    }
+    $self->pan_left;
+    $self->accent_note($self->EIGHTH);
 }
 
 =pod
@@ -295,10 +386,23 @@ sub thirteen_stroke_roll {
 
 =cut
 
-sub fifteen_stroke_roll {
+sub fifteen_stroke_roll { # 14
     my $self = shift;
-    for my $beat (1 .. $self->beats) {
+    # 7 diddles
+    for my $beat (0 .. 13) {
+        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
+        $self->note($self->SIXTEENTH, $self->strike);
     }
+    $self->pan_right;
+    $self->accent_note($self->EIGHTH);
+
+    # 7 diddles
+    for my $beat (1 .. 14) {
+        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
+        $self->note($self->SIXTEENTH, $self->strike);
+    }
+    $self->pan_left;
+    $self->accent_note($self->EIGHTH);
 }
 
 =pod
@@ -307,10 +411,23 @@ sub fifteen_stroke_roll {
 
 =cut
 
-sub seventeen_stroke_roll {
+sub seventeen_stroke_roll { # 15
     my $self = shift;
-    for my $beat (1 .. $self->beats) {
+    # 8 diddles
+    for my $beat (0 .. 15) {
+        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
+        $self->note($self->SIXTEENTH, $self->strike);
     }
+    $self->pan_right;
+    $self->accent_note($self->EIGHTH);
+
+    # 8 diddles
+    for my $beat (1 .. 16) {
+        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
+        $self->note($self->SIXTEENTH, $self->strike);
+    }
+    $self->pan_left;
+    $self->accent_note($self->EIGHTH);
 }
 
 =pod
@@ -323,7 +440,26 @@ sub seventeen_stroke_roll {
 
 sub single_paradiddle {
     my $self = shift;
-    for my $beat (1 .. $self->beats) {
+    # 2 single strokes left
+    for my $beat (0 .. 1) {
+        $self->alternate_pan($beat % 2, $self->pan_width);
+        $self->note($self->SIXTEENTH, $self->strike);
+    }
+    # 1 diddle
+    for my $beat (0 .. 1) {
+        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
+        $self->note($self->SIXTEENTH, $self->strike);
+    }
+
+    # 2 single strokes right
+    for my $beat (1 .. 2) {
+        $self->alternate_pan($beat % 2, $self->pan_width);
+        $self->note($self->SIXTEENTH, $self->strike);
+    }
+    # 1 diddle
+    for my $beat (1 .. 2) {
+        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
+        $self->note($self->SIXTEENTH, $self->strike);
     }
 }
 
@@ -335,7 +471,26 @@ sub single_paradiddle {
 
 sub double_paradiddle {
     my $self = shift;
-    for my $beat (1 .. $self->beats) {
+    # 4 single strokes starting left
+    for my $beat (0 .. 3) {
+        $self->alternate_pan($beat % 2, $self->pan_width);
+        $self->note($self->SIXTEENTH, $self->strike);
+    }
+    # 1 diddle
+    for my $beat (0 .. 1) {
+        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
+        $self->note($self->SIXTEENTH, $self->strike);
+    }
+
+    # 2 single strokes right
+    for my $beat (1 .. 4) {
+        $self->alternate_pan($beat % 2, $self->pan_width);
+        $self->note($self->SIXTEENTH, $self->strike);
+    }
+    # 1 diddle
+    for my $beat (1 .. 2) {
+        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
+        $self->note($self->SIXTEENTH, $self->strike);
     }
 }
 
@@ -347,7 +502,26 @@ sub double_paradiddle {
 
 sub triple_paradiddle {
     my $self = shift;
-    for my $beat (1 .. $self->beats) {
+    # 6 single strokes starting left
+    for my $beat (0 .. 5) {
+        $self->alternate_pan($beat % 2, $self->pan_width);
+        $self->note($self->SIXTEENTH, $self->strike);
+    }
+    # 1 diddle
+    for my $beat (0 .. 1) {
+        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
+        $self->note($self->SIXTEENTH, $self->strike);
+    }
+
+    # 2 single strokes right
+    for my $beat (1 .. 6) {
+        $self->alternate_pan($beat % 2, $self->pan_width);
+        $self->note($self->SIXTEENTH, $self->strike);
+    }
+    # 1 diddle
+    for my $beat (1 .. 2) {
+        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
+        $self->note($self->SIXTEENTH, $self->strike);
     }
 }
 
@@ -359,7 +533,26 @@ sub triple_paradiddle {
 
 sub paradiddle_diddle {
     my $self = shift;
-    for my $beat (1 .. $self->beats) {
+    # 2 single strokes starting left
+    for my $beat (0 .. 1) {
+        $self->alternate_pan($beat % 2, $self->pan_width);
+        $self->note($self->SIXTEENTH, $self->strike);
+    }
+    # 2 diddles
+    for my $beat (0 .. 3) {
+        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
+        $self->note($self->SIXTEENTH, $self->strike);
+    }
+
+    # 2 single strokes right
+    for my $beat (1 .. 2) {
+        $self->alternate_pan($beat % 2, $self->pan_width);
+        $self->note($self->SIXTEENTH, $self->strike);
+    }
+    # 1 diddle
+    for my $beat (1 .. 4) {
+        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
+        $self->note($self->SIXTEENTH, $self->strike);
     }
 }
 
