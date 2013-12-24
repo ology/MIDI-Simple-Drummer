@@ -128,7 +128,7 @@ This package contains a collection of common rock patterns, loaded by
 L<MIDI::Simple::Drummer>.
 
 The constructor can be provided with a specific patch number (default 1
-"Standard Kit") or the arguments "-prower => 1" or "-room => 1" to use the
+"Standard Kit") or the arguments "-power => 1" or "-room => 1" to use the
 alternate rock kits.
 
 =head1 TO DO
