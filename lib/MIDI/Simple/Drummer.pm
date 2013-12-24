@@ -660,7 +660,8 @@ Return a new C<MIDI::Simple::Drummer> instance with these default arguments:
   # MIDI
   -channel   => 9
   -volume    => 100
-  -pan_width => 64
+  -pan       => 64
+  -pan_width => 0
   -patch     => 0
   -reverb    => 20
   -chorus    => 0
