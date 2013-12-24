@@ -124,8 +124,20 @@ sub _setup { # Where's my roadies, Man?
     $self->chorus;
     $self->pan_width;
 
-    # Set patch.
-    $self->patch;
+    # Use the requested kit.
+    if ($self->{-room}) {
+        $self->patch(9);
+    }
+    elsif ($self->{-power}) {
+        $self->patch(17);
+    }
+    elsif ($self->{-brushes}) {
+        $self->patch(41);
+    }
+    else {
+        # Set to the assigned -patch.
+        $self->patch;
+    }
 
     return $self;
 }
@@ -159,10 +171,15 @@ sub chorus { # [0 .. 127]
     $self->{-score}->control_change($self->{-channel}, 93, $self->{-chorus});
     return $self->{-chorus};
 }
+sub pan { # [0 Left-Middle-Right 127]
+    my $self = shift;
+    $self->{-pan} = shift if @_;
+    $self->{-score}->control_change($self->{-channel}, 10, $self->{-pan});
+    return $self->{-pan};
+}
 sub pan_width { # [0 .. 64] from center
     my $self = shift;
     $self->{-pan_width} = shift if @_;
-    $self->{-score}->control_change($self->{-channel}, 10, $self->{-pan_width});
     return $self->{-pan_width};
 }
 sub bpm { # Beats per minute
@@ -483,13 +500,6 @@ sub sync_tracks {
     $self->{-score}->synch(@_);
 }
 
-sub pan { # [0 Left-Middle-Right 127]
-    my $self = shift;
-    $self->{-pan} = shift if @_;
-    $self->{-score}->control_change($self->{-channel}, 10, $self->{-pan});
-    return $self->{-pan};
-}
-
 sub write { # You gotta get it out there, you know. Make some buzz, Man.
     my $self = shift;
 
@@ -669,12 +679,12 @@ Return a new C<MIDI::Simple::Drummer> instance with these default arguments:
 These arguments can all be overridden in the constuctor or accessors of the same
 name.
 
-=head2 volume(), pan_width(), bpm()
+=head2 volume(), pan(), pan_width(), bpm()
 
   $x = $d->method;
   $d->method($x);
 
-Return and set the volume, pan_width and beats-per-minute methods.
+Return and set the volume, pan, pan_width and beats-per-minute methods.
 
 MIDI pan (C<CC#10>) goes from F<1> left to F<127> right.  That puts the middle
 at F<63>.
