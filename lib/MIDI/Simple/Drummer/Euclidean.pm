@@ -52,6 +52,12 @@ MIDI::Simple::Drummer::Euclidean - Euclidean Rhythms
 
 Sadly, this module is but a stub.
 
+=head1 METHODS
+
+=head2 euclid()
+
+Thinking out loud. Work in progress...
+
 =head1 SEE ALSO
 
 L<MIDI::Simple::Drummer>, the F<eg/euclidean> and F<t/05-Euclidean.t> test
