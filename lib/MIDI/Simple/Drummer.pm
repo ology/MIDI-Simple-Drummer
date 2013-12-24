@@ -1,5 +1,5 @@
 package MIDI::Simple::Drummer;
-# ABSTRACT: Glorified metronome
+# ABSTRACT: An algorithmic MIDI drummer
 
 our $VERSION = '0.04';
 
