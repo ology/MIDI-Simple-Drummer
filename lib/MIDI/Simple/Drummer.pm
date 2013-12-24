@@ -636,7 +636,7 @@ you can practice, improvise, compose, record and experiment.
 The "beats" are entirely constructed with Perl, and as such, any algorithmic
 procedure can be used to generate the phrases - Bayesian stochastic,
 evolutionary game simulation, L-system, recursive descent grammar, Markov chain,
-L<Quantumm::Whatever>...
+Quantum::Whatever...
 
 Note that B<you>, the programmer (and de facto drummer), should know what the
 kit elements are named and what the patterns do.  For these things, "Use The
