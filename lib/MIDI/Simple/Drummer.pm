@@ -54,27 +54,27 @@ sub new { # Is there a drummer in the house?
     # Our drummer is a set of attributes.
     my $self  = {
         # MIDI
-        -channel    => 9,   # MIDI-perl drum channel
-        -patch      => 0,   # The drum kit
-        -volume     => 100, # 120 max
-        -pan        => 64,  # 0L .. 64M .. 127R
-        -pan_width  => 0,   # 0 .. 64 Center
-        -reverb     => 20,  # Effect 0-127
-        -chorus     => 0,   # "
-        -power      => 0,   # Rock kit
-        -room       => 0,   # "
-        -brushes    => 0,   # "
+        -channel    => 9,
+        -volume     => 100,
+        -pan        => 64,
+        -pan_width  => 0,
+        -patch      => 0,
+        -power      => 0,
+        -room       => 0,
+        -brushes    => 0,
+        -reverb     => 20,
+        -chorus     => 0,
         # Rhythm
-        -accent     => 30,  # Volume increment
-        -bpm        => 120, # 1 qn = .5 seconds = 500,000 microseconds
-        -phrases    => 4,   # Number of groups of measures
-        -bars       => 4,   # Number of measures
-        -beats      => 4,   # Number of beats in a measure
-        -divisions  => 4,   # Number of "note values" that constitute one beat
-        -signature  => '',  # beats / divisions
+        -accent     => 30,
+        -bpm        => 120,
+        -phrases    => 4,
+        -bars       => 4,
+        -beats      => 4,
+        -divisions  => 4,
+        -signature  => '',
         # The Goods™
         -score      => undef,
-        -file       => 'Drummer.mid', # Default if not provided by the caller.
+        -file       => 'Drummer.mid',
         -kit        => undef,
         -patterns   => undef,
         @_  # Capture any override or extra arguments.
@@ -657,26 +657,26 @@ available.
 
 Return a new C<MIDI::Simple::Drummer> instance with these default arguments:
 
-  # MIDI
-  -channel   => 9
-  -volume    => 100
-  -pan       => 64
-  -pan_width => 0
-  -patch     => 0
-  -reverb    => 20
-  -chorus    => 0
-  -brushes   => 0
-  -power     => 0
-  -room      => 0
-  # Rhythm metrics
-  -accent    => 30
-  -bpm       => 120
-  -phrases   => 4
-  -bars      => 4
-  -beats     => 4
-  -divisions => 8
-  -signature => ''
-  # The Goods[TM].
+  # MIDI parameters:
+  -channel    = 9    # MIDI-perl drum channel
+  -volume     = 100  # 120 max
+  -pan        = 64   # 0L .. 64M .. 127R
+  -pan_width  = 0    # 0 .. 64 from center
+  -patch      = 0    # Drum kit patch number
+  -power      = 0    # A rock kit
+  -room       = 0    # "
+  -brushes    = 0    # A jazz kit
+  -reverb     = 20   # Effect 0-127
+  -chorus     = 0    # "
+  # Rhythm metrics:
+  -accent     = 30   # Volume increment
+  -bpm        = 120  # 1 qn = .5 seconds = 500,000 microseconds
+  -phrases    = 4    # Number of groups of measures
+  -bars       = 4    # Number of measures
+  -beats      = 4    # Number of beats in a measure
+  -divisions  = 4    # Note values that "get the beat"
+  -signature  = ''   # beats / divisions
+  # The Goods™
   -file      => Drummer.mid
   -kit       => Standard kit set by the API
   -patterns  => {}
