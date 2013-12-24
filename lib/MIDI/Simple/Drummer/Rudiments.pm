@@ -842,7 +842,7 @@ Touch velocity
 
 =head1 SEE ALSO
 
-L<MIDI::Simple::Drummer>, the F<eg/> and F<t/> test scripts.
+L<MIDI::Simple::Drummer>, the F<eg/*> and F<t/*> scripts.
 
 L<http://en.wikipedia.org/wiki/Drum_rudiment>
 

@@ -153,7 +153,7 @@ sub channel { # The general MIDI drumkit is often channel 9.
     $self->{-channel} = shift if @_;
     return $self->{-channel};
 }
-sub patch { # 
+sub patch { # Drum kit
     my $self = shift;
     $self->{-patch} = shift if @_;
     $self->{-score}->patch_change($self->{-channel}, $self->{-patch});

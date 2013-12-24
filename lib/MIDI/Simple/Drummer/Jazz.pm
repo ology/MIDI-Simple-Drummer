@@ -158,7 +158,7 @@ kit rides.  Imagine that!
 
 =head1 SEE ALSO
 
-L<MIDI::Simple::Drummer>, the F<eg/> and F<t/> test scripts.
+L<MIDI::Simple::Drummer>, the F<eg/*> and F<t/*> test scripts.
 
 =cut
 
