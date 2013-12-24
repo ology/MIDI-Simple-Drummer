@@ -60,8 +60,7 @@ Thinking out loud. Work in progress...
 
 =head1 SEE ALSO
 
-L<MIDI::Simple::Drummer>, the F<eg/euclidean> and F<t/05-Euclidean.t> test
-scripts.
+L<MIDI::Simple::Drummer>, the F<eg/*> and F<t/*> scripts.
 
 L<http://student.ulb.ac.be/~ptaslaki/publications/phdThesis-Perouz.pdf>
 
