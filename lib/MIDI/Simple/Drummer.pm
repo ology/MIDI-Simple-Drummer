@@ -72,7 +72,7 @@ sub new { # Is there a drummer in the house?
         -beats      => 4,   # Number of beats in a measure
         -divisions  => 4,   # Number of "note values" that constitute one beat
         -signature  => '',  # beats / divisions
-        # The Goods[TM].
+        # The Goods™
         -score      => undef,
         -file       => 'Drummer.mid', # Default if not provided by the caller.
         -kit        => undef,
