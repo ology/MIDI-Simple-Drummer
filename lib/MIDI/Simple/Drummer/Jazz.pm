@@ -141,7 +141,7 @@ This package contains a collection of triplet based patterns, loaded by
 L<MIDI::Simple::Drummer>.
 
 The constructor can be provided with a specific patch number (default 33 "Jazz
-Kit") or the argument "-brushes => 1" to use the "Brush kit."
+Kit") or the argument C<-brushes =E<gt> 1> to use the "Brushes kit."
 
 Additionally, the methods below are available.
 
