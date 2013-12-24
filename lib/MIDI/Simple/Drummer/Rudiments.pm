@@ -27,6 +27,11 @@ effects.
 
 =head1 METHODS
 
+=head2 new()
+
+Sets pan_width to 1/4 distance from center.
+Sets the reverb effect to 1 and chorus to 0.
+
 =cut
 
 sub new {
@@ -90,11 +95,9 @@ sub _groups_of {
     return ($beat - 1) % $group;
 }
 
-=head2 I. Roll Rudiments
+=head1 I. Roll Rudiments
 
-=head3 A. Single Stroke Rudiments
-
-1. Single Stroke Roll
+=head2 single_stroke_roll()
 
 =cut
 
@@ -106,7 +109,7 @@ sub single_stroke_roll { # 1
     }
 }
 
-=pod
+=head2 single_stroke_four()
 
 2. Single Stroke Four
 
@@ -128,7 +131,7 @@ sub single_stroke_four { # 2
     }
 }
 
-=pod
+=head2 single_stroke_seven()
 
 3. Single Stroke Seven
 
@@ -150,9 +153,9 @@ sub single_stroke_seven { # 3
     }
 }
 
-=head3 B. Multiple Bounce Rudiments
+=head1 B. Multiple Bounce Rudiments
 
-4. Multiple Bounce Roll
+=head2 multiple_bounce_roll()
 
 TODO: Not yet implemented...
 
@@ -164,7 +167,7 @@ sub multiple_bounce_roll { # 4
     # TODO Set a random $multiple each X number of times.
 }
 
-=pod
+=head2 triple_stroke_roll()
 
 5. Triple Stroke Roll
 
@@ -180,9 +183,7 @@ sub triple_stroke_roll { # 5
     }
 }
 
-=pod
-
-=head3 C. Double Stroke Rudiments
+=head2 double_stroke_open_roll()
 
 6. Double Stroke Open Roll (Long Roll)
 
@@ -198,7 +199,7 @@ sub double_stroke_open_roll { # 6
     }
 }
 
-=pod
+=head2 five_stroke_roll()
 
 7. Five Stroke Roll
 
@@ -223,7 +224,7 @@ sub five_stroke_roll { # 7
     $self->accent_note($self->EIGHTH);
 }
 
-=pod
+=head2 six_stroke_roll()
 
 8. Six Stroke Roll
 
@@ -251,7 +252,7 @@ sub six_stroke_roll { # 8
     $self->accent_note($self->EIGHTH);
 }
 
-=pod
+=head2 seven_stroke_roll()
 
 9. Seven Stroke Roll
 
@@ -276,7 +277,7 @@ sub seven_stroke_roll { # 9
     $self->accent_note($self->EIGHTH);
 }
 
-=pod
+=head2 nine_stroke_roll()
 
 10. Nine Stroke Roll
 
@@ -301,7 +302,7 @@ sub nine_stroke_roll { # 10
     $self->accent_note($self->EIGHTH);
 }
 
-=pod
+=head2 ten_stroke_roll()
 
 11. Ten Stroke Roll
 
@@ -330,7 +331,7 @@ sub ten_stroke_roll { # 11
     $self->accent_note($self->EIGHTH);
 }
 
-=pod
+=head2 eleven_stroke_roll()
 
 12. Eleven Stroke Roll
 
@@ -355,7 +356,7 @@ sub eleven_stroke_roll { # 12
     $self->accent_note($self->EIGHTH);
 }
 
-=pod
+=head2 thirteen_stroke_roll()
 
 13. Thirteen Stroke Roll
 
@@ -380,7 +381,7 @@ sub thirteen_stroke_roll { # 13
     $self->accent_note($self->EIGHTH);
 }
 
-=pod
+=head2 fifteen_stroke_roll()
 
 14. Fifteen Stroke Roll
 
@@ -405,7 +406,7 @@ sub fifteen_stroke_roll { # 14
     $self->accent_note($self->EIGHTH);
 }
 
-=pod
+=head2 seventeen_stroke_roll()
 
 15. Seventeen Stroke Roll
 
@@ -430,9 +431,9 @@ sub seventeen_stroke_roll { # 15
     $self->accent_note($self->EIGHTH);
 }
 
-=pod
+=head1 II. Diddle Rudiments
 
-=head2 II. Diddle Rudiments
+=head2 single_paradiddle()
 
 16. Single Paradiddle
 
@@ -463,7 +464,7 @@ sub single_paradiddle {
     }
 }
 
-=pod
+=head2 double_paradiddle()
 
 17. Double Paradiddle
 
@@ -494,7 +495,7 @@ sub double_paradiddle {
     }
 }
 
-=pod
+=head2 triple_paradiddle()
 
 18. Triple Paradiddle
 
@@ -525,7 +526,7 @@ sub triple_paradiddle {
     }
 }
 
-=pod
+=head2 paradiddle_diddle()
 
 19. Paradiddle-Diddle
 
@@ -556,9 +557,9 @@ sub paradiddle_diddle {
     }
 }
 
-=pod
+=head1 III. Flam Rudiments
 
-=head2 III. Flam Rudiments
+=head2 flam()
 
 20. Flam
 
@@ -570,7 +571,7 @@ sub flam {
     }
 }
 
-=pod
+=head2 flam_accent()
 
 21. Flam Accent
 
@@ -582,7 +583,7 @@ sub flam_accent {
     }
 }
 
-=pod
+=head2 flam_tap()
 
 22. Flam Tap
 
@@ -594,7 +595,7 @@ sub flam_tap {
     }
 }
 
-=pod
+=head2 flamacue()
 
 23. Flamacue
 
@@ -606,7 +607,7 @@ sub flamacue {
     }
 }
 
-=pod
+=head2 flam_paradiddle()
 
 24. Flam Paradiddle
 
@@ -618,7 +619,7 @@ sub flam_paradiddle {
     }
 }
 
-=pod
+=head2 flammed_mill()
 
 25. Flammed Mill
 
@@ -630,7 +631,7 @@ sub flammed_mill {
     }
 }
 
-=pod
+=head2 flam_paradiddle_diddle()
 
 26. Flam Paradiddle-Diddle
 
@@ -642,7 +643,7 @@ sub flam_paradiddle_diddle {
     }
 }
 
-=pod
+=head2 pataflafla()
 
 27. Pataflafla
 
@@ -654,7 +655,7 @@ sub pataflafla {
     }
 }
 
-=pod
+=head2 swiss_army_triplet()
 
 28. Swiss Army Triplet
 
@@ -666,7 +667,7 @@ sub swiss_army_triplet {
     }
 }
 
-=pod
+=head2 inverted_flam_tap()
 
 29. Inverted Flam Tap
 
@@ -678,7 +679,7 @@ sub inverted_flam_tap {
     }
 }
 
-=pod
+=head2 flam_drag()
 
 30. Flam Drag
 
@@ -690,7 +691,9 @@ sub flam_drag {
     }
 }
 
-=head2 IV. Drag Rudiments
+=head1 IV. Drag Rudiments
+
+=head2 drag()
 
 31. Drag (Half Drag or Ruff)
 
@@ -702,7 +705,7 @@ sub drag {
     }
 }
 
-=pod
+=head2 single_drag_tap()
 
 32. Single Drag Tap
 
@@ -714,7 +717,7 @@ sub single_drag_tap {
     }
 }
 
-=pod
+=head2 double_drag_tap()
 
 33. Double Drag Tap
 
@@ -726,7 +729,7 @@ sub double_drag_tap {
     }
 }
 
-=pod
+=head2 lesson_25_two_and_three()
 
 34. Lesson 25 (Two and Three)
 
@@ -738,7 +741,7 @@ sub lesson_25_two_and_three {
     }
 }
 
-=pod
+=head2 single_dragadiddle()
 
 35. Single Dragadiddle
 
@@ -750,7 +753,7 @@ sub single_dragadiddle {
     }
 }
 
-=pod
+=head2 drag_paradiddle_1()
 
 36. Drag Paradiddle #1
 
@@ -762,7 +765,7 @@ sub drag_paradiddle_1 {
     }
 }
 
-=pod
+=head2 drag_paradiddle_2()
 
 37. Drag Paradiddle #2
 
@@ -774,7 +777,7 @@ sub drag_paradiddle_2 {
     }
 }
 
-=pod
+=head2 single_ratamacue()
 
 38. Single Ratamacue
 
@@ -786,7 +789,7 @@ sub single_ratamacue {
     }
 }
 
-=pod
+=head2 double_ratamacue()
 
 39. Double Ratamacue
 
@@ -798,7 +801,7 @@ sub double_ratamacue {
     }
 }
 
-=pod
+=head2 triple_ratamacue()
 
 40. Triple Ratamacue
 
@@ -810,7 +813,7 @@ sub triple_ratamacue {
     }
 }
 
-=head2 pan_left() pan_center() pan_right()
+=head2 pan_left(), pan_center(), pan_right()
 
  $d->pan_left($width);
  $d->pan_center();
@@ -832,7 +835,6 @@ sub pan_right {
     my $self = shift;
     $self->pan(PAN_CENTER + $self->pan_width);
 }
-
 
 =head2 alternate_pan()
 
