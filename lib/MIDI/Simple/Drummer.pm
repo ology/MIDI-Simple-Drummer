@@ -677,9 +677,9 @@ Return a new C<MIDI::Simple::Drummer> instance with these default arguments:
   -divisions  = 4    # Note values that "get the beat"
   -signature  = ''   # beats / divisions
   # The Goods™
-  -file      => Drummer.mid
+  -file      => Drummer.mid # Set this to $0.mid, for instance.
   -kit       => Standard kit set by the API
-  -patterns  => {}
+  -patterns  => {}  # To be filled at run-time
   -score     => MIDI::Simple->new_score
 
 These arguments can all be overridden in the constuctor or accessors of the same
