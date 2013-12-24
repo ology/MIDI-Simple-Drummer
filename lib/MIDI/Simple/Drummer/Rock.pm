@@ -7,18 +7,11 @@ use base 'MIDI::Simple::Drummer';
 sub new {
     my $self = shift;
     $self->SUPER::new(
-        -patch => 1,
+        -patch => 1, # Standard
         -power => 0,
         -room  => 0,
         @_
     );
-    # Use the requested kit.
-    if ($self->{-room}) {
-        $self->patch(9);
-    }
-    elsif ($self->{-power}) {
-        $self->patch(17);
-    }
 }
 
 # "Quater-note beat" Qn tick. Cym on 1. Kick 1&3. Snare 2&4.
