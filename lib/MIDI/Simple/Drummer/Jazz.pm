@@ -140,6 +140,9 @@ MIDI::Simple::Drummer::Jazz - Jazz drum grooves
 This package contains a collection of triplet based patterns, loaded by
 L<MIDI::Simple::Drummer>.
 
+The constructor can be provided with a specific patch number (default 33 "Jazz
+Kit") or the argument "-brushes => 1" to use the "Brush kit."
+
 Additionally, the methods below are available.
 
 =head1 METHODS
