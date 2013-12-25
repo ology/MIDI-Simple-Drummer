@@ -902,13 +902,13 @@ sub drag {
     $self->note($self->SIXTEENTH, $self->strike);
     $self->note($self->SIXTEENTH, $self->strike);
     $self->pan_right;
-    $self->note($self->EIGHTH, $self->strike);
+    $self->note($self->QUARTER, $self->strike);
 
     $self->pan_right;
     $self->note($self->SIXTEENTH, $self->strike);
     $self->note($self->SIXTEENTH, $self->strike);
     $self->pan_left;
-    $self->note($self->EIGHTH, $self->strike);
+    $self->note($self->QUARTER, $self->strike);
 }
 
 =head2 single_drag_tap()
