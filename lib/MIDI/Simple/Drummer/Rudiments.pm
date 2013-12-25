@@ -858,12 +858,33 @@ sub inverted_flam_tap {
 
 =head2 flam_drag()
 
-30. Flam Drag * Not yet implemented
+30. Flam Drag
 
 =cut
 
 sub flam_drag {
     my $self = shift;
+
+    $self->pan_left;
+    $self->note($self->THIRTYSECOND, $self->strike);
+    $self->pan_right;
+    $self->accent_note($self->EIGHTH);
+    $self->pan_left;
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->pan_right;
+    $self->accent_note($self->EIGHTH);
+
+    $self->pan_right;
+    $self->note($self->THIRTYSECOND, $self->strike);
+    $self->pan_left;
+    $self->accent_note($self->EIGHTH);
+    $self->pan_right;
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->pan_left;
+    $self->accent_note($self->EIGHTH);
+
 }
 
 =head1 IV. Drag Rudiments
