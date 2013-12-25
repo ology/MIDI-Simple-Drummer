@@ -686,12 +686,37 @@ sub flamacue {
 
 =head2 flam_paradiddle()
 
-24. Flam Paradiddle * Not yet implemented
+24. Flam Paradiddle
 
 =cut
 
 sub flam_paradiddle {
     my $self = shift;
+
+    # Flam
+    $self->pan_left;
+    $self->note($self->THIRTYSECOND, $self->strike);
+    $self->pan_right;
+    $self->accent_note($self->SIXTEENTH);
+    $self->pan_left;
+    $self->note($self->SIXTEENTH, $self->strike);
+    # 1 diddle
+    $self->pan_right;
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->note($self->SIXTEENTH, $self->strike);
+
+    # Flam
+    $self->pan_right;
+    $self->note($self->THIRTYSECOND, $self->strike);
+    $self->pan_left;
+    $self->accent_note($self->SIXTEENTH);
+    $self->pan_right;
+    $self->note($self->SIXTEENTH, $self->strike);
+    # 1 diddle
+    $self->pan_left;
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->note($self->SIXTEENTH, $self->strike);
+
 }
 
 =head2 flammed_mill()
