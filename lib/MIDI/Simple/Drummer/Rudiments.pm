@@ -788,22 +788,46 @@ sub flam_paradiddle_diddle {
 
 =head2 pataflafla()
 
-27. Pataflafla * Not yet implemented
+27. Pataflafla
 
 =cut
 
 sub pataflafla {
     my $self = shift;
+
+    for (0 .. 1) {
+        $self->pan_left;
+        $self->note($self->THIRTYSECOND, $self->strike);
+        $self->pan_right;
+        $self->accent_note($self->SIXTEENTH);
+        $self->pan_left;
+        $self->note($self->SIXTEENTH, $self->strike);
+        $self->pan_right;
+        $self->note($self->SIXTEENTH, $self->strike);
+        $self->note($self->THIRTYSECOND, $self->strike);
+        $self->pan_left;
+        $self->accent_note($self->SIXTEENTH);
+    }
 }
 
 =head2 swiss_army_triplet()
 
-28. Swiss Army Triplet * Not yet implemented
+28. Swiss Army Triplet
 
 =cut
 
 sub swiss_army_triplet {
     my $self = shift;
+
+    for (0 .. 1)
+        $self->pan_left;
+        $self->note($self->THIRTYSECOND, $self->strike);
+        $self->pan_right;
+        $self->accent_note($self->TRIPLET_SIXTEENTH);
+        $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
+        $self->pan_left;
+        $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
+    }
 }
 
 =head2 inverted_flam_tap()
