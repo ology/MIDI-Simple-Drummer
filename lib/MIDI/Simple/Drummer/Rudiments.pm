@@ -593,11 +593,9 @@ sub flam_accent {
     my $self = shift;
 
     $self->pan_left;
-    $self->score('V' . $self->duck); # Duck!
     $self->note($self->THIRTYSECOND, $self->strike);
-    $self->score('V' . $self->volume); # Reset the note volume.
     $self->pan_right;
-    $self->note($self->EIGHTH, $self->strike);
+    $self->accent_note($self->EIGHTH);
     # 2 single strokes.
     for my $beat (0 .. 1) {
         $self->alternate_pan($beat % 2, $self->pan_width);
@@ -605,11 +603,9 @@ sub flam_accent {
     }
 
     $self->pan_right;
-    $self->score('V' . $self->duck); # Duck!
     $self->note($self->THIRTYSECOND, $self->strike);
-    $self->score('V' . $self->volume); # Reset the note volume.
     $self->pan_left;
-    $self->note($self->EIGHTH, $self->strike);
+    $self->accent_note($self->EIGHTH);
     # 2 single strokes.
     for my $beat (1 .. 2) {
         $self->alternate_pan($beat % 2, $self->pan_width);
@@ -619,7 +615,7 @@ sub flam_accent {
 
 =head2 flam_tap()
 
-22. Flam Tap * Not yet implemented
+22. Flam Tap
 
 =cut
 
@@ -627,36 +623,65 @@ sub flam_tap {
     my $self = shift;
 
     $self->pan_left;
-    $self->score('V' . $self->duck); # Duck!
     $self->note($self->THIRTYSECOND, $self->strike);
-    $self->score('V' . $self->volume); # Reset the note volume.
     $self->pan_right;
     # 1 diddle
-    for my $beat (0 .. 3) {
-        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
-        $self->note($self->SIXTEENTH, $self->strike);
-    }
+    $self->accent_note($self->SIXTEENTH);
+    $self->note($self->SIXTEENTH, $self->strike);
 
     $self->pan_right;
-    $self->score('V' . $self->duck); # Duck!
     $self->note($self->THIRTYSECOND, $self->strike);
-    $self->score('V' . $self->volume); # Reset the note volume.
     $self->pan_left;
     # 1 diddle
-    for my $beat (0 .. 3) {
-        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
-        $self->note($self->SIXTEENTH, $self->strike);
-    }
+    $self->accent_note($self->EIGHTH);
+    $self->note($self->SIXTEENTH, $self->strike);
 }
 
 =head2 flamacue()
 
-23. Flamacue * Not yet implemented
+23. Flamacue
 
 =cut
 
 sub flamacue {
     my $self = shift;
+
+    # Flam
+    $self->pan_left;
+    $self->note($self->THIRTYSECOND, $self->strike);
+    $self->pan_right;
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->pan_left;
+    $self->accent_note($self->SIXTEENTH);
+    # 2 single strokes.
+    for my $beat (0 .. 1) {
+        $self->alternate_pan($beat % 2, $self->pan_width);
+        $self->note($self->EIGHTH, $self->strike);
+    }
+    # Flam
+    $self->pan_left;
+    $self->note($self->THIRTYSECOND, $self->strike);
+    $self->pan_right;
+    $self->note($self->SIXTEENTH, $self->strike);
+
+    # Flam
+    $self->pan_right;
+    $self->note($self->THIRTYSECOND, $self->strike);
+    $self->pan_left;
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->pan_right;
+    $self->accent_note($self->SIXTEENTH);
+    # 2 single strokes.
+    for my $beat (1 .. 2) {
+        $self->alternate_pan($beat % 2, $self->pan_width);
+        $self->note($self->EIGHTH, $self->strike);
+    }
+    # Flam
+    $self->pan_left;
+    $self->note($self->THIRTYSECOND, $self->strike);
+    $self->pan_right;
+    $self->note($self->SIXTEENTH, $self->strike);
+
 }
 
 =head2 flam_paradiddle()
