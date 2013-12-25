@@ -99,6 +99,8 @@ sub _groups_of {
 
 =head2 single_stroke_roll()
 
+1. Single Stroke Roll
+
 =cut
 
 sub single_stroke_roll { # 1
@@ -721,22 +723,67 @@ sub flam_paradiddle {
 
 =head2 flammed_mill()
 
-25. Flammed Mill * Not yet implemented
+25. Flammed Mill
 
 =cut
 
 sub flammed_mill {
     my $self = shift;
+
+    $self->pan_left;
+    $self->note($self->THIRTYSECOND, $self->strike);
+    $self->pan_right;
+    $self->accent_note($self->SIXTEENTH);
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->pan_left;
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->pan_right;
+    $self->note($self->SIXTEENTH, $self->strike);
+
+    $self->pan_right;
+    $self->note($self->THIRTYSECOND, $self->strike);
+    $self->pan_left;
+    $self->accent_note($self->SIXTEENTH);
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->pan_right;
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->pan_left;
+    $self->note($self->SIXTEENTH, $self->strike);
+
 }
 
 =head2 flam_paradiddle_diddle()
 
-26. Flam Paradiddle-Diddle * Not yet implemented
+26. Flam Paradiddle-Diddle
 
 =cut
 
 sub flam_paradiddle_diddle {
     my $self = shift;
+
+    $self->pan_left;
+    $self->note($self->THIRTYSECOND, $self->strike);
+    $self->pan_right;
+    $self->accent_note($self->SIXTEENTH);
+    $self->pan_left;
+    $self->note($self->SIXTEENTH, $self->strike);
+    # 2 diddles
+    for my $beat (0 .. 3) {
+        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
+        $self->note($self->SIXTEENTH, $self->strike);
+    }
+
+    $self->pan_right;
+    $self->note($self->THIRTYSECOND, $self->strike);
+    $self->pan_left;
+    $self->accent_note($self->SIXTEENTH);
+    $self->pan_right;
+    $self->note($self->SIXTEENTH, $self->strike);
+    # 2 diddles
+    for my $beat (1 .. 4) {
+        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
+        $self->note($self->SIXTEENTH, $self->strike);
+    }
 }
 
 =head2 pataflafla()
