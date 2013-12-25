@@ -819,7 +819,7 @@ sub pataflafla {
 sub swiss_army_triplet {
     my $self = shift;
 
-    for (0 .. 1)
+    for (0 .. 1) {
         $self->pan_left;
         $self->note($self->THIRTYSECOND, $self->strike);
         $self->pan_right;
@@ -832,12 +832,28 @@ sub swiss_army_triplet {
 
 =head2 inverted_flam_tap()
 
-29. Inverted Flam Tap * Not yet implemented
+29. Inverted Flam Tap
 
 =cut
 
 sub inverted_flam_tap {
     my $self = shift;
+
+    for (0 .. 1) {
+        $self->pan_left;
+        $self->note($self->THIRTYSECOND, $self->strike);
+        $self->pan_right;
+        $self->accent_note($self->SIXTEENTH);
+        $self->pan_left;
+        $self->note($self->SIXTEENTH, $self->strike);
+
+        $self->pan_right;
+        $self->note($self->THIRTYSECOND, $self->strike);
+        $self->pan_left;
+        $self->accent_note($self->SIXTEENTH);
+        $self->pan_right;
+        $self->note($self->SIXTEENTH, $self->strike);
+    }
 }
 
 =head2 flam_drag()
