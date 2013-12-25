@@ -940,12 +940,38 @@ sub single_drag_tap {
 
 =head2 double_drag_tap()
 
-33. Double Drag Tap * Not yet implemented
+33. Double Drag Tap
 
 =cut
 
 sub double_drag_tap {
     my $self = shift;
+
+    $self->pan_left;
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->pan_right;
+    $self->note($self->EIGHTH, $self->strike);
+    $self->pan_left;
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->pan_right;
+    $self->note($self->EIGHTH, $self->strike);
+    $self->pan_left;
+    $self->accent_note($self->EIGHTH);
+
+    $self->pan_right;
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->pan_left;
+    $self->note($self->EIGHTH, $self->strike);
+    $self->pan_right;
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->pan_left;
+    $self->note($self->EIGHTH, $self->strike);
+    $self->pan_right;
+    $self->accent_note($self->EIGHTH);
 }
 
 =head2 lesson_25_two_and_three()
