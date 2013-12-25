@@ -891,12 +891,24 @@ sub flam_drag {
 
 =head2 drag()
 
-31. Drag (Half Drag or Ruff) * Not yet implemented
+31. Drag (Half Drag or Ruff)
 
 =cut
 
 sub drag {
     my $self = shift;
+
+    $self->pan_left;
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->pan_right;
+    $self->note($self->EIGHTH, $self->strike);
+
+    $self->pan_right;
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->pan_left;
+    $self->note($self->EIGHTH, $self->strike);
 }
 
 =head2 single_drag_tap()
