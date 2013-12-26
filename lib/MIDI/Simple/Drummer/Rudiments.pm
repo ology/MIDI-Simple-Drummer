@@ -107,7 +107,7 @@ sub single_stroke_roll { # 1
     my $self = shift;
     for my $beat (1 .. 8) {
         $self->alternate_pan($beat % 2, $self->pan_width);
-        $self->note($self->THIRTYSECOND, $self->strike);
+        $self->note($self->SIXTEENTH, $self->strike);
     }
 }
 
@@ -123,9 +123,7 @@ sub single_stroke_four { # 2
     for my $beat (1 .. 8) {
         $self->alternate_pan($beat % 2, $self->pan_width);
         if ($beat == 4 || $beat == 8) {
-            $self->score('V'.$self->accent); # Accent!
-            $self->note($self->EIGHTH, $self->strike);
-            $self->score('V'.$self->volume); # Reset the note volume.
+            $self->accent_note($self->EIGHTH);
         }
         else {
             $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
@@ -145,9 +143,7 @@ sub single_stroke_seven { # 3
     for my $beat (1 .. 7) {
         $self->alternate_pan($beat % 2, $self->pan_width);
         if ($beat == 7) {
-            $self->score('V'.$self->accent); # Accent!
-            $self->note($self->EIGHTH, $self->strike);
-            $self->score('V'.$self->volume); # Reset the note volume.
+            $self->accent_note($self->EIGHTH);
         }
         else {
             $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
@@ -197,7 +193,7 @@ sub double_stroke_open_roll { # 6
     for my $beat (1 .. 8) {
         # Pan after groups of two.
         $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
-        $self->note($self->THIRTYSECOND, $self->strike);
+        $self->note($self->SIXTEENTH, $self->strike);
     }
 }
 
@@ -212,7 +208,7 @@ sub five_stroke_roll { # 7
     # Start on left.
     for my $beat (0 .. 3) {
         $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
-        $self->note($self->THIRTYSECOND, $self->strike);
+        $self->note($self->SIXTEENTH, $self->strike);
     }
     $self->pan_left;
     $self->accent_note($self->EIGHTH);
@@ -220,7 +216,7 @@ sub five_stroke_roll { # 7
     # Start on right.
     for my $beat (1 .. 4) {
         $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
-        $self->note($self->THIRTYSECOND, $self->strike);
+        $self->note($self->SIXTEENTH, $self->strike);
     }
     $self->pan_right;
     $self->accent_note($self->EIGHTH);
@@ -441,7 +437,7 @@ sub seventeen_stroke_roll { # 15
 
 =cut
 
-sub single_paradiddle {
+sub single_paradiddle { # 16
     my $self = shift;
     # 2 single strokes left
     for my $beat (0 .. 1) {
@@ -472,7 +468,7 @@ sub single_paradiddle {
 
 =cut
 
-sub double_paradiddle {
+sub double_paradiddle { # 17
     my $self = shift;
     # 4 single strokes starting left
     for my $beat (0 .. 3) {
@@ -503,7 +499,7 @@ sub double_paradiddle {
 
 =cut
 
-sub triple_paradiddle {
+sub triple_paradiddle { # 18
     my $self = shift;
     # 6 single strokes starting left
     for my $beat (0 .. 5) {
@@ -534,7 +530,7 @@ sub triple_paradiddle {
 
 =cut
 
-sub paradiddle_diddle {
+sub paradiddle_diddle { # 19
     my $self = shift;
     # 2 single strokes starting left
     for my $beat (0 .. 1) {
@@ -567,7 +563,7 @@ sub paradiddle_diddle {
 
 =cut
 
-sub flam {
+sub flam { # 20
     my $self = shift;
 
     $self->pan_left;
@@ -591,7 +587,7 @@ sub flam {
 
 =cut
 
-sub flam_accent {
+sub flam_accent { # 21
     my $self = shift;
 
     $self->pan_left;
@@ -621,7 +617,7 @@ sub flam_accent {
 
 =cut
 
-sub flam_tap {
+sub flam_tap { # 22
     my $self = shift;
 
     $self->pan_left;
@@ -645,7 +641,7 @@ sub flam_tap {
 
 =cut
 
-sub flamacue {
+sub flamacue { # 23
     my $self = shift;
 
     # Flam
@@ -692,7 +688,7 @@ sub flamacue {
 
 =cut
 
-sub flam_paradiddle {
+sub flam_paradiddle { # 24
     my $self = shift;
 
     # Flam
@@ -727,7 +723,7 @@ sub flam_paradiddle {
 
 =cut
 
-sub flammed_mill {
+sub flammed_mill { # 25
     my $self = shift;
 
     $self->pan_left;
@@ -758,7 +754,7 @@ sub flammed_mill {
 
 =cut
 
-sub flam_paradiddle_diddle {
+sub flam_paradiddle_diddle { # 26
     my $self = shift;
 
     $self->pan_left;
@@ -792,7 +788,7 @@ sub flam_paradiddle_diddle {
 
 =cut
 
-sub pataflafla {
+sub pataflafla { # 27
     my $self = shift;
 
     for (0 .. 1) {
@@ -816,7 +812,7 @@ sub pataflafla {
 
 =cut
 
-sub swiss_army_triplet {
+sub swiss_army_triplet { # 28
     my $self = shift;
 
     for (0 .. 1) {
@@ -836,7 +832,7 @@ sub swiss_army_triplet {
 
 =cut
 
-sub inverted_flam_tap {
+sub inverted_flam_tap { # 29
     my $self = shift;
 
     for (0 .. 1) {
@@ -862,7 +858,7 @@ sub inverted_flam_tap {
 
 =cut
 
-sub flam_drag {
+sub flam_drag { # 30
     my $self = shift;
 
     $self->pan_left;
@@ -895,7 +891,7 @@ sub flam_drag {
 
 =cut
 
-sub drag {
+sub drag { # 31
     my $self = shift;
 
     $self->pan_left;
@@ -917,7 +913,7 @@ sub drag {
 
 =cut
 
-sub single_drag_tap {
+sub single_drag_tap { # 32
     my $self = shift;
 
     $self->pan_left;
@@ -944,7 +940,7 @@ sub single_drag_tap {
 
 =cut
 
-sub double_drag_tap {
+sub double_drag_tap { # 33
     my $self = shift;
 
     $self->pan_left;
@@ -980,7 +976,7 @@ sub double_drag_tap {
 
 =cut
 
-sub lesson_25_two_and_three {
+sub lesson_25_two_and_three { # 34
     my $self = shift;
 
     $self->pan_left;
@@ -1003,7 +999,7 @@ sub lesson_25_two_and_three {
 
 =cut
 
-sub single_dragadiddle {
+sub single_dragadiddle { # 35
     my $self = shift;
 
     $self->pan_right;
@@ -1031,7 +1027,7 @@ sub single_dragadiddle {
 
 =cut
 
-sub drag_paradiddle_1 {
+sub drag_paradiddle_1 { # 36
     my $self = shift;
 
     $self->pan_right;
@@ -1068,7 +1064,7 @@ sub drag_paradiddle_1 {
 
 =cut
 
-sub drag_paradiddle_2 {
+sub drag_paradiddle_2 { # 37
     my $self = shift;
 
     $self->pan_right;
@@ -1105,7 +1101,7 @@ sub drag_paradiddle_2 {
 
 =cut
 
-sub single_ratamacue {
+sub single_ratamacue { # 38
     my $self = shift;
 
     $self->pan_left;
@@ -1139,7 +1135,7 @@ sub single_ratamacue {
 
 =cut
 
-sub double_ratamacue {
+sub double_ratamacue { # 39
     my $self = shift;
 
     $self->pan_left;
@@ -1184,7 +1180,7 @@ sub double_ratamacue {
 
 =cut
 
-sub triple_ratamacue {
+sub triple_ratamacue { # 40
     my $self = shift;
 
     $self->pan_left;
