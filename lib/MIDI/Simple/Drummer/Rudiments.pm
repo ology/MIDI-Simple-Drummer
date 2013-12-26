@@ -1077,13 +1077,26 @@ sub drag_paradiddle_2 {
     $self->note($self->SIXTEENTH, $self->strike);
     $self->note($self->SIXTEENTH, $self->strike);
     $self->pan_right;
-    $self->pan_right;
     $self->note($self->SIXTEENTH, $self->strike);
     $self->pan_left;
     $self->note($self->SIXTEENTH, $self->strike);
     $self->pan_right;
     $self->note($self->SIXTEENTH, $self->strike);
     $self->note($self->SIXTEENTH, $self->strike);
+
+    $self->pan_left;
+    $self->accent_note($self->EIGHTH);
+    $self->pan_right;
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->pan_left;
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->pan_right;
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->pan_left;
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->note($self->SIXTEENTH, $self->strike);
+
 }
 
 =head2 single_ratamacue()
