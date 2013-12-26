@@ -1180,12 +1180,57 @@ sub double_ratamacue {
 
 =head2 triple_ratamacue()
 
-40. Triple Ratamacue * Not yet implemented
+40. Triple Ratamacue
 
 =cut
 
 sub triple_ratamacue {
     my $self = shift;
+
+    $self->pan_left;
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->pan_right;
+    $self->note($self->EIGHTH, $self->strike);
+    $self->pan_left;
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->pan_right;
+    $self->note($self->EIGHTH, $self->strike);
+    $self->pan_left;
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->pan_right;
+    $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
+    $self->pan_left;
+    $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
+    $self->pan_right;
+    $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
+    $self->pan_left;
+    $self->accent_note($self->EIGHTH);
+
+    $self->pan_right;
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->pan_left;
+    $self->note($self->EIGHTH, $self->strike);
+    $self->pan_right;
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->pan_left;
+    $self->note($self->EIGHTH, $self->strike);
+    $self->pan_right;
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->pan_left;
+    $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
+    $self->pan_right;
+    $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
+    $self->pan_left;
+    $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
+    $self->pan_right;
+    $self->accent_note($self->EIGHTH);
+
 }
 
 =head2 pan_left(), pan_center(), pan_right()
