@@ -976,32 +976,90 @@ sub double_drag_tap {
 
 =head2 lesson_25_two_and_three()
 
-34. Lesson 25 (Two and Three) * Not yet implemented
+34. Lesson 25 (Two and Three)
 
 =cut
 
 sub lesson_25_two_and_three {
     my $self = shift;
+
+    $self->pan_left;
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->pan_right;
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->pan_left;
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->pan_right;
+    $self->note($self->EIGHTH, $self->strike);
+    $self->pan_left;
+    $self->accent_note($self->EIGHTH);
 }
 
 =head2 single_dragadiddle()
 
-35. Single Dragadiddle * Not yet implemented
+35. Single Dragadiddle
 
 =cut
 
 sub single_dragadiddle {
     my $self = shift;
+
+    $self->pan_right;
+    $self->accent_note($self->SIXTEENTH);
+    $self->accent_note($self->SIXTEENTH);
+    $self->pan_left;
+    $self->note($self->SXTEENTH, $self->strike);
+    $self->pan_right;
+    $self->note($self->SXTEENTH, $self->strike);
+    $self->note($self->SXTEENTH, $self->strike);
+
+    $self->pan_left;
+    $self->accent_note($self->SIXTEENTH);
+    $self->accent_note($self->SIXTEENTH);
+    $self->pan_right;
+    $self->note($self->SXTEENTH, $self->strike);
+    $self->pan_left;
+    $self->note($self->SXTEENTH, $self->strike);
+    $self->note($self->SXTEENTH, $self->strike);
 }
 
 =head2 drag_paradiddle_1()
 
-36. Drag Paradiddle #1 * Not yet implemented
+36. Drag Paradiddle #1
 
 =cut
 
 sub drag_paradiddle_1 {
     my $self = shift;
+
+    $self->pan_right;
+    $self->accent_note($self->EIGHTH);
+    $self->pan_left;
+    $self->note($self->SXTEENTH, $self->strike);
+    $self->note($self->SXTEENTH, $self->strike);
+    $self->pan_right;
+    $self->note($self->SXTEENTH, $self->strike);
+    $self->pan_left;
+    $self->note($self->SXTEENTH, $self->strike);
+    $self->pan_right;
+    $self->note($self->SXTEENTH, $self->strike);
+    $self->note($self->SXTEENTH, $self->strike);
+
+    $self->pan_left;
+    $self->accent_note($self->EIGHTH);
+    $self->pan_right;
+    $self->note($self->SXTEENTH, $self->strike);
+    $self->note($self->SXTEENTH, $self->strike);
+    $self->pan_left;
+    $self->note($self->SXTEENTH, $self->strike);
+    $self->pan_right;
+    $self->note($self->SXTEENTH, $self->strike);
+    $self->pan_left;
+    $self->note($self->SXTEENTH, $self->strike);
+    $self->note($self->SXTEENTH, $self->strike);
+
 }
 
 =head2 drag_paradiddle_2()
