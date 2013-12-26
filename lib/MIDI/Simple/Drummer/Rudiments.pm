@@ -1101,12 +1101,36 @@ sub drag_paradiddle_2 {
 
 =head2 single_ratamacue()
 
-38. Single Ratamacue * Not yet implemented
+38. Single Ratamacue
 
 =cut
 
 sub single_ratamacue {
     my $self = shift;
+
+    $self->pan_left;
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->pan_right;
+    $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
+    $self->pan_left;
+    $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
+    $self->pan_right;
+    $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
+    $self->pan_left;
+    $self->accent_note($self->EIGHTH);
+
+    $self->pan_right;
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->pan_left;
+    $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
+    $self->pan_right;
+    $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
+    $self->pan_left;
+    $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
+    $self->pan_right;
+    $self->accent_note($self->EIGHTH);
 }
 
 =head2 double_ratamacue()
