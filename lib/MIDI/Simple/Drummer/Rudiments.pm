@@ -439,7 +439,7 @@ sub seventeen_stroke_roll { # 15
 
 sub single_paradiddle { # 16
     my $self = shift;
-    # 2 single strokes left
+    # 2 single strokes
     for my $beat (0 .. 1) {
         $self->alternate_pan($beat % 2, $self->pan_width);
         $self->note($self->SIXTEENTH, $self->strike);
@@ -450,7 +450,7 @@ sub single_paradiddle { # 16
         $self->note($self->SIXTEENTH, $self->strike);
     }
 
-    # 2 single strokes right
+    # 2 single strokes
     for my $beat (1 .. 2) {
         $self->alternate_pan($beat % 2, $self->pan_width);
         $self->note($self->SIXTEENTH, $self->strike);
@@ -1223,14 +1223,6 @@ sub triple_ratamacue { # 40
     $self->pan_right;
     $self->accent_note($self->EIGHTH);
 
-}
-
-=head2 flam()
-
-
-=cut
-
-sub flam { # 
 }
 
 =head2 pan_left(), pan_center(), pan_right()
