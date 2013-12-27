@@ -1,7 +1,11 @@
 Revision history for MIDI-Simple-Drummer
 
 {{$NEXT}}
+    - Consolidated and modularized rudiment code.
+
+0.05      2013-12-26 08:09:30 America/New_York
     - Improved documentation!
+    - Added the rest of the rudiments.
 
 0.04      2013-12-23 20:26:35 America/Los_Angeles
     - Added bitmask representation handling.
