@@ -567,16 +567,12 @@ sub flam { # 20
     my $self = shift;
 
     $self->pan_left;
-    $self->score('V' . $self->duck); # Duck!
     $self->note($self->THIRTYSECOND, $self->strike);
-    $self->score('V' . $self->volume); # Reset the note volume.
     $self->pan_right;
     $self->note($self->EIGHTH, $self->strike);
 
     $self->pan_right;
-    $self->score('V' . $self->duck); # Duck!
     $self->note($self->THIRTYSECOND, $self->strike);
-    $self->score('V' . $self->volume); # Reset the note volume.
     $self->pan_left;
     $self->note($self->EIGHTH, $self->strike);
 }
@@ -1227,6 +1223,14 @@ sub triple_ratamacue { # 40
     $self->pan_right;
     $self->accent_note($self->EIGHTH);
 
+}
+
+=head2 flam()
+
+
+=cut
+
+sub flam { # 
 }
 
 =head2 pan_left(), pan_center(), pan_right()
