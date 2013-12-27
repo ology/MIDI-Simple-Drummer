@@ -1084,7 +1084,7 @@ sub triple_ratamacue { # 40
 
 }
 
-sub _dragbit {
+sub _dragit {
     my ($self, $direction, $note, $accent) = @_;
 
     # Set pan direction.
