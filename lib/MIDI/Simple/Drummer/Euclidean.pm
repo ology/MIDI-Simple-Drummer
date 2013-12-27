@@ -2,7 +2,7 @@ package MIDI::Simple::Drummer::Euclidean;
 our $VERSION = '0.00_01';
 use strict;
 use warnings;
-use base 'MIDI::Simple::Drummer';
+use parent 'MIDI::Simple::Drummer';
 
 sub new {
     my $self = shift;

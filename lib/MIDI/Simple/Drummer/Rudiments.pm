@@ -2,7 +2,7 @@ package MIDI::Simple::Drummer::Rudiments;
 our $VERSION = '0.04';
 use strict;
 use warnings;
-use base 'MIDI::Simple::Drummer';
+use parent 'MIDI::Simple::Drummer';
 
 use constant PAN_CENTER => 64;
 
