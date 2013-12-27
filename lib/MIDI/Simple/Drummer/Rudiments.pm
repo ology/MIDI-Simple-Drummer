@@ -565,16 +565,8 @@ sub paradiddle_diddle { # 19
 
 sub flam { # 20
     my $self = shift;
-
-    $self->pan_left;
-    $self->note($self->THIRTYSECOND, $self->strike);
-    $self->pan_right;
-    $self->note($self->EIGHTH, $self->strike);
-
-    $self->pan_right;
-    $self->note($self->THIRTYSECOND, $self->strike);
-    $self->pan_left;
-    $self->note($self->EIGHTH, $self->strike);
+    $self->_flambit(0, $self->EIGHTH, 0);
+    $self->_flambit(1, $self->EIGHTH, 0);
 }
 
 =head2 flam_accent()
@@ -586,20 +578,18 @@ sub flam { # 20
 sub flam_accent { # 21
     my $self = shift;
 
-    $self->pan_left;
-    $self->note($self->THIRTYSECOND, $self->strike);
-    $self->pan_right;
-    $self->accent_note($self->EIGHTH);
+    # Flam!
+    $self->_flambit(0, $self->EIGHTH, 1);
+
     # 2 single strokes.
     for my $beat (0 .. 1) {
         $self->alternate_pan($beat % 2, $self->pan_width);
         $self->note($self->EIGHTH, $self->strike);
     }
 
-    $self->pan_right;
-    $self->note($self->THIRTYSECOND, $self->strike);
-    $self->pan_left;
-    $self->accent_note($self->EIGHTH);
+    # Flam!
+    $self->_flambit(1, $self->EIGHTH, 1);
+
     # 2 single strokes.
     for my $beat (1 .. 2) {
         $self->alternate_pan($beat % 2, $self->pan_width);
@@ -616,18 +606,12 @@ sub flam_accent { # 21
 sub flam_tap { # 22
     my $self = shift;
 
-    $self->pan_left;
-    $self->note($self->THIRTYSECOND, $self->strike);
-    $self->pan_right;
-    # 1 diddle
-    $self->accent_note($self->SIXTEENTH);
+    # Flam + diddle.
+    $self->_flambit(0, $self->SIXTEENTH, 1);
     $self->note($self->SIXTEENTH, $self->strike);
 
-    $self->pan_right;
-    $self->note($self->THIRTYSECOND, $self->strike);
-    $self->pan_left;
-    # 1 diddle
-    $self->accent_note($self->EIGHTH);
+    # Flam + diddle.
+    $self->_flambit(1, $self->SIXTEENTH, 1);
     $self->note($self->SIXTEENTH, $self->strike);
 }
 
@@ -640,11 +624,8 @@ sub flam_tap { # 22
 sub flamacue { # 23
     my $self = shift;
 
-    # Flam
-    $self->pan_left;
-    $self->note($self->THIRTYSECOND, $self->strike);
-    $self->pan_right;
-    $self->note($self->SIXTEENTH, $self->strike);
+    # Flam!
+    $self->_flambit(0, $self->SIXTEENTH, 0);
     $self->pan_left;
     $self->accent_note($self->SIXTEENTH);
     # 2 single strokes.
@@ -652,17 +633,11 @@ sub flamacue { # 23
         $self->alternate_pan($beat % 2, $self->pan_width);
         $self->note($self->EIGHTH, $self->strike);
     }
-    # Flam
-    $self->pan_left;
-    $self->note($self->THIRTYSECOND, $self->strike);
-    $self->pan_right;
-    $self->note($self->SIXTEENTH, $self->strike);
+    # Flam!
+    $self->_flambit(0, $self->SIXTEENTH, 0);
 
-    # Flam
-    $self->pan_right;
-    $self->note($self->THIRTYSECOND, $self->strike);
-    $self->pan_left;
-    $self->note($self->SIXTEENTH, $self->strike);
+    # Flam!
+    $self->_flambit(1, $self->SIXTEENTH, 0);
     $self->pan_right;
     $self->accent_note($self->SIXTEENTH);
     # 2 single strokes.
@@ -670,12 +645,8 @@ sub flamacue { # 23
         $self->alternate_pan($beat % 2, $self->pan_width);
         $self->note($self->EIGHTH, $self->strike);
     }
-    # Flam
-    $self->pan_left;
-    $self->note($self->THIRTYSECOND, $self->strike);
-    $self->pan_right;
-    $self->note($self->SIXTEENTH, $self->strike);
-
+    # Flam!
+    $self->_flambit(1, $self->SIXTEENTH, 0);
 }
 
 =head2 flam_paradiddle()
@@ -687,11 +658,8 @@ sub flamacue { # 23
 sub flam_paradiddle { # 24
     my $self = shift;
 
-    # Flam
-    $self->pan_left;
-    $self->note($self->THIRTYSECOND, $self->strike);
-    $self->pan_right;
-    $self->accent_note($self->SIXTEENTH);
+    # Flam!
+    $self->_flambit(0, $self->SIXTEENTH, 1);
     $self->pan_left;
     $self->note($self->SIXTEENTH, $self->strike);
     # 1 diddle
@@ -699,11 +667,8 @@ sub flam_paradiddle { # 24
     $self->note($self->SIXTEENTH, $self->strike);
     $self->note($self->SIXTEENTH, $self->strike);
 
-    # Flam
-    $self->pan_right;
-    $self->note($self->THIRTYSECOND, $self->strike);
-    $self->pan_left;
-    $self->accent_note($self->SIXTEENTH);
+    # Flam!
+    $self->_flambit(1, $self->SIXTEENTH, 1);
     $self->pan_right;
     $self->note($self->SIXTEENTH, $self->strike);
     # 1 diddle
@@ -722,20 +687,16 @@ sub flam_paradiddle { # 24
 sub flammed_mill { # 25
     my $self = shift;
 
-    $self->pan_left;
-    $self->note($self->THIRTYSECOND, $self->strike);
-    $self->pan_right;
-    $self->accent_note($self->SIXTEENTH);
+    # Flam!
+    $self->_flambit(0, $self->SIXTEENTH, 1);
     $self->note($self->SIXTEENTH, $self->strike);
     $self->pan_left;
     $self->note($self->SIXTEENTH, $self->strike);
     $self->pan_right;
     $self->note($self->SIXTEENTH, $self->strike);
 
-    $self->pan_right;
-    $self->note($self->THIRTYSECOND, $self->strike);
-    $self->pan_left;
-    $self->accent_note($self->SIXTEENTH);
+    # Flam!
+    $self->_flambit(1, $self->SIXTEENTH, 1);
     $self->note($self->SIXTEENTH, $self->strike);
     $self->pan_right;
     $self->note($self->SIXTEENTH, $self->strike);
@@ -753,10 +714,8 @@ sub flammed_mill { # 25
 sub flam_paradiddle_diddle { # 26
     my $self = shift;
 
-    $self->pan_left;
-    $self->note($self->THIRTYSECOND, $self->strike);
-    $self->pan_right;
-    $self->accent_note($self->SIXTEENTH);
+    # Flam!
+    $self->_flambit(0, $self->SIXTEENTH, 1);
     $self->pan_left;
     $self->note($self->SIXTEENTH, $self->strike);
     # 2 diddles
@@ -765,10 +724,8 @@ sub flam_paradiddle_diddle { # 26
         $self->note($self->SIXTEENTH, $self->strike);
     }
 
-    $self->pan_right;
-    $self->note($self->THIRTYSECOND, $self->strike);
-    $self->pan_left;
-    $self->accent_note($self->SIXTEENTH);
+    # Flam!
+    $self->_flambit(1, $self->SIXTEENTH, 1);
     $self->pan_right;
     $self->note($self->SIXTEENTH, $self->strike);
     # 2 diddles
@@ -788,14 +745,9 @@ sub pataflafla { # 27
     my $self = shift;
 
     for (0 .. 1) {
-        $self->pan_left;
-        $self->note($self->THIRTYSECOND, $self->strike);
-        $self->pan_right;
-        $self->accent_note($self->SIXTEENTH);
-        $self->pan_left;
-        $self->note($self->SIXTEENTH, $self->strike);
-        $self->pan_right;
-        $self->note($self->SIXTEENTH, $self->strike);
+        # Flam flam!
+        $self->_flambit(0, $self->SIXTEENTH, 1);
+        $self->_flambit(0, $self->SIXTEENTH, 0);
         $self->note($self->THIRTYSECOND, $self->strike);
         $self->pan_left;
         $self->accent_note($self->SIXTEENTH);
@@ -812,10 +764,8 @@ sub swiss_army_triplet { # 28
     my $self = shift;
 
     for (0 .. 1) {
-        $self->pan_left;
-        $self->note($self->THIRTYSECOND, $self->strike);
-        $self->pan_right;
-        $self->accent_note($self->TRIPLET_SIXTEENTH);
+        # Flam!
+        $self->_flambit(0, $self->TRIPLET_SIXTEENTH, 1);
         $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
         $self->pan_left;
         $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
@@ -832,17 +782,13 @@ sub inverted_flam_tap { # 29
     my $self = shift;
 
     for (0 .. 1) {
-        $self->pan_left;
-        $self->note($self->THIRTYSECOND, $self->strike);
-        $self->pan_right;
-        $self->accent_note($self->SIXTEENTH);
+        # Flam!
+        $self->_flambit(0, $self->SIXTEENTH, 1);
         $self->pan_left;
         $self->note($self->SIXTEENTH, $self->strike);
 
-        $self->pan_right;
-        $self->note($self->THIRTYSECOND, $self->strike);
-        $self->pan_left;
-        $self->accent_note($self->SIXTEENTH);
+        # Flam!
+        $self->_flambit(1, $self->SIXTEENTH, 1);
         $self->pan_right;
         $self->note($self->SIXTEENTH, $self->strike);
     }
@@ -857,26 +803,52 @@ sub inverted_flam_tap { # 29
 sub flam_drag { # 30
     my $self = shift;
 
-    $self->pan_left;
-    $self->note($self->THIRTYSECOND, $self->strike);
-    $self->pan_right;
-    $self->accent_note($self->EIGHTH);
+    # Flam!
+    $self->_flambit(0, $self->EIGHTH, 1);
     $self->pan_left;
     $self->note($self->SIXTEENTH, $self->strike);
     $self->note($self->SIXTEENTH, $self->strike);
     $self->pan_right;
     $self->accent_note($self->EIGHTH);
 
-    $self->pan_right;
-    $self->note($self->THIRTYSECOND, $self->strike);
-    $self->pan_left;
-    $self->accent_note($self->EIGHTH);
+    # Flam!
+    $self->_flambit(1, $self->EIGHTH, 1);
     $self->pan_right;
     $self->note($self->SIXTEENTH, $self->strike);
     $self->note($self->SIXTEENTH, $self->strike);
     $self->pan_left;
     $self->accent_note($self->EIGHTH);
+}
 
+sub _flambit {
+    my ($self, $direction, $note, $accent) = @_;
+
+    # Set pan direction.
+    if ($direction) {
+        $self->pan_right;
+    }
+    else {
+        $self->pan_left;
+    }
+
+    # Play a grace note.
+    $self->note($self->THIRTYSECOND, $self->strike);
+
+    # Set pan direction.
+    if ($direction) {
+        $self->pan_left;
+    }
+    else {
+        $self->pan_right;
+    }
+
+    # Should we accent the final note?
+    if ($accent) {
+        $self->accent_note($self->EIGHTH);
+    }
+    else {
+        $self->note($note, $self->strike);
+    }
 }
 
 =head1 IV. Drag Rudiments
@@ -890,17 +862,8 @@ sub flam_drag { # 30
 sub drag { # 31
     my $self = shift;
 
-    $self->pan_left;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->pan_right;
-    $self->note($self->QUARTER, $self->strike);
-
-    $self->pan_right;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->pan_left;
-    $self->note($self->QUARTER, $self->strike);
+    $self->_dragit(0, $self->QUARTER, 0);
+    $self->_dragit(1, $self->QUARTER, 0);
 }
 
 =head2 single_drag_tap()
@@ -912,19 +875,11 @@ sub drag { # 31
 sub single_drag_tap { # 32
     my $self = shift;
 
-    $self->pan_left;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->pan_right;
-    $self->note($self->EIGHTH, $self->strike);
+    $self->_dragit(0, $self->EIGHTH, 0);
     $self->pan_left;
     $self->accent_note($self->EIGHTH);
 
-    $self->pan_right;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->pan_left;
-    $self->note($self->EIGHTH, $self->strike);
+    $self->_dragit(1, $self->EIGHTH, 0);
     $self->pan_right;
     $self->accent_note($self->EIGHTH);
 
@@ -939,29 +894,13 @@ sub single_drag_tap { # 32
 sub double_drag_tap { # 33
     my $self = shift;
 
-    $self->pan_left;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->pan_right;
-    $self->note($self->EIGHTH, $self->strike);
-    $self->pan_left;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->pan_right;
-    $self->note($self->EIGHTH, $self->strike);
+    $self->_dragit(0, $self->EIGHTH, 0);
+    $self->_dragit(0, $self->EIGHTH, 0);
     $self->pan_left;
     $self->accent_note($self->EIGHTH);
 
-    $self->pan_right;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->pan_left;
-    $self->note($self->EIGHTH, $self->strike);
-    $self->pan_right;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->pan_left;
-    $self->note($self->EIGHTH, $self->strike);
+    $self->_dragit(1, $self->EIGHTH, 0);
+    $self->_dragit(1, $self->EIGHTH, 0);
     $self->pan_right;
     $self->accent_note($self->EIGHTH);
 }
@@ -975,16 +914,8 @@ sub double_drag_tap { # 33
 sub lesson_25_two_and_three { # 34
     my $self = shift;
 
-    $self->pan_left;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->pan_right;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->pan_left;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->pan_right;
-    $self->note($self->EIGHTH, $self->strike);
+    $self->_dragit(0, $self->SIXTEENTH, 0);
+    $self->_dragit(0, $self->EIGHTH, 0);
     $self->pan_left;
     $self->accent_note($self->EIGHTH);
 }
@@ -998,20 +929,12 @@ sub lesson_25_two_and_three { # 34
 sub single_dragadiddle { # 35
     my $self = shift;
 
-    $self->pan_right;
-    $self->accent_note($self->SIXTEENTH);
-    $self->accent_note($self->SIXTEENTH);
-    $self->pan_left;
-    $self->note($self->SIXTEENTH, $self->strike);
+    $self->_dragit(1, $self->SIXTEENTH, 0);
     $self->pan_right;
     $self->note($self->SIXTEENTH, $self->strike);
     $self->note($self->SIXTEENTH, $self->strike);
 
-    $self->pan_left;
-    $self->accent_note($self->SIXTEENTH);
-    $self->accent_note($self->SIXTEENTH);
-    $self->pan_right;
-    $self->note($self->SIXTEENTH, $self->strike);
+    $self->_dragit(0, $self->SIXTEENTH, 0);
     $self->pan_left;
     $self->note($self->SIXTEENTH, $self->strike);
     $self->note($self->SIXTEENTH, $self->strike);
@@ -1028,11 +951,7 @@ sub drag_paradiddle_1 { # 36
 
     $self->pan_right;
     $self->accent_note($self->EIGHTH);
-    $self->pan_left;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->pan_right;
-    $self->note($self->SIXTEENTH, $self->strike);
+    $self->_dragit(0, $self->SIXTEENTH, 0);
     $self->pan_left;
     $self->note($self->SIXTEENTH, $self->strike);
     $self->pan_right;
@@ -1041,11 +960,7 @@ sub drag_paradiddle_1 { # 36
 
     $self->pan_left;
     $self->accent_note($self->EIGHTH);
-    $self->pan_right;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->pan_left;
-    $self->note($self->SIXTEENTH, $self->strike);
+    $self->_dragit(1, $self->SIXTEENTH, 0);
     $self->pan_right;
     $self->note($self->SIXTEENTH, $self->strike);
     $self->pan_left;
@@ -1065,11 +980,7 @@ sub drag_paradiddle_2 { # 37
 
     $self->pan_right;
     $self->accent_note($self->EIGHTH);
-    $self->pan_left;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->pan_right;
-    $self->note($self->SIXTEENTH, $self->strike);
+    $self->_dragit(0, $self->SIXTEENTH, 0);
     $self->pan_left;
     $self->note($self->SIXTEENTH, $self->strike);
     $self->pan_right;
@@ -1078,11 +989,7 @@ sub drag_paradiddle_2 { # 37
 
     $self->pan_left;
     $self->accent_note($self->EIGHTH);
-    $self->pan_right;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->pan_left;
-    $self->note($self->SIXTEENTH, $self->strike);
+    $self->_dragit(1, $self->SIXTEENTH, 0);
     $self->pan_right;
     $self->note($self->SIXTEENTH, $self->strike);
     $self->pan_left;
@@ -1100,11 +1007,7 @@ sub drag_paradiddle_2 { # 37
 sub single_ratamacue { # 38
     my $self = shift;
 
-    $self->pan_left;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->pan_right;
-    $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
+    $self->_dragit(0, $self->TRIPLET_SIXTEENTH, 0);
     $self->pan_left;
     $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
     $self->pan_right;
@@ -1112,11 +1015,7 @@ sub single_ratamacue { # 38
     $self->pan_left;
     $self->accent_note($self->EIGHTH);
 
-    $self->pan_right;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->pan_left;
-    $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
+    $self->_dragit(1, $self->TRIPLET_SIXTEENTH, 0);
     $self->pan_right;
     $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
     $self->pan_left;
@@ -1134,16 +1033,8 @@ sub single_ratamacue { # 38
 sub double_ratamacue { # 39
     my $self = shift;
 
-    $self->pan_left;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->pan_right;
-    $self->accent_note($self->EIGHTH);
-    $self->pan_left;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->pan_right;
-    $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
+    $self->_dragit(0, $self->EIGHTH, 1);
+    $self->_dragit(0, $self->TRIPLET_SIXTEENTH, 0);
     $self->pan_left;
     $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
     $self->pan_right;
@@ -1151,16 +1042,8 @@ sub double_ratamacue { # 39
     $self->pan_left;
     $self->accent_note($self->EIGHTH);
 
-    $self->pan_right;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->pan_left;
-    $self->accent_note($self->EIGHTH);
-    $self->pan_right;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->pan_left;
-    $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
+    $self->_dragit(1, $self->EIGHTH, 1);
+    $self->_dragit(1, $self->TRIPLET_SIXTEENTH, 0);
     $self->pan_right;
     $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
     $self->pan_left;
@@ -1179,21 +1062,9 @@ sub double_ratamacue { # 39
 sub triple_ratamacue { # 40
     my $self = shift;
 
-    $self->pan_left;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->pan_right;
-    $self->note($self->EIGHTH, $self->strike);
-    $self->pan_left;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->pan_right;
-    $self->note($self->EIGHTH, $self->strike);
-    $self->pan_left;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->pan_right;
-    $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
+    $self->_dragit(0, $self->EIGHTH, 0);
+    $self->_dragit(0, $self->EIGHTH, 0);
+    $self->_dragit(0, $self->TRIPLET_SIXTEENTH, 0);
     $self->pan_left;
     $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
     $self->pan_right;
@@ -1201,21 +1072,9 @@ sub triple_ratamacue { # 40
     $self->pan_left;
     $self->accent_note($self->EIGHTH);
 
-    $self->pan_right;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->pan_left;
-    $self->note($self->EIGHTH, $self->strike);
-    $self->pan_right;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->pan_left;
-    $self->note($self->EIGHTH, $self->strike);
-    $self->pan_right;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->pan_left;
-    $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
+    $self->_dragit(1, $self->EIGHTH, 0);
+    $self->_dragit(1, $self->EIGHTH, 0);
+    $self->_dragit(1, $self->TRIPLET_SIXTEENTH, 0);
     $self->pan_right;
     $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
     $self->pan_left;
@@ -1223,6 +1082,39 @@ sub triple_ratamacue { # 40
     $self->pan_right;
     $self->accent_note($self->EIGHTH);
 
+}
+
+sub _dragbit {
+    my ($self, $direction, $note, $accent) = @_;
+
+    # Set pan direction.
+    if ($direction) {
+        $self->pan_right;
+    }
+    else {
+        $self->pan_left;
+    }
+
+    # Drag it!
+    $self->note($self->SIXTEENTH, $self->strike);
+    $self->note($self->SIXTEENTH, $self->strike);
+
+    # Set pan direction.
+    if ($direction) {
+        $self->pan_right;
+    }
+    else {
+        $self->pan_left;
+    }
+    $self->pan_right;
+
+    # Accented?
+    if ($accent) {
+        $self->accent_note($note);
+    }
+    else {
+        $self->note($note, $self->strike);
+    }
 }
 
 =head2 pan_left(), pan_center(), pan_right()
