@@ -1171,6 +1171,35 @@ sub alternate_pan {
     return $pan, $width;
 }
 
+=head2 single_stroke_n()
+
+Abstract method for multiple types of single stroke rolls of B<n> maximum beats.
+
+=cut
+
+sub single_stroke_n {
+    my $self = shift;
+    my %args = @_;
+    $args{critical} ||= [4, 8];
+    $args{alternate_pan} ||= 2;
+    $args{accent} ||= $self->EIGHTH;
+    $args{note} ||= $self->TRIPLET_SIXTEENTH;
+
+    # Assume critical beats have increasing order.
+    for my $beat (1 .. (@{$args{critical}})[-1]) {
+        # Alternate the sticks after number of beats.
+        $self->alternate_pan($beat % $args{alternate_pan}, $self->pan_width);
+
+        # Accent if on a critical beat.
+        if (grep { $beat == $_ } @{ $args{critical} }) {
+            $self->accent_note($args{accent});
+        }
+        else {
+            $self->note($args{note}, $self->strike);
+        }
+    }
+}
+
 1;
 __END__
 
