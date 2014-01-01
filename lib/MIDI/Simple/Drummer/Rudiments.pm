@@ -202,12 +202,13 @@ sub five_stroke_roll { # 7
     my %args = (
         critical => [0 .. 3],
         groups_of => 2,
+        accent => $self->EIGHTH,
         @_
     );
     # Start on left.
     $self->alternate_note(%args);
     $self->pan_left;
-    $self->accent_note($self->EIGHTH);
+    $self->accent_note($args{accent});
 
     # Start on right.
     %args = (
@@ -217,7 +218,7 @@ sub five_stroke_roll { # 7
     );
     $self->alternate_note(%args);
     $self->pan_right;
-    $self->accent_note($self->EIGHTH);
+    $self->accent_note($args{accent});
 }
 
 =head2 six_stroke_roll()
