@@ -1160,6 +1160,44 @@ sub alternate_pan {
     return $pan, $width;
 }
 
+=head2 alternate_note()
+
+Abstract method for alternating a note strike based on the beat and note value,
+given the following parameters.
+
+Arguments & defaults:
+
+  critical      : Beats 0 through 4
+  alternate_pan : Pan every other beat
+  groups_of     : Number of beats after which we pan
+  note          : A 1/16th note
+
+
+=cut
+
+sub alternate_note {
+    my $self = shift;
+    my %args = @_;
+    $args{critical} ||= [0, 4];
+    $args{alternate_pan} ||= 2;
+    $args{groups_of} ||= 0;
+    $args{note} ||= $self->SIXTEENTH;
+
+    # 4 single strokes starting left
+    for my $beat (@{$args{critical}}) {
+        # If we are given a group number, use that instead of modulo.
+        if ($args{groups_of}) {
+            $self->alternate_pan(_groups_of($beat, $args{groups_of}), $self->pan_width);
+        }
+        if ($args{alternate_pan}) {
+            $self->alternate_pan($beat % $args{alternate_pan}, $self->pan_width);
+        }
+
+        # Add the note!
+        $self->note($args{note}, $self->strike);
+    }
+}
+
 =head2 single_stroke_n()
 
 Abstract method for multiple types of single stroke rolls of B<n> maximum beats.
@@ -1167,9 +1205,9 @@ Abstract method for multiple types of single stroke rolls of B<n> maximum beats.
 Arguments & defaults:
 
   critical      : The 4 & 8 beats
-  alternate_pan : 2 Beats after which we pan
+  alternate_pan : Pan every other beat
   accent        : An 1/8th note
-  note          : A Triplet_sixteenth note
+  note          : A triplet 1/16th note
 
 =cut
 
