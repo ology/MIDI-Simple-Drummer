@@ -119,16 +119,13 @@ sub single_stroke_roll { # 1
 
 sub single_stroke_four { # 2
     my $self = shift;
-    my %args = @_;
-    for my $beat (1 .. 8) {
-        $self->alternate_pan($beat % 2, $self->pan_width);
-        if ($beat == 4 || $beat == 8) {
-            $self->accent_note($self->EIGHTH);
-        }
-        else {
-            $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
-        }
-    }
+    my %args = (
+        critical => [4, 8],
+        alternate_pan => 2,
+        accent => $self->EIGHTH,
+        note => $self->TRIPLET_SIXTEENTH,
+    );
+    $self->single_stroke_n(%args);
 }
 
 =head2 single_stroke_seven()
@@ -139,16 +136,8 @@ sub single_stroke_four { # 2
 
 sub single_stroke_seven { # 3
     my $self = shift;
-    my %args = @_;
-    for my $beat (1 .. 7) {
-        $self->alternate_pan($beat % 2, $self->pan_width);
-        if ($beat == 7) {
-            $self->accent_note($self->EIGHTH);
-        }
-        else {
-            $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
-        }
-    }
+    my %args = (critical => [7]);
+    $self->single_stroke_n(%args);
 }
 
 =head1 B. Multiple Bounce Rudiments
