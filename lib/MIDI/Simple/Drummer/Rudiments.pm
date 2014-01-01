@@ -1164,6 +1164,13 @@ sub alternate_pan {
 
 Abstract method for multiple types of single stroke rolls of B<n> maximum beats.
 
+Arguments & defaults:
+
+  critical      : The 4 & 8 beats
+  alternate_pan : 2 Beats after which we pan
+  accent        : An 1/8th note
+  note          : A Triplet_sixteenth note
+
 =cut
 
 sub single_stroke_n {
