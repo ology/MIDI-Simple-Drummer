@@ -105,10 +105,11 @@ sub _groups_of {
 
 sub single_stroke_roll { # 1
     my $self = shift;
-    for my $beat (1 .. 8) {
-        $self->alternate_pan($beat % 2, $self->pan_width);
-        $self->note($self->SIXTEENTH, $self->strike);
-    }
+    my %args = (
+        critical => [1 .. 8],
+        @_
+    );
+    $self->alternate_note(%args);
 }
 
 =head2 single_stroke_four()
@@ -136,7 +137,10 @@ sub single_stroke_four { # 2
 
 sub single_stroke_seven { # 3
     my $self = shift;
-    my %args = (critical => [7]);
+    my %args = (
+        critical => [7],
+        @_
+    );
     $self->single_stroke_n(%args);
 }
 
@@ -162,12 +166,13 @@ sub multiple_bounce_roll { # 4
 
 sub triple_stroke_roll { # 5
     my $self = shift;
-    my %args = @_;
-    for my $beat (1 .. 12) {
-        # Pan after groups of three.
-        $self->alternate_pan(_groups_of($beat, 3), $self->pan_width);
-        $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
-    }
+    my %args = (
+        critical => [1 .. 12],
+        groups_of => 3,
+        note => $self->TRIPLET_SIXTEENTH,
+        @_
+    );
+    $self->alternate_note(%args);
 }
 
 =head2 double_stroke_open_roll()
@@ -178,12 +183,12 @@ sub triple_stroke_roll { # 5
 
 sub double_stroke_open_roll { # 6
     my $self = shift;
-    my %args = @_;
-    for my $beat (1 .. 8) {
-        # Pan after groups of two.
-        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
-        $self->note($self->SIXTEENTH, $self->strike);
-    }
+    my %args = (
+        critical => [1 .. 8],
+        groups_of => 2,
+        @_
+    );
+    $self->alternate_note(%args);
 }
 
 =head2 five_stroke_roll()
@@ -194,19 +199,23 @@ sub double_stroke_open_roll { # 6
 
 sub five_stroke_roll { # 7
     my $self = shift;
+    my %args = (
+        critical => [0 .. 3],
+        groups_of => 2,
+        @_
+    );
     # Start on left.
-    for my $beat (0 .. 3) {
-        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
-        $self->note($self->SIXTEENTH, $self->strike);
-    }
+    $self->alternate_note(%args);
     $self->pan_left;
     $self->accent_note($self->EIGHTH);
 
     # Start on right.
-    for my $beat (1 .. 4) {
-        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
-        $self->note($self->SIXTEENTH, $self->strike);
-    }
+    %args = (
+        critical => [1 .. 4],
+        groups_of => 2,
+        @_
+    );
+    $self->alternate_note(%args);
     $self->pan_right;
     $self->accent_note($self->EIGHTH);
 }
