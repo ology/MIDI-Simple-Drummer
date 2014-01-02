@@ -15,7 +15,7 @@ MIDI::Simple::Drummer::Rudiments - Drum rudiments
   use MIDI::Simple::Drummer::Rudiments;
   my $d = MIDI::Simple::Drummer::Rudiments->new;
   $d->count_in;
-  $d->beat(-name => 1) for 1 .. $d->phrases;
+  $d->single_stroke_roll for 1 .. $d->phrases;
   $d->write('single_stroke_roll.mid');
 
 =head1 DESCRIPTION
