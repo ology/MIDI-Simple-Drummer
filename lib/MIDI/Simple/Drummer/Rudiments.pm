@@ -209,11 +209,7 @@ sub five_stroke_roll { # 7
     $self->pan_left;
     $self->accent_note($args{accent});
 
-    %args = (
-        critical => [1 .. 4],
-        groups_of => 2,
-        @_
-    );
+    $args{critical} = [1 .. 4];
     $self->alternate_note(%args);
     $self->pan_right;
     $self->accent_note($args{accent});
@@ -239,12 +235,7 @@ sub six_stroke_roll { #8 - 2 diddles, accent
     $self->pan_right;
     $self->accent_note($args{accent});
 
-    %args = (
-        critical => [1 .. 4],
-        groups_of => 2,
-        accent => $self->EIGHTH,
-        @_
-    );
+    $args{critical} = [1 .. 4];
     $self->accent_note($args{accent});
     $self->alternate_note(%args);
     $self->pan_left;
@@ -270,13 +261,7 @@ sub seven_stroke_roll { #9 - 3 diddles, accent
     $self->pan_right;
     $self->accent_note($args{accent});
 
-    %args = (
-        critical => [1 .. 6],
-        groups_of => 2,
-        accent => $self->EIGHTH,
-        note => $self->TRIPLET_SIXTEENTH,
-        @_
-    );
+    $args{critical} = [1 .. 6];
     $self->alternate_note(%args);
     $self->pan_left;
     $self->accent_note($args{accent});
@@ -294,7 +279,6 @@ sub nine_stroke_roll { # 10 - 4 diddles, accent
         critical => [0 .. 7],
         groups_of => 2,
         accent => $self->EIGHTH,
-        note => $self->SIXTEENTH,
         @_
     );
     $self->alternate_note(%args);
@@ -313,27 +297,25 @@ sub nine_stroke_roll { # 10 - 4 diddles, accent
 
 =cut
 
-sub ten_stroke_roll { # 11
+sub ten_stroke_roll { # 11 - 4 diddles, 2 accents
     my $self = shift;
-    # 4 diddles
-    for my $beat (0 .. 7) {
-        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
-        $self->note($self->SIXTEENTH, $self->strike);
-    }
+    %args = (
+        critical => [0 .. 7],
+        groups_of => 2,
+        accent => $self->EIGHTH,
+        @_
+    );
+    $self->alternate_note(%args);
     $self->pan_right;
-    $self->accent_note($self->EIGHTH);
+    $self->accent_note($args{accent});
     $self->pan_left;
-    $self->accent_note($self->EIGHTH);
+    $self->accent_note($args{accent});
 
-    # 4 diddles
-    for my $beat (1 .. 8) {
-        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
-        $self->note($self->SIXTEENTH, $self->strike);
-    }
+    $args{critical} = [1 .. 8];
     $self->pan_left;
-    $self->accent_note($self->EIGHTH);
+    $self->accent_note($args{accent});
     $self->pan_right;
-    $self->accent_note($self->EIGHTH);
+    $self->accent_note($args{accent});
 }
 
 =head2 eleven_stroke_roll()
@@ -342,23 +324,22 @@ sub ten_stroke_roll { # 11
 
 =cut
 
-sub eleven_stroke_roll { # 12
+sub eleven_stroke_roll { # 12 - 5 diddles, accent
     my $self = shift;
-    # 5 diddles
-    for my $beat (0 .. 9) {
-        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
-        $self->note($self->SIXTEENTH, $self->strike);
-    }
+    %args = (
+        critical => [0 .. 9],
+        groups_of => 2,
+        accent => $self->EIGHTH,
+        @_
+    );
+    $self->alternate_note(%args);
     $self->pan_right;
-    $self->accent_note($self->EIGHTH);
+    $self->accent_note($args{accent});
 
-    # 5 diddles
-    for my $beat (1 .. 10) {
-        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
-        $self->note($self->SIXTEENTH, $self->strike);
-    }
+    $args{critical} = [1 .. 10];
+    $self->alternate_note(%args);
     $self->pan_left;
-    $self->accent_note($self->EIGHTH);
+    $self->accent_note($args{accent});
 }
 
 =head2 thirteen_stroke_roll()
