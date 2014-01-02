@@ -1153,10 +1153,11 @@ sub alternate_note {
 
     # Add single strokes with different types of pan values.
     for my $beat (@{$args{critical}}) {
-        # If we are given a group number, use that instead of modulo.
+        # Use a beat grouping if requested.
         if ($args{groups_of}) {
             $self->alternate_pan(_groups_of($beat, $args{groups_of}), $self->pan_width);
         }
+        # Use beat modulo otherwise.
         if ($args{alternate_pan}) {
             $self->alternate_pan($beat % $args{alternate_pan}, $self->pan_width);
         }
