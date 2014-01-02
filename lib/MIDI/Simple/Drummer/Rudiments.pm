@@ -420,29 +420,18 @@ sub seventeen_stroke_roll { # 15 - 8 diddles, accent
 
 =cut
 
-sub single_paradiddle { # 16
+sub single_paradiddle { # 16 - 2 single strokes, diddle
     my $self = shift;
-    # 2 single strokes
-    for my $beat (0 .. 1) {
-        $self->alternate_pan($beat % 2, $self->pan_width);
-        $self->note($self->SIXTEENTH, $self->strike);
-    }
-    # 1 diddle
-    for my $beat (0 .. 1) {
-        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
-        $self->note($self->SIXTEENTH, $self->strike);
-    }
+    my %args = (
+        critical => [0 .. 1],
+        @_
+    );
+    $self->alternate_note(%args);
+    $self->alternate_note(%args, groups_of => 2);
 
-    # 2 single strokes
-    for my $beat (1 .. 2) {
-        $self->alternate_pan($beat % 2, $self->pan_width);
-        $self->note($self->SIXTEENTH, $self->strike);
-    }
-    # 1 diddle
-    for my $beat (1 .. 2) {
-        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
-        $self->note($self->SIXTEENTH, $self->strike);
-    }
+    $args{critical} = [1 .. 2];
+    $self->alternate_note(%args);
+    $self->alternate_note(%args, groups_of => 2);
 }
 
 =head2 double_paradiddle()
