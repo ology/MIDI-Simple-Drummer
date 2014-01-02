@@ -1143,7 +1143,7 @@ Arguments & defaults:
 sub alternate_note {
     my $self = shift;
     my %args = (
-        critical => [0, 4],
+        critical => [0, 1],
         alternate_pan => 2,
         groups_of => 0,
         note => $self->SIXTEENTH,
