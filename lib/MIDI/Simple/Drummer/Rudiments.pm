@@ -1142,11 +1142,14 @@ Arguments & defaults:
 
 sub alternate_note {
     my $self = shift;
-    my %args = @_;
-    $args{critical} ||= [0, 4];
-    $args{alternate_pan} ||= 2;
-    $args{groups_of} ||= 0;
-    $args{note} ||= $self->SIXTEENTH;
+    my %args = (
+        critical => [0, 4],
+        alternate_pan => 2,
+        groups_of => 0,
+        note => $self->SIXTEENTH,
+        accent => 0,
+        @_
+    );
 
     # 4 single strokes starting left
     for my $beat (@{$args{critical}}) {
@@ -1159,7 +1162,12 @@ sub alternate_note {
         }
 
         # Add the note!
-        $self->note($args{note}, $self->strike);
+        if ($args{accent}) {
+            $self->accent_note($args{note});
+        }
+        else {
+            $self->note($args{note}, $self->strike);
+        }
     }
 }
 
