@@ -440,29 +440,20 @@ sub single_paradiddle { # 16 - 2 single strokes, diddle
 
 =cut
 
-sub double_paradiddle { # 17
+sub double_paradiddle { # 17 - 4 single strokes, diddle
     my $self = shift;
-    # 4 single strokes starting left
-    for my $beat (0 .. 3) {
-        $self->alternate_pan($beat % 2, $self->pan_width);
-        $self->note($self->SIXTEENTH, $self->strike);
-    }
-    # 1 diddle
-    for my $beat (0 .. 1) {
-        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
-        $self->note($self->SIXTEENTH, $self->strike);
-    }
+    my %args = (
+        critical => [0 .. 3],
+        @_
+    );
+    $self->alternate_note(%args);
+    $args{critical} = [0 .. 1];
+    $self->alternate_note(%args, groups_of => 2);
 
-    # 2 single strokes right
-    for my $beat (1 .. 4) {
-        $self->alternate_pan($beat % 2, $self->pan_width);
-        $self->note($self->SIXTEENTH, $self->strike);
-    }
-    # 1 diddle
-    for my $beat (1 .. 2) {
-        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
-        $self->note($self->SIXTEENTH, $self->strike);
-    }
+    $args{critical} = [1 .. 4];
+    $self->alternate_note(%args);
+    $args{critical} = [0 .. 1];
+    $self->alternate_note(%args, groups_of => 2);
 }
 
 =head2 triple_paradiddle()
