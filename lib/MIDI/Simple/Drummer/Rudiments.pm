@@ -22,9 +22,6 @@ MIDI::Simple::Drummer::Rudiments - Drum rudiments
 
 This package contains rudiment patterns.
 
-Defaults are to pan full left and right for each hand, and to have no MIDI
-effects.
-
 =head1 METHODS
 
 =head2 new()
