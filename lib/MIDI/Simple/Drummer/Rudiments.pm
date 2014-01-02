@@ -90,11 +90,6 @@ sub _default_patterns {
     };
 };
 
-sub _groups_of {
-    my ($beat, $group) = @_;
-    return ($beat - 1) % $group;
-}
-
 =head1 I. Roll Rudiments
 
 =head2 single_stroke_roll()
@@ -1036,6 +1031,11 @@ sub triple_ratamacue { # 40
     $self->pan_right;
     $self->accent_note($self->EIGHTH);
 
+}
+
+sub _groups_of { # Beat groupings
+    my ($beat, $group) = @_;
+    return ($beat - 1) % $group;
 }
 
 sub _dragit {
