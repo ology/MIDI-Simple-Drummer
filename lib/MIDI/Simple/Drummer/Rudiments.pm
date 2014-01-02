@@ -1151,7 +1151,7 @@ sub alternate_note {
         @_
     );
 
-    # 4 single strokes starting left
+    # Add single strokes with different types of pan values.
     for my $beat (@{$args{critical}}) {
         # If we are given a group number, use that instead of modulo.
         if ($args{groups_of}) {
@@ -1161,8 +1161,8 @@ sub alternate_note {
             $self->alternate_pan($beat % $args{alternate_pan}, $self->pan_width);
         }
 
-        # Add the note!
-        if ($args{accent}) {
+        # Add the note but accent the 1st if requested.
+        if ($beat == ($args{critical})[0] && $args{accent}) {
             $self->accent_note($args{note});
         }
         else {
