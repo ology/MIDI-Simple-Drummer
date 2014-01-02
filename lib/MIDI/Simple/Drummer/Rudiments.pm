@@ -140,14 +140,13 @@ sub single_stroke_seven { # 3
 
 =head2 multiple_bounce_roll()
 
-TODO: Not yet implemented...
+Not yet implemented...
 
 =cut
 
-sub multiple_bounce_roll { # 4
+sub multiple_bounce_roll { # 4 TODO
     my $self = shift;
-    # TODO Set $multiple and then do a multi-stroke below.
-    # TODO Set a random $multiple each X number of times.
+    # TODO Set $multiple and then do a figure below.
 }
 
 =head2 triple_stroke_roll()
