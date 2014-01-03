@@ -1034,7 +1034,7 @@ sub _groups_of { # Beat groupings
     return ($beat - 1) % $group;
 }
 
-sub _dragit {
+sub _dragit { # Common drag direction & accent.
     my ($self, $direction, $note, $accent) = @_;
 
     # Set pan direction.
@@ -1191,7 +1191,7 @@ sub single_stroke_n {
 
     # Assume critical beats have increasing order.
     for my $beat (1 .. (@{$args{critical}})[-1]) {
-        # Alternate the sticks after number of beats.
+        # Alternate hands by modulo.
         $self->alternate_pan($beat % $args{alternate_pan}, $self->pan_width);
 
         # Accent if on a critical beat.
