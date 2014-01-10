@@ -635,7 +635,6 @@ sub flam_paradiddle { # 24
     $self->pan_left;
     $self->note($args{note}, $self->strike);
     $self->note($args{note}, $self->strike);
-
 }
 
 =head2 flammed_mill()
@@ -646,22 +645,19 @@ sub flam_paradiddle { # 24
 
 sub flammed_mill { # 25
     my $self = shift;
-
-    # Flam!
-    $self->_flambit(0, $self->SIXTEENTH, 1);
-    $self->note($self->SIXTEENTH, $self->strike);
+    my %args = (
+        critical => [0, 1],
+        note => $self->SIXTEENTH,
+        @_
+    );
     $self->pan_left;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->pan_right;
-    $self->note($self->SIXTEENTH, $self->strike);
+    $self->_flambit($args{critical}->[0], $args{note}, $args{critical}->[1]);
+    $self->alternate_note(%args, critical => [1 .. 3]);
 
-    # Flam!
-    $self->_flambit(1, $self->SIXTEENTH, 1);
-    $self->note($self->SIXTEENTH, $self->strike);
+    $args{critical} = [1, 1];
     $self->pan_right;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->pan_left;
-    $self->note($self->SIXTEENTH, $self->strike);
+    $self->_flambit($args{critical}->[0], $args{note}, $args{critical}->[1]);
+    $self->alternate_note(%args, critical => [0 .. 2]);
 
 }
 
