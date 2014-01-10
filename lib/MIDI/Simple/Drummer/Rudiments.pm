@@ -210,9 +210,11 @@ sub five_stroke_roll { # 7
 
 8. Six Stroke Roll
 
+2 diddles, accent
+
 =cut
 
-sub six_stroke_roll { #8 - 2 diddles, accent
+sub six_stroke_roll { #8
     my $self = shift;
     my %args = (
         critical => [0 .. 3],
@@ -237,9 +239,11 @@ sub six_stroke_roll { #8 - 2 diddles, accent
 
 9. Seven Stroke Roll
 
+3 diddles, accent
+
 =cut
 
-sub seven_stroke_roll { #9 - 3 diddles, accent
+sub seven_stroke_roll { # 9
     my $self = shift;
     my %args = (
         critical => [0 .. 5],
@@ -262,9 +266,11 @@ sub seven_stroke_roll { #9 - 3 diddles, accent
 
 10. Nine Stroke Roll
 
+4 diddles, accent
+
 =cut
 
-sub nine_stroke_roll { # 10 - 4 diddles, accent
+sub nine_stroke_roll { # 10
     my $self = shift;
     my %args = (
         critical => [0 .. 7],
@@ -286,9 +292,11 @@ sub nine_stroke_roll { # 10 - 4 diddles, accent
 
 11. Ten Stroke Roll
 
+4 diddles, 2 accents
+
 =cut
 
-sub ten_stroke_roll { # 11 - 4 diddles, 2 accents
+sub ten_stroke_roll { # 11
     my $self = shift;
     my %args = (
         critical => [0 .. 7],
@@ -303,6 +311,7 @@ sub ten_stroke_roll { # 11 - 4 diddles, 2 accents
     $self->accent_note($args{accent});
 
     $args{critical} = [1 .. 8];
+    $self->alternate_note(%args);
     $self->pan_left;
     $self->accent_note($args{accent});
     $self->pan_right;
@@ -313,9 +322,11 @@ sub ten_stroke_roll { # 11 - 4 diddles, 2 accents
 
 12. Eleven Stroke Roll
 
+5 diddles, accent
+
 =cut
 
-sub eleven_stroke_roll { # 12 - 5 diddles, accent
+sub eleven_stroke_roll { # 12
     my $self = shift;
     my %args = (
         critical => [0 .. 9],
@@ -337,9 +348,11 @@ sub eleven_stroke_roll { # 12 - 5 diddles, accent
 
 13. Thirteen Stroke Roll
 
+6 diddles, accent
+
 =cut
 
-sub thirteen_stroke_roll { # 13 - 6 diddles, accent
+sub thirteen_stroke_roll { # 13
     my $self = shift;
     my %args = (
         critical => [0 .. 11],
@@ -353,6 +366,7 @@ sub thirteen_stroke_roll { # 13 - 6 diddles, accent
     $self->accent_note($args{accent});
 
     $args{critical} = [1 .. 12];
+    $self->alternate_note(%args);
     $self->pan_left;
     $self->accent_note($args{accent});
 }
@@ -361,9 +375,11 @@ sub thirteen_stroke_roll { # 13 - 6 diddles, accent
 
 14. Fifteen Stroke Roll
 
+7 diddles, accent
+
 =cut
 
-sub fifteen_stroke_roll { # 14 - 7 diddles, accent
+sub fifteen_stroke_roll { # 14
     my $self = shift;
     my %args = (
         critical => [0 .. 13],
@@ -376,6 +392,7 @@ sub fifteen_stroke_roll { # 14 - 7 diddles, accent
     $self->accent_note($args{accent});
 
     $args{critical} = [1 .. 14];
+    $self->alternate_note(%args);
     $self->pan_left;
     $self->accent_note($args{accent});
 }
@@ -384,9 +401,11 @@ sub fifteen_stroke_roll { # 14 - 7 diddles, accent
 
 15. Seventeen Stroke Roll
 
+8 diddles, accent
+
 =cut
 
-sub seventeen_stroke_roll { # 15 - 8 diddles, accent
+sub seventeen_stroke_roll { # 15
     my $self = shift;
     my %args = (
         critical => [0 .. 15],
@@ -399,6 +418,7 @@ sub seventeen_stroke_roll { # 15 - 8 diddles, accent
     $self->accent_note($args{accent});
 
     $args{critical} = [1 .. 16];
+    $self->alternate_note(%args);
     $self->pan_left;
     $self->accent_note($args{accent});
 }
@@ -409,9 +429,11 @@ sub seventeen_stroke_roll { # 15 - 8 diddles, accent
 
 16. Single Paradiddle
 
+2 single strokes, diddle
+
 =cut
 
-sub single_paradiddle { # 16 - 2 single strokes, diddle
+sub single_paradiddle { # 16
     my $self = shift;
     my %args = (
         critical => [0 .. 1],
@@ -429,9 +451,11 @@ sub single_paradiddle { # 16 - 2 single strokes, diddle
 
 17. Double Paradiddle
 
+4 single strokes, diddle
+
 =cut
 
-sub double_paradiddle { # 17 - 4 single strokes, diddle
+sub double_paradiddle { # 17
     my $self = shift;
     my %args = (
         critical => [0 .. 3],
@@ -451,9 +475,11 @@ sub double_paradiddle { # 17 - 4 single strokes, diddle
 
 18. Triple Paradiddle
 
+6 single strokes, diddle
+
 =cut
 
-sub triple_paradiddle { # 18 - 6 single strokes, diddle
+sub triple_paradiddle { # 18
     my $self = shift;
     my %args = (
         critical => [0 .. 5],
@@ -473,31 +499,22 @@ sub triple_paradiddle { # 18 - 6 single strokes, diddle
 
 19. Paradiddle-Diddle
 
+2 alternating strokes, 2 alternating diddles
+
 =cut
 
 sub paradiddle_diddle { # 19
     my $self = shift;
-    # 2 single strokes starting left
-    for my $beat (0 .. 1) {
-        $self->alternate_pan($beat % 2, $self->pan_width);
-        $self->note($self->SIXTEENTH, $self->strike);
-    }
-    # 2 diddles
-    for my $beat (0 .. 3) {
-        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
-        $self->note($self->SIXTEENTH, $self->strike);
-    }
+    my %args = (
+        critical => [0 .. 1],
+        @_
+    );
+    $self->alternate_note(%args);
+    $self->alternate_note(%args, groups_of => 2);
 
-    # 2 single strokes right
-    for my $beat (1 .. 2) {
-        $self->alternate_pan($beat % 2, $self->pan_width);
-        $self->note($self->SIXTEENTH, $self->strike);
-    }
-    # 1 diddle
-    for my $beat (1 .. 4) {
-        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
-        $self->note($self->SIXTEENTH, $self->strike);
-    }
+    $args{critical} = [1 .. 2];
+    $self->alternate_note(%args);
+    $self->alternate_note(%args, groups_of => 2);
 }
 
 =head1 III. Flam Rudiments
