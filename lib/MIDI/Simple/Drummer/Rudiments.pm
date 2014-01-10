@@ -527,8 +527,14 @@ sub paradiddle_diddle { # 19
 
 sub flam { # 20
     my $self = shift;
-    $self->_flambit(0, $self->EIGHTH, 0);
-    $self->_flambit(1, $self->EIGHTH, 0);
+    my %args = (
+        critical => [0, 0],
+        note => $self->EIGHTH,
+        @_
+    );
+    $self->_flambit($args{critical}->[0], $args{note}, $args{critical}->[1]);
+    $args{critical} = [0, 1];
+    $self->_flambit($args{critical}->[1], $args{note}, $args{critical}->[1]);
 }
 
 =head2 flam_accent()
@@ -539,24 +545,19 @@ sub flam { # 20
 
 sub flam_accent { # 21
     my $self = shift;
+    my %args = (
+        critical => [0, 1],
+        note => $self->EIGHTH,
+        @_
+    );
+    $self->_flambit($args{critical}->[0], $args{note}, $args{critical}->[1]);
+    $args{critical} = [0 .. 1];
+    $self->alternate_note(%args);
 
-    # Flam!
-    $self->_flambit(0, $self->EIGHTH, 1);
-
-    # 2 single strokes.
-    for my $beat (0 .. 1) {
-        $self->alternate_pan($beat % 2, $self->pan_width);
-        $self->note($self->EIGHTH, $self->strike);
-    }
-
-    # Flam!
-    $self->_flambit(1, $self->EIGHTH, 1);
-
-    # 2 single strokes.
-    for my $beat (1 .. 2) {
-        $self->alternate_pan($beat % 2, $self->pan_width);
-        $self->note($self->EIGHTH, $self->strike);
-    }
+    $args{critical} = [1, 1];
+    $self->_flambit($args{critical}->[0], $args{note}, $args{critical}->[1]);
+    $args{critical} = [0 .. 2];
+    $self->alternate_note(%args);
 }
 
 =head2 flam_tap()
@@ -567,14 +568,17 @@ sub flam_accent { # 21
 
 sub flam_tap { # 22
     my $self = shift;
+    my %args = (
+        critical => [0, 1],
+        note => $self->SIXTEENTH,
+        @_
+    );
+    $self->_flambit($args{critical}->[0], $args{note}, $args{critical}->[1]);
+    $self->note($args{note}, $self->strike);
 
-    # Flam + diddle.
-    $self->_flambit(0, $self->SIXTEENTH, 1);
-    $self->note($self->SIXTEENTH, $self->strike);
-
-    # Flam + diddle.
-    $self->_flambit(1, $self->SIXTEENTH, 1);
-    $self->note($self->SIXTEENTH, $self->strike);
+    $args{critical} = [1, 1];
+    $self->_flambit($args{critical}->[0], $args{note}, $args{critical}->[1]);
+    $self->note($args{note}, $self->strike);
 }
 
 =head2 flamacue()
@@ -585,30 +589,23 @@ sub flam_tap { # 22
 
 sub flamacue { # 23
     my $self = shift;
-
-    # Flam!
-    $self->_flambit(0, $self->SIXTEENTH, 0);
+    my %args = (
+        critical => [0, 0],
+        note => $self->SIXTEENTH,
+        @_
+    );
+    $self->_flambit($args{critical}->[0], $args{note}, $args{critical}->[1]);
     $self->pan_left;
-    $self->accent_note($self->SIXTEENTH);
-    # 2 single strokes.
-    for my $beat (0 .. 1) {
-        $self->alternate_pan($beat % 2, $self->pan_width);
-        $self->note($self->EIGHTH, $self->strike);
-    }
-    # Flam!
-    $self->_flambit(0, $self->SIXTEENTH, 0);
+    $self->accent_note($args{note});
+    $self->alternate_note(critical => [0 .. 1], note => $self->EIGHTH);
+    $self->_flambit($args{critical}->[0], $args{note}, $args{critical}->[1]);
 
-    # Flam!
-    $self->_flambit(1, $self->SIXTEENTH, 0);
+    $args{critical} = [1, 0];
+    $self->_flambit($args{critical}->[0], $args{note}, $args{critical}->[1]);
     $self->pan_right;
-    $self->accent_note($self->SIXTEENTH);
-    # 2 single strokes.
-    for my $beat (1 .. 2) {
-        $self->alternate_pan($beat % 2, $self->pan_width);
-        $self->note($self->EIGHTH, $self->strike);
-    }
-    # Flam!
-    $self->_flambit(1, $self->SIXTEENTH, 0);
+    $self->accent_note($args{note});
+    $self->alternate_note(critical => [1 .. 2], note => $self->EIGHTH);
+    $self->_flambit($args{critical}->[0], $args{note}, $args{critical}->[1]);
 }
 
 =head2 flam_paradiddle()
@@ -619,24 +616,25 @@ sub flamacue { # 23
 
 sub flam_paradiddle { # 24
     my $self = shift;
-
-    # Flam!
-    $self->_flambit(0, $self->SIXTEENTH, 1);
+    my %args = (
+        critical => [0, 1],
+        note => $self->SIXTEENTH,
+        @_
+    );
+    $self->_flambit($args{critical}->[0], $args{note}, $args{critical}->[1]);
     $self->pan_left;
-    $self->note($self->SIXTEENTH, $self->strike);
-    # 1 diddle
+    $self->note($args{note}, $self->strike);
     $self->pan_right;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->note($self->SIXTEENTH, $self->strike);
+    $self->note($args{note}, $self->strike);
+    $self->note($args{note}, $self->strike);
 
-    # Flam!
-    $self->_flambit(1, $self->SIXTEENTH, 1);
+    $args{critical} = [1, 1];
+    $self->_flambit($args{critical}->[0], $args{note}, $args{critical}->[1]);
     $self->pan_right;
-    $self->note($self->SIXTEENTH, $self->strike);
-    # 1 diddle
+    $self->note($args{note}, $self->strike);
     $self->pan_left;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->note($self->SIXTEENTH, $self->strike);
+    $self->note($args{note}, $self->strike);
+    $self->note($args{note}, $self->strike);
 
 }
 
