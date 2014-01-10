@@ -1146,7 +1146,7 @@ given the following parameters.
 Arguments & defaults:
 
   critical      : Beats 0 through 4
-  alternate_pan : Pan every other beat
+  alternate_pan : Pan every other beat (group)
   groups_of     : Number of beats after which we pan
   note          : A 1/16th note
 
@@ -1200,11 +1200,13 @@ Arguments & defaults:
 
 sub single_stroke_n {
     my $self = shift;
-    my %args = @_;
-    $args{critical} ||= [4, 8];
-    $args{alternate_pan} ||= 2;
-    $args{accent} ||= $self->EIGHTH;
-    $args{note} ||= $self->TRIPLET_SIXTEENTH;
+    my %args = (
+        critical => [4, 8],
+        alternate_pan => 2,
+        accent => $self->EIGHTH,
+        note => $self->TRIPLET_SIXTEENTH,
+        @_
+    );
 
     # Assume critical beats have increasing order.
     for my $beat (1 .. (@{$args{critical}})[-1]) {
