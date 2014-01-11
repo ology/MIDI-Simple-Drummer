@@ -1,10 +1,15 @@
 package MIDI::Simple::Drummer::Rudiments;
+
 our $VERSION = '0.04';
+
 use strict;
 use warnings;
+
 use parent 'MIDI::Simple::Drummer';
 
+use constant PAN_LEFT   => 0;
 use constant PAN_CENTER => 64;
+use constant PAN_RIGHT  => 1;
 
 =head1 NAME
 
@@ -91,6 +96,9 @@ sub _default_patterns {
 
 =head2 single_stroke_roll()
 
+ tap tap tap tap tap tap tap tap
+ r   l   r   l   r   l   r   l
+
 1. Single Stroke Roll
 
 =cut
@@ -98,7 +106,7 @@ sub _default_patterns {
 sub single_stroke_roll { # 1
     my $self = shift;
     my %args = (
-        critical => [1 .. 8],
+        critical => [PAN_RIGHT .. 8],
         @_
     );
     $self->alternate_note(%args);
@@ -107,6 +115,10 @@ sub single_stroke_roll { # 1
 =head2 single_stroke_four()
 
 2. Single Stroke Four
+
+ [    3    ]     [    3    ]
+ tap tap tap tap tap tap tap tap
+ r   l   r   l   r   l   r   l
 
 =cut
 
@@ -124,6 +136,10 @@ sub single_stroke_four { # 2
 =head2 single_stroke_seven()
 
 3. Single Stroke Seven
+
+ [           6         ]
+ tap tap tap tap tap tap tap
+ r   l   r   l   r   l   r
 
 =cut
 
@@ -153,6 +169,10 @@ sub multiple_bounce_roll { # 4 TODO
 
 5. Triple Stroke Roll
 
+ [    3    ] [    3    ]
+ tap tap tap tap tap tap
+ r   r   r   l   l   l
+
 =cut
 
 sub triple_stroke_roll { # 5
@@ -170,6 +190,11 @@ sub triple_stroke_roll { # 5
 
 6. Double Stroke Open Roll (Long Roll)
 
+Alternating diddles
+
+ tap tap tap tap tap tap tap tap
+ r   r   l   l   r   r   l   l
+
 =cut
 
 sub double_stroke_open_roll { # 6
@@ -185,6 +210,12 @@ sub double_stroke_open_roll { # 6
 =head2 five_stroke_roll()
 
 7. Five Stroke Roll
+
+Two diddles, accent
+
+ [        5        ]
+ tap tap tap tap Tap
+ r   r   l   l   R
 
 =cut
 
@@ -210,7 +241,11 @@ sub five_stroke_roll { # 7
 
 8. Six Stroke Roll
 
-2 diddles, accent
+Accent, 2 diddles, accent
+
+ [          6          ]
+ Tap tap tap tap tap Tap
+ R   l   l   r   r   L  
 
 =cut
 
@@ -240,6 +275,10 @@ sub six_stroke_roll { #8
 9. Seven Stroke Roll
 
 3 diddles, accent
+
+ [            7            ]
+ tap tap tap tap tap tap Tap
+ r   r   l   l   r   r   L  
 
 =cut
 
@@ -696,14 +735,16 @@ sub flam_paradiddle_diddle { # 26
 
 sub pataflafla { # 27
     my $self = shift;
-
-    for (0 .. 1) {
-        # Flam flam!
-        $self->_flambit(0, $self->SIXTEENTH, 1);
-        $self->_flambit(0, $self->SIXTEENTH, 0);
-        $self->note($self->THIRTYSECOND, $self->strike);
-        $self->pan_left;
-        $self->accent_note($self->SIXTEENTH);
+    my %args = (
+        critical => [0 .. 1],
+        note => $self->SIXTEENTH,
+        @_
+    );
+    for (@{$args{critical}}) {
+        # Flam tap tap Flam!
+        $self->_flambit(0, $args{note}, 1);
+        $self->alternate_note(%args);
+        $self->_flambit(0, $args{note}, 1);
     }
 }
 
@@ -787,7 +828,7 @@ sub _flambit {
     # Play a grace note.
     $self->note($self->THIRTYSECOND, $self->strike);
 
-    # Set pan direction.
+    # Alternate pan direction.
     if ($direction) {
         $self->pan_left;
     }
@@ -1162,7 +1203,7 @@ sub alternate_note {
             $self->alternate_pan(_groups_of($beat, $args{groups_of}), $self->pan_width);
         }
         # Use beat modulo otherwise.
-        if ($args{alternate_pan}) {
+        elsif ($args{alternate_pan}) {
             $self->alternate_pan($beat % $args{alternate_pan}, $self->pan_width);
         }
 
