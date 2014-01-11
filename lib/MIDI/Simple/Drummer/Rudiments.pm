@@ -669,26 +669,23 @@ sub flammed_mill { # 25
 
 sub flam_paradiddle_diddle { # 26
     my $self = shift;
-
-    # Flam!
-    $self->_flambit(0, $self->SIXTEENTH, 1);
+    my %args = (
+        critical => [0, 1],
+        note => $self->SIXTEENTH,
+        @_
+    );
+    $self->_flambit($args{critical}->[0], $args{note}, $args{critical}->[1]);
     $self->pan_left;
-    $self->note($self->SIXTEENTH, $self->strike);
-    # 2 diddles
-    for my $beat (0 .. 3) {
-        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
-        $self->note($self->SIXTEENTH, $self->strike);
-    }
+    $self->note($args{note}, $self->strike);
+    $args{critical} = [0 .. 3];
+    $self->alternate_note(%args, groups_of => 2);
 
-    # Flam!
-    $self->_flambit(1, $self->SIXTEENTH, 1);
+    $args{critical} = [1, 1];
+    $self->_flambit($args{critical}->[0], $args{note}, $args{critical}->[1]);
     $self->pan_right;
-    $self->note($self->SIXTEENTH, $self->strike);
-    # 2 diddles
-    for my $beat (1 .. 4) {
-        $self->alternate_pan(_groups_of($beat, 2), $self->pan_width);
-        $self->note($self->SIXTEENTH, $self->strike);
-    }
+    $self->note($args{note}, $self->strike);
+    $args{critical} = [1 .. 4];
+    $self->alternate_note(%args, groups_of => 2);
 }
 
 =head2 pataflafla()
@@ -800,7 +797,7 @@ sub _flambit {
 
     # Should we accent the final note?
     if ($accent) {
-        $self->accent_note($self->EIGHTH);
+        $self->accent_note($note);
     }
     else {
         $self->note($note, $self->strike);
