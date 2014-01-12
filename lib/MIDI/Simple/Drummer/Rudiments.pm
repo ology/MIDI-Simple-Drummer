@@ -609,8 +609,8 @@ sub flam { # 20
         note => $self->EIGHTH,
         @_
     );
-    $self->_flambit(0, $args{note}, 1);
-    $self->_flambit(1, $args{note}, 1);
+    $self->_flambit(PAN_RIGHT, $args{note}, 1);
+    $self->_flambit(PAN_LEFT, $args{note}, 1);
 }
 
 =head2 flam_accent()
@@ -629,11 +629,11 @@ sub flam_accent { # 21
         note => $self->EIGHTH,
         @_
     );
-    $self->_flambit(0, $args{note}, 1);
+    $self->_flambit(PAN_RIGHT, $args{note}, 1);
     $self->alternate_note(%args);
 
-    $self->_flambit(1, $args{note}, 1);
-    $args{critical} = [0 .. 2];
+    $self->_flambit(PAN_LEFT, $args{note}, 1);
+    $args{critical} = [1 .. 2];
     $self->alternate_note(%args);
 }
 
