@@ -617,8 +617,8 @@ sub flam { # 20
 
 21. Flam Accent
 
-Flam tap tap
-l R  l   r
+ Flam tap tap
+ l R  l   r
 
 =cut
 
@@ -643,8 +643,8 @@ sub flam_accent { # 21
 
 Accented "flam-diddles"
 
-grace Diddle grace Diddle
-    l R  r       r L  l
+ grace Diddle grace Diddle
+     l R  r       r L  l
 
 =cut
 
@@ -665,7 +665,7 @@ sub flam_tap { # 22
 
 23. Flamacue
 
-Flam, accent, 2 strockes, flam
+Flam, accent, 2 strokes, flam
 
 =cut
 
