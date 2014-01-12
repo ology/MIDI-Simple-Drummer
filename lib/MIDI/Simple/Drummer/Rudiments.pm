@@ -606,13 +606,11 @@ sub paradiddle_diddle { # 19
 sub flam { # 20
     my $self = shift;
     my %args = (
-        critical => [0, 0],
         note => $self->EIGHTH,
         @_
     );
-    $self->_flambit($args{critical}->[0], $args{note}, $args{critical}->[1]);
-    $args{critical} = [0, 1];
-    $self->_flambit($args{critical}->[1], $args{note}, $args{critical}->[1]);
+    $self->_flambit(0, $args{note}, 1);
+    $self->_flambit(1, $args{note}, 1);
 }
 
 =head2 flam_accent()
@@ -627,16 +625,14 @@ l R  l   r
 sub flam_accent { # 21
     my $self = shift;
     my %args = (
-        critical => [0, 1],
+        critical => [0 .. 1],
         note => $self->EIGHTH,
         @_
     );
-    $self->_flambit($args{critical}->[0], $args{note}, $args{critical}->[1]);
-    $args{critical} = [0 .. 1];
+    $self->_flambit(0, $args{note}, 1);
     $self->alternate_note(%args);
 
-    $args{critical} = [1, 1];
-    $self->_flambit($args{critical}->[0], $args{note}, $args{critical}->[1]);
+    $self->_flambit(1, $args{note}, 1);
     $args{critical} = [0 .. 2];
     $self->alternate_note(%args);
 }
@@ -655,15 +651,13 @@ grace Diddle grace Diddle
 sub flam_tap { # 22
     my $self = shift;
     my %args = (
-        critical => [0, 1],
         note => $self->SIXTEENTH,
         @_
     );
-    $self->_flambit($args{critical}->[0], $args{note}, $args{critical}->[1]);
+    $self->_flambit(0, $args{note}, 1);
     $self->note($args{note}, $self->strike);
 
-    $args{critical} = [1, 1];
-    $self->_flambit($args{critical}->[0], $args{note}, $args{critical}->[1]);
+    $self->_flambit(1, $args{note}, 1);
     $self->note($args{note}, $self->strike);
 }
 
@@ -678,22 +672,20 @@ Flam, accent, 2 strockes, flam
 sub flamacue { # 23
     my $self = shift;
     my %args = (
-        critical => [0, 0],
         note => $self->SIXTEENTH,
         @_
     );
-    $self->_flambit($args{critical}->[0], $args{note}, $args{critical}->[1]);
+    $self->_flambit(0, $args{note}, 0);
     $self->pan_left;
     $self->accent_note($args{note});
     $self->alternate_note(critical => [0 .. 1], note => $self->EIGHTH);
-    $self->_flambit($args{critical}->[0], $args{note}, $args{critical}->[1]);
+    $self->_flambit(0, $args{note}, 0);
 
-    $args{critical} = [1, 0];
-    $self->_flambit($args{critical}->[0], $args{note}, $args{critical}->[1]);
+    $self->_flambit(1, $args{note}, 0);
     $self->pan_right;
     $self->accent_note($args{note});
     $self->alternate_note(critical => [1 .. 2], note => $self->EIGHTH);
-    $self->_flambit($args{critical}->[0], $args{note}, $args{critical}->[1]);
+    $self->_flambit(1, $args{note}, 0);
 }
 
 =head2 flam_paradiddle()
@@ -707,19 +699,17 @@ Accented flam, stroke, diddle
 sub flam_paradiddle { # 24
     my $self = shift;
     my %args = (
-        critical => [0, 1],
         note => $self->SIXTEENTH,
         @_
     );
-    $self->_flambit($args{critical}->[0], $args{note}, $args{critical}->[1]);
+    $self->_flambit(0, $args{note}, 1);
     $self->pan_left;
     $self->note($args{note}, $self->strike);
     $self->pan_right;
     $self->note($args{note}, $self->strike);
     $self->note($args{note}, $self->strike);
 
-    $args{critical} = [1, 1];
-    $self->_flambit($args{critical}->[0], $args{note}, $args{critical}->[1]);
+    $self->_flambit(1, $args{note}, 1);
     $self->pan_right;
     $self->note($args{note}, $self->strike);
     $self->pan_left;
@@ -738,17 +728,15 @@ Accented flam-diddle, 2 strokes
 sub flammed_mill { # 25
     my $self = shift;
     my %args = (
-        critical => [0, 1],
         note => $self->SIXTEENTH,
         @_
     );
     $self->pan_left;
-    $self->_flambit($args{critical}->[0], $args{note}, $args{critical}->[1]);
+    $self->_flambit(0, $args{note}, 1);
     $self->alternate_note(%args, critical => [1 .. 3]);
 
-    $args{critical} = [1, 1];
     $self->pan_right;
-    $self->_flambit($args{critical}->[0], $args{note}, $args{critical}->[1]);
+    $self->_flambit(1, $args{note}, 1);
     $self->alternate_note(%args, critical => [0 .. 2]);
 
 }
@@ -762,18 +750,16 @@ sub flammed_mill { # 25
 sub flam_paradiddle_diddle { # 26
     my $self = shift;
     my %args = (
-        critical => [0, 1],
+        critical => [0 .. 3],
         note => $self->SIXTEENTH,
         @_
     );
-    $self->_flambit($args{critical}->[0], $args{note}, $args{critical}->[1]);
+    $self->_flambit(0, $args{note}, 1);
     $self->pan_left;
     $self->note($args{note}, $self->strike);
-    $args{critical} = [0 .. 3];
     $self->alternate_note(%args, groups_of => 2);
 
-    $args{critical} = [1, 1];
-    $self->_flambit($args{critical}->[0], $args{note}, $args{critical}->[1]);
+    $self->_flambit(1, $args{note}, 1);
     $self->pan_right;
     $self->note($args{note}, $self->strike);
     $args{critical} = [1 .. 4];
