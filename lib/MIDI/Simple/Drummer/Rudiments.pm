@@ -544,7 +544,7 @@ sub double_paradiddle { # 17
 
 18. Triple Paradiddle
 
-6 single strokes, diddle
+6 single taps, diddle
 
  Tap tap tap tap tap tap diddle
  R   l   r   l   r   l   r  r
@@ -571,7 +571,7 @@ sub triple_paradiddle { # 18
 
 19. Paradiddle-Diddle
 
-2 alternating strokes, 2 alternating diddles
+2 alternating taps, 2 alternating diddles
 
  Tap tap tap tap diddle
  R   l   r   l   r  r
@@ -665,7 +665,7 @@ sub flam_tap { # 22
 
 23. Flamacue
 
-Flam, accent, 2 strokes, flam
+Flam, accent, 2 taps, flam
 
 =cut
 
@@ -692,7 +692,7 @@ sub flamacue { # 23
 
 24. Flam Paradiddle
 
-Accented flam, stroke, diddle
+Accented flam, tap, diddle
 
 =cut
 
@@ -721,7 +721,7 @@ sub flam_paradiddle { # 24
 
 25. Single flammed Mill
 
-Accented flam-diddle, 2 strokes
+Accented flam-diddle, 2 taps
 
 =cut
 
