@@ -192,8 +192,8 @@ sub triple_stroke_roll { # 5
 
 Alternating diddles
 
- tap tap tap tap tap tap tap tap
- r   r   l   l   r   r   l   l
+ diddle diddle diddle diddle
+ r  r   l  l   r  r   l  l
 
 =cut
 
@@ -213,9 +213,9 @@ sub double_stroke_open_roll { # 6
 
 Two diddles, accent
 
- [        5        ]
- tap tap tap tap Tap
- r   r   l   l   R
+ [       5       ]
+ diddle diddle Tap
+ r  r   l  l    R
 
 =cut
 
@@ -243,9 +243,9 @@ sub five_stroke_roll { # 7
 
 Accent, 2 diddles, accent
 
- [          6          ]
- Tap tap tap tap tap Tap
- R   l   l   r   r   L  
+ [         6         ]
+ Tap diddle diddle Tap
+ R   l  l   r  r   L
 
 =cut
 
@@ -276,9 +276,9 @@ sub six_stroke_roll { #8
 
 3 diddles, accent
 
- [            7            ]
- tap tap tap tap tap tap Tap
- r   r   l   l   r   r   L  
+ [           7          ]
+ diddle diddle diddle Tap
+ r  r   l  l   r  r   L
 
 =cut
 
@@ -307,6 +307,10 @@ sub seven_stroke_roll { # 9
 
 4 diddles, accent
 
+ [              9              ]
+ diddle diddle diddle diddle Tap
+ r  r   l  l   r  r   l  l   R
+
 =cut
 
 sub nine_stroke_roll { # 10
@@ -332,6 +336,10 @@ sub nine_stroke_roll { # 10
 11. Ten Stroke Roll
 
 4 diddles, 2 accents
+
+ [                 10              ]
+ diddle diddle diddle diddle Tap Tap
+ r  r   l  l   r  r   l  l   R   L
 
 =cut
 
@@ -363,6 +371,10 @@ sub ten_stroke_roll { # 11
 
 5 diddles, accent
 
+ [                  11                ]
+ diddle diddle diddle diddle diddle Tap
+ r  r   l  l   r  r   l  l   r  r   L
+
 =cut
 
 sub eleven_stroke_roll { # 12
@@ -388,6 +400,10 @@ sub eleven_stroke_roll { # 12
 13. Thirteen Stroke Roll
 
 6 diddles, accent
+
+ [                     13                    ]
+ diddle diddle diddle diddle diddle diddle Tap
+ r  r   l  l   r  r   l  l   r  r   l  l   R
 
 =cut
 
@@ -416,6 +432,10 @@ sub thirteen_stroke_roll { # 13
 
 7 diddles, accent
 
+ [                         15                       ]
+ diddle diddle diddle diddle diddle diddle diddle Tap
+ r  r   l  l   r  r   l  l   r  r   l  l   r  r   L
+
 =cut
 
 sub fifteen_stroke_roll { # 14
@@ -441,6 +461,10 @@ sub fifteen_stroke_roll { # 14
 15. Seventeen Stroke Roll
 
 8 diddles, accent
+
+ [                             17                          ]
+ diddle diddle diddle diddle diddle diddle diddle diddle Tap
+ r  r   l  l   r  r   l  l   r  r   l  l   r  r   l  l   R
 
 =cut
 
@@ -468,7 +492,10 @@ sub seventeen_stroke_roll { # 15
 
 16. Single Paradiddle
 
-2 single strokes, diddle
+Accent, single stroke, diddle
+
+ Tap tap diddle
+ R   l   r  r
 
 =cut
 
@@ -490,7 +517,10 @@ sub single_paradiddle { # 16
 
 17. Double Paradiddle
 
-4 single strokes, diddle
+Accent, 3 single strokes, diddle
+
+ Tap tap tap tap diddle
+ R   l   r   l   r  r
 
 =cut
 
@@ -516,6 +546,9 @@ sub double_paradiddle { # 17
 
 6 single strokes, diddle
 
+ Tap tap tap tap tap tap diddle
+ R   l   r   l   r   l   r  r
+
 =cut
 
 sub triple_paradiddle { # 18
@@ -540,6 +573,9 @@ sub triple_paradiddle { # 18
 
 2 alternating strokes, 2 alternating diddles
 
+ Tap tap tap tap diddle
+ R   l   r   l   r  r
+
 =cut
 
 sub paradiddle_diddle { # 19
@@ -562,6 +598,9 @@ sub paradiddle_diddle { # 19
 
 20. Flam
 
+ grace tap = flam
+ r     l     r l
+
 =cut
 
 sub flam { # 20
@@ -579,6 +618,9 @@ sub flam { # 20
 =head2 flam_accent()
 
 21. Flam Accent
+
+Flam tap tap
+l R  l   r
 
 =cut
 
@@ -603,6 +645,11 @@ sub flam_accent { # 21
 
 22. Flam Tap
 
+Accented "flam-diddles"
+
+grace Diddle grace Diddle
+    l R  r       r L  l
+
 =cut
 
 sub flam_tap { # 22
@@ -623,6 +670,8 @@ sub flam_tap { # 22
 =head2 flamacue()
 
 23. Flamacue
+
+Flam, accent, 2 strockes, flam
 
 =cut
 
@@ -651,6 +700,8 @@ sub flamacue { # 23
 
 24. Flam Paradiddle
 
+Accented flam, stroke, diddle
+
 =cut
 
 sub flam_paradiddle { # 24
@@ -678,7 +729,9 @@ sub flam_paradiddle { # 24
 
 =head2 flammed_mill()
 
-25. Flammed Mill
+25. Single flammed Mill
+
+Accented flam-diddle, 2 strokes
 
 =cut
 
@@ -756,13 +809,17 @@ sub pataflafla { # 27
 
 sub swiss_army_triplet { # 28
     my $self = shift;
-
-    for (0 .. 1) {
+    my %args = (
+        critical => [0 .. 1],
+        note => $self->SIXTEENTH,
+        @_
+    );
+    for (@{$args{critical}}) {
         # Flam!
-        $self->_flambit(0, $self->TRIPLET_SIXTEENTH, 1);
-        $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
+        $self->_flambit(0, $args{note}, 1);
+        $self->note($args{note}, $self->strike);
         $self->pan_left;
-        $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
+        $self->note($args{note}, $self->strike);
     }
 }
 
@@ -774,17 +831,19 @@ sub swiss_army_triplet { # 28
 
 sub inverted_flam_tap { # 29
     my $self = shift;
-
-    for (0 .. 1) {
-        # Flam!
-        $self->_flambit(0, $self->SIXTEENTH, 1);
+    my %args = (
+        critical => [0 .. 1],
+        note => $self->TRIPLET_SIXTEENTH,
+        @_
+    );
+    for (@{$args{critical}}) {
+        $self->_flambit(0, $args{note}, 1);
         $self->pan_left;
-        $self->note($self->SIXTEENTH, $self->strike);
+        $self->note($args{note}, $self->strike);
 
-        # Flam!
-        $self->_flambit(1, $self->SIXTEENTH, 1);
+        $self->_flambit(1, $args{note}, 1);
         $self->pan_right;
-        $self->note($self->SIXTEENTH, $self->strike);
+        $self->note($args{note}, $self->strike);
     }
 }
 
@@ -796,20 +855,23 @@ sub inverted_flam_tap { # 29
 
 sub flam_drag { # 30
     my $self = shift;
+    my %args = (
+        critical => [0 .. 1],
+        note => $self->SIXTEENTH,
+        @_
+    );
 
-    # Flam!
     $self->_flambit(0, $self->EIGHTH, 1);
     $self->pan_left;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->note($self->SIXTEENTH, $self->strike);
+    $self->note($args{note}, $self->strike);
+    $self->note($args{note}, $self->strike);
     $self->pan_right;
     $self->accent_note($self->EIGHTH);
 
-    # Flam!
     $self->_flambit(1, $self->EIGHTH, 1);
     $self->pan_right;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->note($self->SIXTEENTH, $self->strike);
+    $self->note($args{note}, $self->strike);
+    $self->note($args{note}, $self->strike);
     $self->pan_left;
     $self->accent_note($self->EIGHTH);
 }
@@ -855,9 +917,12 @@ sub _flambit {
 
 sub drag { # 31
     my $self = shift;
-
-    $self->_dragit(0, $self->QUARTER, 0);
-    $self->_dragit(1, $self->QUARTER, 0);
+    my %args = (
+        note => $self->QUARTER,
+        @_
+    );
+    $self->_dragit(0, $args{note}, 0);
+    $self->_dragit(1, $args{note}, 0);
 }
 
 =head2 single_drag_tap()
@@ -868,14 +933,18 @@ sub drag { # 31
 
 sub single_drag_tap { # 32
     my $self = shift;
+    my %args = (
+        note => $self->EIGHTH,
+        @_
+    );
 
-    $self->_dragit(0, $self->EIGHTH, 0);
+    $self->_dragit(0, $args{note}, 0);
     $self->pan_left;
-    $self->accent_note($self->EIGHTH);
+    $self->accent_note($args{note});
 
-    $self->_dragit(1, $self->EIGHTH, 0);
+    $self->_dragit(1, $args{note}, 0);
     $self->pan_right;
-    $self->accent_note($self->EIGHTH);
+    $self->accent_note($args{note});
 
 }
 
@@ -887,16 +956,20 @@ sub single_drag_tap { # 32
 
 sub double_drag_tap { # 33
     my $self = shift;
+    my %args = (
+        note => $self->EIGHTH,
+        @_
+    );
 
-    $self->_dragit(0, $self->EIGHTH, 0);
-    $self->_dragit(0, $self->EIGHTH, 0);
+    $self->_dragit(0, $args{note}, 0);
+    $self->_dragit(0, $args{note}, 0);
     $self->pan_left;
-    $self->accent_note($self->EIGHTH);
+    $self->accent_note($args{note});
 
-    $self->_dragit(1, $self->EIGHTH, 0);
-    $self->_dragit(1, $self->EIGHTH, 0);
+    $self->_dragit(1, $args{note}, 0);
+    $self->_dragit(1, $args{note}, 0);
     $self->pan_right;
-    $self->accent_note($self->EIGHTH);
+    $self->accent_note($args{note});
 }
 
 =head2 lesson_25_two_and_three()
@@ -907,11 +980,14 @@ sub double_drag_tap { # 33
 
 sub lesson_25_two_and_three { # 34
     my $self = shift;
-
+    my %args = (
+        note => $self->EIGHTH,
+        @_
+    );
     $self->_dragit(0, $self->SIXTEENTH, 0);
-    $self->_dragit(0, $self->EIGHTH, 0);
+    $self->_dragit(0, $args{note}, 0);
     $self->pan_left;
-    $self->accent_note($self->EIGHTH);
+    $self->accent_note($args{note});
 }
 
 =head2 single_dragadiddle()
