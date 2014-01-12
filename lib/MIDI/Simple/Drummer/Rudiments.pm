@@ -654,10 +654,10 @@ sub flam_tap { # 22
         note => $self->SIXTEENTH,
         @_
     );
-    $self->_flambit(0, $args{note}, 1);
+    $self->_flambit(PAN_RIGHT, $args{note}, 1);
     $self->note($args{note}, $self->strike);
 
-    $self->_flambit(1, $args{note}, 1);
+    $self->_flambit(PAN_LEFT, $args{note}, 1);
     $self->note($args{note}, $self->strike);
 }
 
@@ -675,17 +675,17 @@ sub flamacue { # 23
         note => $self->SIXTEENTH,
         @_
     );
-    $self->_flambit(0, $args{note}, 0);
+    $self->_flambit(PAN_RIGHT, $args{note}, 0);
     $self->pan_left;
     $self->accent_note($args{note});
     $self->alternate_note(critical => [0 .. 1], note => $self->EIGHTH);
-    $self->_flambit(0, $args{note}, 0);
+    $self->_flambit(PAN_RIGHT, $args{note}, 0);
 
-    $self->_flambit(1, $args{note}, 0);
+    $self->_flambit(PAN_LEFT, $args{note}, 0);
     $self->pan_right;
     $self->accent_note($args{note});
     $self->alternate_note(critical => [1 .. 2], note => $self->EIGHTH);
-    $self->_flambit(1, $args{note}, 0);
+    $self->_flambit(PAN_LEFT, $args{note}, 0);
 }
 
 =head2 flam_paradiddle()
@@ -702,14 +702,14 @@ sub flam_paradiddle { # 24
         note => $self->SIXTEENTH,
         @_
     );
-    $self->_flambit(0, $args{note}, 1);
+    $self->_flambit(PAN_RIGHT, $args{note}, 1);
     $self->pan_left;
     $self->note($args{note}, $self->strike);
     $self->pan_right;
     $self->note($args{note}, $self->strike);
     $self->note($args{note}, $self->strike);
 
-    $self->_flambit(1, $args{note}, 1);
+    $self->_flambit(PAN_LEFT, $args{note}, 1);
     $self->pan_right;
     $self->note($args{note}, $self->strike);
     $self->pan_left;
@@ -731,12 +731,10 @@ sub flammed_mill { # 25
         note => $self->SIXTEENTH,
         @_
     );
-    $self->pan_left;
-    $self->_flambit(0, $args{note}, 1);
+    $self->_flambit(PAN_RIGHT, $args{note}, 1);
     $self->alternate_note(%args, critical => [1 .. 3]);
 
-    $self->pan_right;
-    $self->_flambit(1, $args{note}, 1);
+    $self->_flambit(PAN_LEFT, $args{note}, 1);
     $self->alternate_note(%args, critical => [0 .. 2]);
 
 }
@@ -754,12 +752,12 @@ sub flam_paradiddle_diddle { # 26
         note => $self->SIXTEENTH,
         @_
     );
-    $self->_flambit(0, $args{note}, 1);
+    $self->_flambit(PAN_RIGHT, $args{note}, 1);
     $self->pan_left;
     $self->note($args{note}, $self->strike);
     $self->alternate_note(%args, groups_of => 2);
 
-    $self->_flambit(1, $args{note}, 1);
+    $self->_flambit(PAN_LEFT, $args{note}, 1);
     $self->pan_right;
     $self->note($args{note}, $self->strike);
     $args{critical} = [1 .. 4];
@@ -781,9 +779,9 @@ sub pataflafla { # 27
     );
     for (@{$args{critical}}) {
         # Flam tap tap Flam!
-        $self->_flambit(0, $args{note}, 1);
+        $self->_flambit(PAN_RIGHT, $args{note}, 1);
         $self->alternate_note(%args);
-        $self->_flambit(0, $args{note}, 1);
+        $self->_flambit(PAN_RIGHT, $args{note}, 1);
     }
 }
 
@@ -802,7 +800,7 @@ sub swiss_army_triplet { # 28
     );
     for (@{$args{critical}}) {
         # Flam!
-        $self->_flambit(0, $args{note}, 1);
+        $self->_flambit(PAN_RIGHT, $args{note}, 1);
         $self->note($args{note}, $self->strike);
         $self->pan_left;
         $self->note($args{note}, $self->strike);
@@ -823,11 +821,11 @@ sub inverted_flam_tap { # 29
         @_
     );
     for (@{$args{critical}}) {
-        $self->_flambit(0, $args{note}, 1);
+        $self->_flambit(PAN_RIGHT, $args{note}, 1);
         $self->pan_left;
         $self->note($args{note}, $self->strike);
 
-        $self->_flambit(1, $args{note}, 1);
+        $self->_flambit(PAN_LEFT, $args{note}, 1);
         $self->pan_right;
         $self->note($args{note}, $self->strike);
     }
@@ -847,14 +845,14 @@ sub flam_drag { # 30
         @_
     );
 
-    $self->_flambit(0, $self->EIGHTH, 1);
+    $self->_flambit(PAN_RIGHT, $self->EIGHTH, 1);
     $self->pan_left;
     $self->note($args{note}, $self->strike);
     $self->note($args{note}, $self->strike);
     $self->pan_right;
     $self->accent_note($self->EIGHTH);
 
-    $self->_flambit(1, $self->EIGHTH, 1);
+    $self->_flambit(PAN_LEFT, $self->EIGHTH, 1);
     $self->pan_right;
     $self->note($args{note}, $self->strike);
     $self->note($args{note}, $self->strike);
@@ -907,8 +905,8 @@ sub drag { # 31
         note => $self->QUARTER,
         @_
     );
-    $self->_dragit(0, $args{note}, 0);
-    $self->_dragit(1, $args{note}, 0);
+    $self->_dragit(PAN_RIGHT, $args{note}, 0);
+    $self->_dragit(PAN_LEFT, $args{note}, 0);
 }
 
 =head2 single_drag_tap()
@@ -924,11 +922,11 @@ sub single_drag_tap { # 32
         @_
     );
 
-    $self->_dragit(0, $args{note}, 0);
+    $self->_dragit(PAN_RIGHT, $args{note}, 0);
     $self->pan_left;
     $self->accent_note($args{note});
 
-    $self->_dragit(1, $args{note}, 0);
+    $self->_dragit(PAN_LEFT, $args{note}, 0);
     $self->pan_right;
     $self->accent_note($args{note});
 
@@ -947,13 +945,13 @@ sub double_drag_tap { # 33
         @_
     );
 
-    $self->_dragit(0, $args{note}, 0);
-    $self->_dragit(0, $args{note}, 0);
+    $self->_dragit(PAN_RIGHT, $args{note}, 0);
+    $self->_dragit(PAN_RIGHT, $args{note}, 0);
     $self->pan_left;
     $self->accent_note($args{note});
 
-    $self->_dragit(1, $args{note}, 0);
-    $self->_dragit(1, $args{note}, 0);
+    $self->_dragit(PAN_LEFT, $args{note}, 0);
+    $self->_dragit(PAN_LEFT, $args{note}, 0);
     $self->pan_right;
     $self->accent_note($args{note});
 }
@@ -970,8 +968,8 @@ sub lesson_25_two_and_three { # 34
         note => $self->EIGHTH,
         @_
     );
-    $self->_dragit(0, $self->SIXTEENTH, 0);
-    $self->_dragit(0, $args{note}, 0);
+    $self->_dragit(PAN_RIGHT, $self->SIXTEENTH, 0);
+    $self->_dragit(PAN_RIGHT, $args{note}, 0);
     $self->pan_left;
     $self->accent_note($args{note});
 }
@@ -989,12 +987,12 @@ sub single_dragadiddle { # 35
         @_
     );
 
-    $self->_dragit(1, $args{note}, 0);
+    $self->_dragit(PAN_RIGHT, $args{note}, 0);
     $self->pan_right;
     $self->note($args{note}, $self->strike);
     $self->note($args{note}, $self->strike);
 
-    $self->_dragit(0, $args{note}, 0);
+    $self->_dragit(PAN_LEFT, $args{note}, 0);
     $self->pan_left;
     $self->note($args{note}, $self->strike);
     $self->note($args{note}, $self->strike);
@@ -1016,7 +1014,7 @@ sub drag_paradiddle_1 { # 36
 
     $self->pan_right;
     $self->accent_note($args{accent});
-    $self->_dragit(0, $args{note}, 0);
+    $self->_dragit(PAN_RIGHT, $args{note}, 0);
     $self->pan_left;
     $self->note($args{note}, $self->strike);
     $self->pan_right;
@@ -1025,7 +1023,7 @@ sub drag_paradiddle_1 { # 36
 
     $self->pan_left;
     $self->accent_note($args{accent});
-    $self->_dragit(1, $args{note}, 0);
+    $self->_dragit(PAN_LEFT, $args{note}, 0);
     $self->pan_right;
     $self->note($args{note}, $self->strike);
     $self->pan_left;
@@ -1050,7 +1048,7 @@ sub drag_paradiddle_2 { # 37
 
     $self->pan_right;
     $self->accent_note($args{accent});
-    $self->_dragit(0, $args{note}, 0);
+    $self->_dragit(PAN_RIGHT, $args{note}, 0);
     $self->pan_left;
     $self->note($args{note}, $self->strike);
     $self->pan_right;
@@ -1059,7 +1057,7 @@ sub drag_paradiddle_2 { # 37
 
     $self->pan_left;
     $self->accent_note($args{accent});
-    $self->_dragit(1, $args{note}, 0);
+    $self->_dragit(PAN_LEFT, $args{note}, 0);
     $self->pan_right;
     $self->note($args{note}, $self->strike);
     $self->pan_left;
@@ -1082,7 +1080,7 @@ sub single_ratamacue { # 38
         @_
     );
 
-    $self->_dragit(0, $args{note}, 0);
+    $self->_dragit(PAN_RIGHT, $args{note}, 0);
     $self->pan_left;
     $self->note($args{note}, $self->strike);
     $self->pan_right;
@@ -1090,7 +1088,7 @@ sub single_ratamacue { # 38
     $self->pan_left;
     $self->accent_note($args{accent});
 
-    $self->_dragit(1, $args{note}, 0);
+    $self->_dragit(PAN_LEFT, $args{note}, 0);
     $self->pan_right;
     $self->note($args{note}, $self->strike);
     $self->pan_left;
@@ -1113,8 +1111,8 @@ sub double_ratamacue { # 39
         @_
     );
 
-    $self->_dragit(0, $args{accent}, 1);
-    $self->_dragit(0, $args{note}, 0);
+    $self->_dragit(PAN_RIGHT, $args{accent}, 1);
+    $self->_dragit(PAN_RIGHT, $args{note}, 0);
     $self->pan_left;
     $self->note($args{note}, $self->strike);
     $self->pan_right;
@@ -1122,8 +1120,8 @@ sub double_ratamacue { # 39
     $self->pan_left;
     $self->accent_note($args{accent});
 
-    $self->_dragit(1, $args{accent}, 1);
-    $self->_dragit(1, $args{note}, 0);
+    $self->_dragit(PAN_LEFT, $args{accent}, 1);
+    $self->_dragit(PAN_LEFT, $args{note}, 0);
     $self->pan_right;
     $self->note($args{note}, $self->strike);
     $self->pan_left;
@@ -1147,9 +1145,9 @@ sub triple_ratamacue { # 40
         @_
     );
 
-    $self->_dragit(0, $args{accent}, 0);
-    $self->_dragit(0, $args{accent}, 0);
-    $self->_dragit(0, $args{note}, 0);
+    $self->_dragit(PAN_RIGHT, $args{accent}, 0);
+    $self->_dragit(PAN_RIGHT, $args{accent}, 0);
+    $self->_dragit(PAN_RIGHT, $args{note}, 0);
     $self->pan_left;
     $self->note($args{note}, $self->strike);
     $self->pan_right;
@@ -1157,9 +1155,9 @@ sub triple_ratamacue { # 40
     $self->pan_left;
     $self->accent_note($args{accent});
 
-    $self->_dragit(1, $args{accent}, 0);
-    $self->_dragit(1, $args{accent}, 0);
-    $self->_dragit(1, $args{note}, 0);
+    $self->_dragit(PAN_LEFT, $args{accent}, 0);
+    $self->_dragit(PAN_LEFT, $args{accent}, 0);
+    $self->_dragit(PAN_LEFT, $args{note}, 0);
     $self->pan_right;
     $self->note($args{note}, $self->strike);
     $self->pan_left;
