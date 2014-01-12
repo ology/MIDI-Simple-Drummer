@@ -998,16 +998,20 @@ sub lesson_25_two_and_three { # 34
 
 sub single_dragadiddle { # 35
     my $self = shift;
+    my %args = (
+        note => $self->SIXTEENTH,
+        @_
+    );
 
-    $self->_dragit(1, $self->SIXTEENTH, 0);
+    $self->_dragit(1, $args{note}, 0);
     $self->pan_right;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->note($self->SIXTEENTH, $self->strike);
+    $self->note($args{note}, $self->strike);
+    $self->note($args{note}, $self->strike);
 
-    $self->_dragit(0, $self->SIXTEENTH, 0);
+    $self->_dragit(0, $args{note}, 0);
     $self->pan_left;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->note($self->SIXTEENTH, $self->strike);
+    $self->note($args{note}, $self->strike);
+    $self->note($args{note}, $self->strike);
 }
 
 =head2 drag_paradiddle_1()
@@ -1018,24 +1022,29 @@ sub single_dragadiddle { # 35
 
 sub drag_paradiddle_1 { # 36
     my $self = shift;
+    my %args = (
+        note => $self->SIXTEENTH,
+        accent => $self->EIGHTH,
+        @_
+    );
 
     $self->pan_right;
-    $self->accent_note($self->EIGHTH);
-    $self->_dragit(0, $self->SIXTEENTH, 0);
+    $self->accent_note($args{accent});
+    $self->_dragit(0, $args{note}, 0);
     $self->pan_left;
-    $self->note($self->SIXTEENTH, $self->strike);
+    $self->note($args{note}, $self->strike);
     $self->pan_right;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->note($self->SIXTEENTH, $self->strike);
+    $self->note($args{note}, $self->strike);
+    $self->note($args{note}, $self->strike);
 
     $self->pan_left;
-    $self->accent_note($self->EIGHTH);
-    $self->_dragit(1, $self->SIXTEENTH, 0);
+    $self->accent_note($args{accent});
+    $self->_dragit(1, $args{note}, 0);
     $self->pan_right;
-    $self->note($self->SIXTEENTH, $self->strike);
+    $self->note($args{note}, $self->strike);
     $self->pan_left;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->note($self->SIXTEENTH, $self->strike);
+    $self->note($args{note}, $self->strike);
+    $self->note($args{note}, $self->strike);
 
 }
 
@@ -1047,24 +1056,29 @@ sub drag_paradiddle_1 { # 36
 
 sub drag_paradiddle_2 { # 37
     my $self = shift;
+    my %args = (
+        note => $self->SIXTEENTH,
+        accent => $self->EIGHTH,
+        @_
+    );
 
     $self->pan_right;
-    $self->accent_note($self->EIGHTH);
-    $self->_dragit(0, $self->SIXTEENTH, 0);
+    $self->accent_note($args{accent});
+    $self->_dragit(0, $args{note}, 0);
     $self->pan_left;
-    $self->note($self->SIXTEENTH, $self->strike);
+    $self->note($args{note}, $self->strike);
     $self->pan_right;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->note($self->SIXTEENTH, $self->strike);
+    $self->note($args{note}, $self->strike);
+    $self->note($args{note}, $self->strike);
 
     $self->pan_left;
-    $self->accent_note($self->EIGHTH);
-    $self->_dragit(1, $self->SIXTEENTH, 0);
+    $self->accent_note($args{accent});
+    $self->_dragit(1, $args{note}, 0);
     $self->pan_right;
-    $self->note($self->SIXTEENTH, $self->strike);
+    $self->note($args{note}, $self->strike);
     $self->pan_left;
-    $self->note($self->SIXTEENTH, $self->strike);
-    $self->note($self->SIXTEENTH, $self->strike);
+    $self->note($args{note}, $self->strike);
+    $self->note($args{note}, $self->strike);
 
 }
 
@@ -1076,22 +1090,27 @@ sub drag_paradiddle_2 { # 37
 
 sub single_ratamacue { # 38
     my $self = shift;
+    my %args = (
+        note => $self->TRIPLET_SIXTEENTH,
+        accent => $self->EIGHTH,
+        @_
+    );
 
-    $self->_dragit(0, $self->TRIPLET_SIXTEENTH, 0);
+    $self->_dragit(0, $args{note}, 0);
     $self->pan_left;
-    $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
+    $self->note($args{note}, $self->strike);
     $self->pan_right;
-    $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
+    $self->note($args{note}, $self->strike);
     $self->pan_left;
-    $self->accent_note($self->EIGHTH);
+    $self->accent_note($args{accent});
 
-    $self->_dragit(1, $self->TRIPLET_SIXTEENTH, 0);
+    $self->_dragit(1, $args{note}, 0);
     $self->pan_right;
-    $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
+    $self->note($args{note}, $self->strike);
     $self->pan_left;
-    $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
+    $self->note($args{note}, $self->strike);
     $self->pan_right;
-    $self->accent_note($self->EIGHTH);
+    $self->accent_note($args{accent});
 }
 
 =head2 double_ratamacue()
@@ -1102,24 +1121,29 @@ sub single_ratamacue { # 38
 
 sub double_ratamacue { # 39
     my $self = shift;
+    my %args = (
+        note => $self->TRIPLET_SIXTEENTH,
+        accent => $self->EIGHTH,
+        @_
+    );
 
-    $self->_dragit(0, $self->EIGHTH, 1);
-    $self->_dragit(0, $self->TRIPLET_SIXTEENTH, 0);
+    $self->_dragit(0, $args{accent}, 1);
+    $self->_dragit(0, $args{note}, 0);
     $self->pan_left;
-    $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
+    $self->note($args{note}, $self->strike);
     $self->pan_right;
-    $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
+    $self->note($args{note}, $self->strike);
     $self->pan_left;
-    $self->accent_note($self->EIGHTH);
+    $self->accent_note($args{accent});
 
-    $self->_dragit(1, $self->EIGHTH, 1);
-    $self->_dragit(1, $self->TRIPLET_SIXTEENTH, 0);
+    $self->_dragit(1, $args{accent}, 1);
+    $self->_dragit(1, $args{note}, 0);
     $self->pan_right;
-    $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
+    $self->note($args{note}, $self->strike);
     $self->pan_left;
-    $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
+    $self->note($args{note}, $self->strike);
     $self->pan_right;
-    $self->accent_note($self->EIGHTH);
+    $self->accent_note($args{accent});
 
 }
 
@@ -1131,26 +1155,31 @@ sub double_ratamacue { # 39
 
 sub triple_ratamacue { # 40
     my $self = shift;
+    my %args = (
+        note => $self->TRIPLET_SIXTEENTH,
+        accent => $self->EIGHTH,
+        @_
+    );
 
-    $self->_dragit(0, $self->EIGHTH, 0);
-    $self->_dragit(0, $self->EIGHTH, 0);
-    $self->_dragit(0, $self->TRIPLET_SIXTEENTH, 0);
+    $self->_dragit(0, $args{accent}, 0);
+    $self->_dragit(0, $args{accent}, 0);
+    $self->_dragit(0, $args{note}, 0);
     $self->pan_left;
-    $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
+    $self->note($args{note}, $self->strike);
     $self->pan_right;
-    $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
+    $self->note($args{note}, $self->strike);
     $self->pan_left;
-    $self->accent_note($self->EIGHTH);
+    $self->accent_note($args{accent});
 
-    $self->_dragit(1, $self->EIGHTH, 0);
-    $self->_dragit(1, $self->EIGHTH, 0);
-    $self->_dragit(1, $self->TRIPLET_SIXTEENTH, 0);
+    $self->_dragit(1, $args{accent}, 0);
+    $self->_dragit(1, $args{accent}, 0);
+    $self->_dragit(1, $args{note}, 0);
     $self->pan_right;
-    $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
+    $self->note($args{note}, $self->strike);
     $self->pan_left;
-    $self->note($self->TRIPLET_SIXTEENTH, $self->strike);
+    $self->note($args{note}, $self->strike);
     $self->pan_right;
-    $self->accent_note($self->EIGHTH);
+    $self->accent_note($args{accent});
 
 }
 
