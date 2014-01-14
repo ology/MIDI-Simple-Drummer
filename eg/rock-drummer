@@ -7,7 +7,7 @@ use MIDI::Simple::Drummer::Rock;
 my $d = MIDI::Simple::Drummer::Rock->new(
     -bpm     => shift || 100,
     -volume  => shift || 100,
-    -phrases => shift || 4,
+    -phrases => shift || 8,
     -file    => "$0.mid",
 );
 
