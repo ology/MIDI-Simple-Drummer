@@ -115,7 +115,7 @@ sub _setup { # Where's my roadies, Man?
     # Reset the backbeat if the signature is a 3 multiple.
     my $x = $self->{-beats} / 3;
     if ($x !~ /\./) {
-        $d->backbeat('Acoustic Bass Drum', 'Acoustic Snare', 'Acoustic Bass Drum');
+        $self->backbeat('Acoustic Bass Drum', 'Acoustic Snare', 'Acoustic Bass Drum');
     }
 
     # Set the method name for the division metric. Ex: QUARTER for 4.
