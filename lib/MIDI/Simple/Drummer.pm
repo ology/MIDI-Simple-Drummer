@@ -112,6 +112,12 @@ sub _setup { # Where's my roadies, Man?
         $self->{-signature} = "$self->{-beats}/$self->{-divisions}";
     }
 
+    # Reset the backbeat if the signature is a 3 multiple.
+    my $x = $self->{-beats} / 3;
+    if ($x !~ /\./) {
+        $d->backbeat('Acoustic Bass Drum', 'Acoustic Snare', 'Acoustic Bass Drum');
+    }
+
     # Set the method name for the division metric. Ex: QUARTER for 4.
     for my $note (keys %{+DIVISION}) {
         if (DIVISION->{$note}{number} == $self->{-divisions}) {
@@ -852,9 +858,6 @@ B<patches> is a list of possible patches to use instead of the crash cymbals.
 B<tick> is the patch to use instead of the closed hi-hat.
 B<fill> is the fill pattern we last played.
 
-Two patches in the B<backbeat> are said to alternate, as in 4/4 time.  Three
-patches rotate in 3/4 time, etc.
-
 =head2 beat()
 
   $x = $d->beat;
@@ -981,7 +984,8 @@ Strike or set the "snare" patches.  By default, this is the C<Acoustic Snare.>
     $x = $d->backbeat('Bass Drum 1','Side Stick');
 
 Strike or set the "backbeat" patches.  By default, these are the predefined
-C<kick> and C<snare> patches.
+C<kick> and C<snare> patches.  But if the time signature is a multiple of three,
+the backbeat is set to a "kick snare kick" pattern.
 
 =head1 CONVENIENCE METHODS
 
