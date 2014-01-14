@@ -1,0 +1,66 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+use MIDI::Simple::Drummer::Rock;
+
+my $d = MIDI::Simple::Drummer::Rock->new(
+    -bpm     => shift || 96,
+    -volume  => shift || 100,
+    -phrases => shift || 8,
+    -file    => "$0.mid",
+);
+
+$d->patterns('1 fill' => \&fill_one);
+$d->patterns('2 fill' => \&fill_two);
+$d->patterns('3 fill' => \&fill_three);
+$d->patterns('4.1' => \&three_one);
+$d->patterns('4 fill' => \&fill_four);
+
+# Declare beat and fill variables for later use.
+my ($beat, $fill) = (0, 0);
+
+# Intro
+$d->count_in;
+$d->count_in;
+
+$beat = $d->beat(-name => 2.1, -fill => 1);
+$beat = $d->beat(-name => 2.1) for 0 .. 1;
+$d->fill(-name => 1);
+
+$beat = $d->beat(-name => 2.1, -fill => 1);
+$beat = $d->beat(-name => 2.1) for 0 .. 1;
+$d->fill(-name => 2);
+
+# Verse
+$beat = $d->beat(-name => 2.1, -fill => 1);
+$beat = $d->beat(-name => 2.1) for 0 .. 1;
+$d->fill(-name => 1);
+
+$beat = $d->beat(-name => 2.1, -fill => 1);
+$beat = $d->beat(-name => 2.1) for 0 .. 1;
+$d->fill(-name => 3);
+
+# Chorus
+$beat = $d->beat(-name => 2.1, -fill => 1) for 0 .. 5;
+$beat = $d->beat(-name => 3.1);
+$d->fill(-name => 4);
+
+$d->write;
+
+sub fill_one {
+    my $d = shift;
+}
+sub fill_two {
+    my $d = shift;
+}
+sub fill_three {
+    my $d = shift;
+}
+sub fill_four {
+    my $d = shift;
+}
+sub four_one {
+    my $d = shift;
+}
+
+__END__
