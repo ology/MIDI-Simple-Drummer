@@ -13,7 +13,7 @@ my $d = MIDI::Simple::Drummer::Rock->new(
 $d->patterns('1 fill' => \&fill_one);
 $d->patterns('2 fill' => \&fill_two);
 $d->patterns('3 fill' => \&fill_three);
-$d->patterns('4.1' => \&three_one);
+$d->patterns('4.1'    => \&four_one);
 $d->patterns('4 fill' => \&fill_four);
 
 # Declare beat and fill variables for later use.
