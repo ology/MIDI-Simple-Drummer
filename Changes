@@ -4,7 +4,7 @@ Revision history for MIDI-Simple-Drummer
     - Enabled MIDI drumkit types (e.g. "power", "brushes").
     - Enabled MIDI reverb and chorus effect setting.
     - Made the rudiment code generically useful.
-    - Improved the eg/rock-drummer
+    - Improved the eg/ rock-drummer and metronome.
     - Set backbeat to "kick snare kick" if the time signature is a multiple of 3.
 
 0.05      2013-12-26 08:09:30 America/New_York
