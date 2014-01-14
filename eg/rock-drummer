@@ -4,8 +4,8 @@ use warnings;
 use MIDI::Simple::Drummer::Rock;
 
 my $d = MIDI::Simple::Drummer::Rock->new(
-    -bpm     => shift || 111,
-    -volume  => shift || 121,
+    -bpm     => shift || 100,
+    -volume  => shift || 100,
     -phrases => shift || 2,
     -file    => "$0.mid",
 );
@@ -33,9 +33,6 @@ $d->write;
 
 sub fin {
     my $d = shift;
-    $d->note('en', $d->crash) for 1 .. 2;
-    $d->note('sn', $d->snare) for 0 .. 2;
-    $d->rest('sn');
-    $d->note('ten', $d->kick) for 1 .. 2;
-    $d->note('en', $d->strike('Splash Cymbal', $d->name_of('kick')));
+    $d->accent;
+    $d->note('qn', $d->strike('Crash Cymbal 1', $d->name_of('kick')));
 }
