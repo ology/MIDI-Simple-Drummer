@@ -1,7 +1,8 @@
 Revision history for MIDI-Simple-Drummer
 
 {{$NEXT}}
-    - Consolidated and modularized rudiment code.
+    - Made the rudiment code generically useful.
+    - Improved the eg/rock-drummer
 
 0.05      2013-12-26 08:09:30 America/New_York
     - Improved documentation!
