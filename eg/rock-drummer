@@ -15,7 +15,7 @@ my $d = MIDI::Simple::Drummer::Rock->new(
 my ($beat, $fill) = (0, 0);
 
 # Declare a selection of beat names to use.
-my @rotate = qw( 2.2 2.4 2.5 );
+my @rotate = qw( 2.1 2.2 2.4 );
 
 # Get 'er started.
 $d->count_in;
