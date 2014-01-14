@@ -11,6 +11,7 @@ my $d = MIDI::Simple::Drummer::Rock->new(
 );
 
 my ($beat, $fill) = (0, 0);
+my @rotate = qw( 2.2 2.4 2.5 );
 
 $d->count_in;
 
@@ -20,7 +21,7 @@ for my $p (1 .. $d->phrases) {
         $beat = $d->beat(-name => 2.3);
     }
     else {
-        $beat = $d->beat(-name => 2.4);   # TODO [2,4,5]
+        $beat = $d->beat(-name => (@rotate)[int(rand @rotate)]);
         $fill = $d->fill(-last => $fill);
     }
 }
