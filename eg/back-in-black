@@ -1,6 +1,7 @@
 #!/usr/bin/perl
 use strict;
 use warnings;
+
 use MIDI::Simple::Drummer::Rock;
 
 my $d = MIDI::Simple::Drummer::Rock->new(
@@ -20,41 +21,87 @@ $d->patterns('4 fill' => \&fill_four);
 my ($beat, $fill) = (0, 0);
 
 # Intro
-$d->count_in;
-$d->count_in;
-
-$beat = $d->beat(-name => 2.1, -fill => 1);
-$beat = $d->beat(-name => 2.1) for 0 .. 1;
+$d->note($d->QUARTER, $d->strike('Pedal Hi-Hat')) for 0 .. 7;
+$d->beat(-name => 2.1, -fill => 1, -patches => ['Crash Cymbal 1']);
+$d->beat(-name => 2.1) for 0 .. 1;
 $d->fill(-name => 1);
-
-$beat = $d->beat(-name => 2.1, -fill => 1);
-$beat = $d->beat(-name => 2.1) for 0 .. 1;
+$d->beat(-name => 2.1, -fill => 1, -patches => ['Crash Cymbal 1']);
+$d->beat(-name => 2.1) for 0 .. 1;
 $d->fill(-name => 2);
 
 # Verse
-$beat = $d->beat(-name => 2.1, -fill => 1);
-$beat = $d->beat(-name => 2.1) for 0 .. 1;
-$d->fill(-name => 1);
+for (0 .. 1) {
+    $d->beat(-name => 2.1, -fill => 1, -patches => ['Crash Cymbal 1']);
+    $d->beat(-name => 2.1) for 0 .. 1;
+    $d->fill(-name => 1);
+    $d->beat(-name => 2.1, -fill => 1, -patches => ['Crash Cymbal 1']);
+    $d->beat(-name => 2.1) for 0 .. 1;
+    $d->fill(-name => 3);
 
-$beat = $d->beat(-name => 2.1, -fill => 1);
-$beat = $d->beat(-name => 2.1) for 0 .. 1;
-$d->fill(-name => 3);
-
-# Chorus
-$beat = $d->beat(-name => 2.1, -fill => 1) for 0 .. 5;
-$beat = $d->beat(-name => 3.1);
-$d->fill(-name => 4);
+    # Chorus
+    $d->beat(-name => 2.1, -fill => 1, -patches => ['Crash Cymbal 1']) for 0 .. 5;
+    $d->beat(-name => 2.2, -fill => 1, -patches => ['Crash Cymbal 1']);
+    $d->beat(-name => 2.1, -fill => 1, -patches => ['Crash Cymbal 1']); # <- TODO fill
+}
 
 $d->write;
 
 sub fill_one {
     my $d = shift;
+
+    $d->note($d->EIGHTH, $d->kick, $d->tick);
+    $d->note($d->EIGHTH, $d->tick);
+
+    $d->note($d->SIXTEENTH, $d->snare);
+    $d->note($d->SIXTEENTH, $d->kick, $d->strike('Open Hi-Hat'));
+    $d->note($d->SIXTEENTH, $d->strike('Pedal Hi-Hat'));
+    $d->note($d->SIXTEENTH, $d->snare);
+
+    $d->note($d->SIXTEENTH, $d->kick, $d->strike('Open Hi-Hat'));
+    $d->note($d->SIXTEENTH, $d->strike('Pedal Hi-Hat'));
+    $d->note($d->SIXTEENTH, $d->snare);
+    $d->note($d->SIXTEENTH, $d->kick, $d->strike('Open Hi-Hat'));
+
+    $d->note($d->SIXTEENTH, $d->strike('Pedal Hi-Hat'));
+    $d->note($d->SIXTEENTH, $d->snare);
+    $d->note($d->EIGHTH, $d->snare);
 }
 sub fill_two {
     my $d = shift;
+
+    $d->note($d->EIGHTH, $d->kick, $d->tick);
+    $d->note($d->EIGHTH, $d->tick);
+
+    $d->note($d->SIXTEENTH, $d->snare);
+    $d->note($d->SIXTEENTH, $d->kick, $d->strike('Open Hi-Hat'));
+    $d->note($d->SIXTEENTH, $d->strike('Pedal Hi-Hat'));
+    $d->note($d->SIXTEENTH, $d->snare);
+
+    $d->note($d->EIGHTH, $d->kick, $d->strike('Crash Cymbal 1'));
+    $d->note($d->SIXTEENTH, $d->snare);
+    $d->note($d->EIGHTH, $d->kick, $d->strike('Crash Cymbal 1'));
+    $d->note($d->SIXTEENTH, $d->snare);
+    $d->note($d->EIGHTH, $d->kick, $d->strike('Crash Cymbal 1'));
 }
 sub fill_three {
     my $d = shift;
+    $d->note($d->EIGHTH, $d->kick, $d->tick);
+    $d->note($d->EIGHTH, $d->tick);
+
+    $d->note($d->SIXTEENTH, $d->snare);
+    $d->note($d->SIXTEENTH, $d->kick, $d->strike('Open Hi-Hat'));
+    $d->note($d->SIXTEENTH, $d->strike('Pedal Hi-Hat'));
+    $d->note($d->SIXTEENTH, $d->snare);
+
+    $d->note($d->SIXTEENTH, $d->kick, $d->strike('Open Hi-Hat'));
+    $d->note($d->SIXTEENTH, $d->strike('Pedal Hi-Hat'));
+    $d->note($d->SIXTEENTH, $d->snare);
+    $d->note($d->SIXTEENTH, $d->kick, $d->strike('Open Hi-Hat'));
+
+    $d->note($d->SIXTEENTH, $d->strike('Pedal Hi-Hat'));
+    $d->note($d->SIXTEENTH, $d->snare);
+    $d->note($d->SIXTEENTH, $d->snare);
+    $d->note($d->SIXTEENTH, $d->snare);
 }
 sub fill_four {
     my $d = shift;
