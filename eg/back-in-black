@@ -26,25 +26,25 @@ $d->patterns('4 fill' => \&fill_four);
 
 # Intro
 $d->note($d->QUARTER, $d->strike('Pedal Hi-Hat')) for 0 .. 7;
-$d->beat(-name => 2.1, -fill => 1, -patches => ['Crash Cymbal 1']);
+$d->beat(-name => 2.1, %args);
 $d->beat(-name => 2.1) for 0 .. 1;
 $d->fill(-name => 1);
-$d->beat(-name => 2.1, -fill => 1, -patches => ['Crash Cymbal 1']);
+$d->beat(-name => 2.1, %args);
 $d->beat(-name => 2.1) for 0 .. 1;
 $d->fill(-name => 2);
 
 # Verse
 for (0 .. 1) {
-    $d->beat(-name => 2.1, -fill => 1, -patches => ['Crash Cymbal 1']);
+    $d->beat(-name => 2.1, %args);
     $d->beat(-name => 2.1) for 0 .. 1;
     $d->fill(-name => 1);
-    $d->beat(-name => 2.1, -fill => 1, -patches => ['Crash Cymbal 1']);
+    $d->beat(-name => 2.1, %args);
     $d->beat(-name => 2.1) for 0 .. 1;
     $d->fill(-name => 3);
 
     # Chorus
-    $d->beat(-name => 2.1, -fill => 1, -patches => ['Crash Cymbal 1']) for 0 .. 5;
-    $d->beat(-name => 2.2, -fill => 1, -patches => ['Crash Cymbal 1']);
+    $d->beat(-name => 2.1, %args) for 0 .. 5;
+    $d->beat(-name => 2.2, %args);
     $d->fill(-name => 4);
 }
 
