@@ -21,7 +21,6 @@ my %args = (
 $d->patterns('1 fill' => \&fill_one);
 $d->patterns('2 fill' => \&fill_two);
 $d->patterns('3 fill' => \&fill_three);
-$d->patterns('4.1'    => \&four_one);
 $d->patterns('4 fill' => \&fill_four);
 
 # Intro
@@ -117,8 +116,3 @@ sub fill_four {
     $d->note($d->THIRTYSECOND, $d->snare);
     $d->note($d->EIGHTH, $d->snare);
 }
-sub four_one {
-    my $d = shift;
-}
-
-__END__
