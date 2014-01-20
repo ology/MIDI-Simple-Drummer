@@ -11,14 +11,18 @@ my $d = MIDI::Simple::Drummer::Rock->new(
     -file    => "$0.mid",
 );
 
+# Common beat() arguments.
+my %args = (
+    -fill => 1,
+    -patches => ['Crash Cymbal 1']
+);
+
+# Set our custom patterns.
 $d->patterns('1 fill' => \&fill_one);
 $d->patterns('2 fill' => \&fill_two);
 $d->patterns('3 fill' => \&fill_three);
 $d->patterns('4.1'    => \&four_one);
 $d->patterns('4 fill' => \&fill_four);
-
-# Declare beat and fill variables for later use.
-my ($beat, $fill) = (0, 0);
 
 # Intro
 $d->note($d->QUARTER, $d->strike('Pedal Hi-Hat')) for 0 .. 7;
@@ -41,7 +45,7 @@ for (0 .. 1) {
     # Chorus
     $d->beat(-name => 2.1, -fill => 1, -patches => ['Crash Cymbal 1']) for 0 .. 5;
     $d->beat(-name => 2.2, -fill => 1, -patches => ['Crash Cymbal 1']);
-    $d->beat(-name => 2.1, -fill => 1, -patches => ['Crash Cymbal 1']); # <- TODO fill
+    $d->fill(-name => 4);
 }
 
 $d->write;
@@ -105,6 +109,13 @@ sub fill_three {
 }
 sub fill_four {
     my $d = shift;
+
+    $d->note($d->TRIPLET_EIGHTH, $d->kick, $d->tick);
+    $d->note($d->TRIPLET_EIGHTH, $d->kick, $d->tick);
+    $d->note($d->DOTTED_EIGHTH, $d->kick, $d->tick);
+
+    $d->note($d->THIRTYSECOND, $d->snare);
+    $d->note($d->EIGHTH, $d->snare);
 }
 sub four_one {
     my $d = shift;
