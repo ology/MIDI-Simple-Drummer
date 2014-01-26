@@ -15,15 +15,14 @@ MIDI-Simple-Drummer=~/dev/Music/MIDI-Simple-Drummer CD=. {
   05-Euclidean.t
  }
  eg=eg {
+  back-in-black
   basics
   bitmask-drums
-  bitmask-drums-comb
   durations
   jazz-drummer
   metronome
   multi-track
   rock-drummer
-  ts-metronome
   rudiments
  }
  Changes
