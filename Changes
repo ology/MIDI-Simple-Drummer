@@ -1,6 +1,9 @@
 Revision history for MIDI-Simple-Drummer
 
 {{$NEXT}}
+    - Created eg/back-in-black
+
+0.06      2014-01-13 22:45:55 America/New_York
     - Enabled MIDI drumkit types (e.g. "power", "brushes").
     - Enabled MIDI reverb and chorus effect setting.
     - Made the rudiment code generically useful.
