@@ -22,6 +22,9 @@ $d->patterns('1 fill' => \&fill_one);
 $d->patterns('2 fill' => \&fill_two);
 $d->patterns('3 fill' => \&fill_three);
 $d->patterns('4 fill' => \&fill_four);
+$d->patterns('3.1'    => \&beat_three_one);
+$d->patterns('3.2'    => \&beat_three_two);
+$d->patterns('3.3'    => \&beat_three_three);
 
 # Intro
 $d->note($d->QUARTER, $d->strike('Pedal Hi-Hat')) for 0 .. 7;
@@ -46,6 +49,22 @@ for (0 .. 1) {
     $d->beat(-name => 2.2, %args);
     $d->fill(-name => 4);
 }
+
+# Solo
+for (0 .. 2) {
+    $d->beat(-name => 2.1, %args);
+    $d->beat(-name => 2.1);
+    $d->beat(-name => 2.1, %args);
+    $d->beat(-name => 3.1);
+}
+$d->beat(-name => 2.1, %args);
+$d->beat(-name => 3.2);
+$d->beat(-name => 3.3);
+
+# Chorus
+# Bridge
+# Chorus
+# Solo 2
 
 $d->write;
 
@@ -109,10 +128,64 @@ sub fill_three {
 sub fill_four {
     my $d = shift;
 
-    $d->note($d->TRIPLET_EIGHTH, $d->kick, $d->tick);
-    $d->note($d->TRIPLET_EIGHTH, $d->kick, $d->tick);
-    $d->note($d->DOTTED_EIGHTH, $d->kick, $d->tick);
+    $d->note($d->DOTTED_EIGHTH, $d->kick, $d->strike('Crash Cymbal 1'));
+    $d->note($d->DOTTED_EIGHTH, $d->kick, $d->strike('Crash Cymbal 1'));
+    $d->note($d->DOTTED_QUARTER, $d->kick, $d->strike('Crash Cymbal 1'));
 
     $d->note($d->THIRTYSECOND, $d->snare);
-    $d->note($d->EIGHTH, $d->snare);
+    $d->note($d->QUARTER, $d->snare);
+}
+
+sub beat_three_one {
+    my $d = shift;
+
+    $d->note($d->EIGHTH, $d->kick, $d->tick);
+    $d->note($d->EIGHTH, $d->tick);
+    $d->note($d->EIGHTH, $d->snare, $d->tick);
+    $d->note($d->EIGHTH, $d->kick, $d->strike('Splash Cymbal'));
+
+    $d->note($d->EIGHTH, $d->kick, $d->strike('Crash Cymbal 1'));
+    $d->note($d->EIGHTH, $d->tick);
+    $d->note($d->EIGHTH, $d->snare, $d->tick);
+    $d->note($d->EIGHTH, $d->kick, $d->strike('Splash Cymbal'));
+}
+
+sub beat_three_two {
+    my $d = shift;
+
+    $d->note($d->EIGHTH, $d->kick, $d->tick);
+    $d->note($d->EIGHTH, $d->tick);
+    $d->note($d->EIGHTH, $d->snare, $d->tick);
+    $d->note($d->EIGHTH, $d->tick);
+    $d->note($d->EIGHTH, $d->kick, $d->tick);
+    $d->note($d->EIGHTH, $d->tick);
+    $d->note($d->EIGHTH, $d->snare, $d->tick);
+    $d->note($d->EIGHTH, $d->kick, $d->tick);
+}
+
+sub beat_three_three {
+    my $d = shift;
+
+    $d->note($d->EIGHTH, $d->kick, $d->strike('Crash Cymbal 1'));
+    $d->note($d->EIGHTH, $d->tick);
+    $d->note($d->EIGHTH, $d->snare, $d->tick);
+    $d->note($d->EIGHTH, $d->kick, $d->tick);
+
+    $d->note($d->EIGHTH, $d->kick, $d->strike('Crash Cymbal 1'));
+    $d->note($d->EIGHTH, $d->tick);
+    $d->note($d->EIGHTH, $d->snare, $d->tick);
+    $d->note($d->EIGHTH, $d->kick, $d->tick);
+}
+
+sub beat_three_four {
+    my $d = shift;
+
+    $d->note($d->EIGHTH, $d->kick, $d->strike('Crash Cymbal 1'));
+    $d->note($d->EIGHTH, $d->tick);
+    $d->note($d->EIGHTH, $d->snare, $d->tick);
+    $d->note($d->EIGHTH, $d->kick, $d->tick);
+
+    $d->note($d->DOTTED_EIGHTH, $d->kick, $d->strike('Crash Cymbal 1'));
+    $d->note($d->DOTTED_EIGHTH, $d->kick, $d->strike('Crash Cymbal 1'));
+    $d->note($d->EIGHTH, $d->kick, $d->strike('Crash Cymbal 1'));
 }
