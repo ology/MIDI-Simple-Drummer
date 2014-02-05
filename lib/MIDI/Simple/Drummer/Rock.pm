@@ -4,6 +4,16 @@ use strict;
 use warnings;
 use parent 'MIDI::Simple::Drummer';
 
+use constant CLOSED => 'Closed Hi-Hat';
+use constant CRASH  => 'Crash Cymbal 1';
+use constant BELL   => 'Ride Bell';
+use constant RIDE2  => 'Ride Cymbal 2';
+use constant TOM1   => 'High Tom';
+use constant TOM2   => 'Low-Mid Tom';
+use constant TOM3   => 'Low Tom';
+use constant TOM4   => 'High Floor Tom';
+use constant TOM5   => 'Low Floor Tom';
+
 sub new {
     my $self = shift;
     $self->SUPER::new(
@@ -43,73 +53,182 @@ sub _eighth {
     }
 }
 
+=head2 foo()
+=cut
+
+sub _half_one {
+    my $self = shift;
+    $self->note($self->EIGHTH, $self->kick, $self->tick);
+    $self->note($self->EIGHTH, $self->tick);
+    $self->note($self->EIGHTH, $self->snare, $self->tick);
+    $self->note($self->EIGHTH, $self->tick);
+}
+
+sub _half_two {
+    my $self = shift;
+    $self->note($self->EIGHTH, $self->kick, $self->tick);
+    $self->note($self->EIGHTH, $self->kick, $self->tick);
+    $self->note($self->EIGHTH, $self->snare, $self->tick);
+    $self->note($self->EIGHTH, $self->tick);
+}
+
+sub _half_three {
+    my $self = shift;
+    $self->note($self->EIGHTH, $self->tick);
+    $self->note($self->EIGHTH, $self->kick, $self->tick);
+    $self->note($self->EIGHTH, $self->snare, $self->tick);
+    $self->note($self->EIGHTH, $self->kick, $self->tick);
+}
+
+sub _half_four {
+    my $self = shift;
+    $self->note($self->EIGHTH, $self->kick, $self->tick) for 0 .. 1;
+    $self->note($self->EIGHTH, $self->snare, $self->tick);
+    $self->note($self->EIGHTH, $self->kick, $self->tick);
+}
+
+sub _half_four_two {
+    my $self = shift;
+    $self->note($self->EIGHTH, $self->tick);
+    $self->note($self->EIGHTH, $self->kick, $self->tick);
+    $self->note($self->EIGHTH, $self->snare, $self->tick);
+    $self->note($self->EIGHTH, $self->tick);
+}
+
+sub _half_five {
+    my $self = shift;
+    $self->note($self->EIGHTH, $self->kick, $self->tick);
+    $self->note($self->EIGHTH, $self->tick);
+    $self->note($self->EIGHTH, $self->snare, $self->tick);
+    $self->note($self->EIGHTH, $self->kick, $self->tick);
+}
+
 sub _default_patterns {
     my $self = shift;
     return {
 
+# Exercises from the see also link.
+2.1 => sub { # Ex. 1
+    my $self = shift;
+    $self->_half_one;
+    $self->_half_one;
+},
+2.2 => sub { # Ex. 2
+    my $self = shift;
+    $self->_half_one;
+    $self->_half_two;
+},
+2.3 => sub { # Ex. 3
+    my $self = shift;
+    $self->_half_one;
+    $self->_half_three;
+},
+2.4 => sub { # Ex. 4
+    my $self = shift;
+    $self->_half_four;
+    $self->_half_four_two;
+},
+2.5 => sub { # Ex. 5
+    my $self = shift;
+    $self->_half_five;
+    $self->_half_four;
+},
+2.6 => sub { # Ex. 6
+    my $self = shift;
+    $self->_half_five;
+    $self->_half_one;
+    $self->_half_one;
+    $self->_half_four;
+    $self->_half_five;
+    $self->_half_one;
+},
+2.7 => sub { # Ex. 7
+    my $self = shift;
+    $self->_half_four;
+    $self->_half_five;
+    $self->_half_five;
+    $self->_half_four_two;
+    $self->_half_four;
+    $self->_half_five;
+},
+2.8 => sub { # Ex. 8
+    my $self = shift;
+    $self->_half_one;
+    $self->_half_four_two;
+    $self->_half_four;
+    $self->_half_three;
+    $self->_half_one;
+    $self->_half_four_two;
+    #$self->fill(... # TODO
+},
+
 1.1 => sub {
     my $self = shift;
-    my %args = (-key_patch => 'Closed Hi-Hat', @_);
+    my %args = (-key_patch => CLOSED, @_);
     $self->_quarter(%args);
 },
 1.2 => sub {
     my $self = shift;
-    my %args = (-key_patch => 'Ride Bell', @_);
+    my %args = (-key_patch => BELL, @_);
     $self->_quarter(%args);
 },
 1.3 => sub {
     my $self = shift;
-    my %args = (-key_patch => 'Ride Cymbal 2', @_);
+    my %args = (-key_patch => RIDE2, @_);
     $self->_quarter(%args);
 },
 
-2.1 => sub { # "Basic rock beat" en c-hh. qn k1,3. qn s2,4. Crash after fill.
-    my $self = shift;
-    my %args = (-key_beat => [0], @_);
-    $self->_eighth(%args);
-},
-2.2 => sub { # "Main beat" en c-hh. qn k1,3,3&. qn s2,4.
-    my $self = shift;
-    my %args = (-key_beat => [3], @_);
-    $self->_eighth(%args);
-},
-2.3 => sub { # "Syncopated beat 1" en c-hh. qn k1,3,4&. qn s2,4.
+3.1 => sub { # "Syncopated beat 1" en c-hh. qn k1,3,4&. qn s2,4.
     my $self = shift;
     my %args = (-key_beat => [4], @_);
     $self->_eighth(%args);
 },
-2.4 => sub { # "Syncopated beat 2" en c-hh. qn k1,3,3&,4&. qn s2,4.
+3.2 => sub { # "Syncopated beat 2" en c-hh. qn k1,3,3&,4&. qn s2,4.
     my $self = shift;
     my %args = (-key_beat => [3, 4], @_);
     $self->_eighth(%args);
 },
 
-# XXX These fills all suck.
 '1 fill' => sub {
     my $self = shift;
-    $self->note($self->QUARTER, $self->snare) for 0 .. 1;
-    $self->note($self->EIGHTH, $self->snare) for 0 .. 3;
+    $self->note($self->SIXTEENTH, $self->snare) for 0 .. 3;
+    $self->note($self->SIXTEENTH, $self->strike(TOM1)) for 0 .. 3;
+    $self->note($self->SIXTEENTH, $self->strike(TOM3)) for 0 .. 3;
+    $self->note($self->SIXTEENTH, $self->strike(TOM5)) for 0 .. 3;
 },
 '2 fill' => sub {
     my $self = shift;
-    $self->note($self->EIGHTH, $self->snare) for 0 .. 1;
-    $self->rest($self->EIGHTH);
-    $self->note($self->EIGHTH, $self->snare);
-    $self->note($self->QUARTER, $self->snare) for 0 .. 1;
+    $self->note($self->SIXTEENTH, $self->snare, $self->strike(TOM5)) for 0 .. 3;
 },
 '3 fill' => sub {
     my $self = shift;
-    $self->note($self->EIGHTH, $self->snare) for 0 .. 1;
-    $self->rest($self->EIGHTH);
-    $self->note($self->EIGHTH, $self->snare) for 0 .. 2;
-    $self->rest($self->EIGHTH);
+    $self->note($self->SIXTEENTH, $self->snare) for 0 .. 1;
     $self->note($self->EIGHTH, $self->snare);
+    $self->note($self->SIXTEENTH, $self->strike(TOM1)) for 0 .. 1;
+    $self->note($self->EIGHTH, $self->strike(TOM1));
 },
 '4 fill' => sub {
     my $self = shift;
-    $self->note($self->QUARTER, $self->snare) for 0 .. 1;
+    $self->note($self->SIXTEENTH, $self->snare, $self->strike(TOM5)) for 0 .. 1;
+    $self->note($self->SIXTEENTH, $self->snare) for 0 .. 1;
+    $self->note($self->SIXTEENTH, $self->strike(TOM1)) for 0 .. 1;
+},
+'5 fill' => sub {
+    my $self = shift;
+    $self->note($self->EIGHTH, $self->kick, $self->strike(CRASH));
+    $self->note($self->EIGHTH, $self->snare) for 0 .. 2;
+    $self->note($self->SIXTEENTH, $self->strike(TOM1)) for 0 .. 3;
+    $self->note($self->SIXTEENTH, $self->strike(TOM3)) for 0 .. 3;
+},
+'6 fill' => sub {
+    my $self = shift;
     $self->note($self->SIXTEENTH, $self->snare) for 0 .. 3;
-    $self->note($self->QUARTER, $self->snare);
+    $self->note($self->EIGHTH, $self->strike(TOM1));
+    $self->note($self->SIXTEENTH, $self->strike(TOM1)) for 0 .. 1;
+    $self->note($self->SIXTEENTH, $self->snare) for 0 .. 1;
+    $self->note($self->EIGHTH, $self->strike(TOM1));
+    $self->note($self->SIXTEENTH, $self->snare) for 0 .. 1;
+    $self->note($self->EIGHTH, $self->strike(TOM3));
 },
 
     };
@@ -139,5 +258,7 @@ Some cooler fills, Man.
 
 L<MIDI::Simple::Drummer>, the F<eg/*> and F<t/*> scripts.
 
-=cut
+Progressive Drum Grooves
+L<http://www.amazon.com/Progressive-Drum-Grooves-Series/dp/1875726314/>
 
+=cut
