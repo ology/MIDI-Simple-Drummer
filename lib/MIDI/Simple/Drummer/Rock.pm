@@ -56,7 +56,7 @@ sub _eighth {
 =head2 foo()
 =cut
 
-sub _half_one {
+sub half_one {
     my $self = shift;
     $self->note($self->EIGHTH, $self->kick, $self->tick);
     $self->note($self->EIGHTH, $self->tick);
@@ -64,7 +64,7 @@ sub _half_one {
     $self->note($self->EIGHTH, $self->tick);
 }
 
-sub _half_two {
+sub half_two {
     my $self = shift;
     $self->note($self->EIGHTH, $self->kick, $self->tick);
     $self->note($self->EIGHTH, $self->kick, $self->tick);
@@ -72,7 +72,7 @@ sub _half_two {
     $self->note($self->EIGHTH, $self->tick);
 }
 
-sub _half_three {
+sub half_three {
     my $self = shift;
     $self->note($self->EIGHTH, $self->tick);
     $self->note($self->EIGHTH, $self->kick, $self->tick);
@@ -80,14 +80,14 @@ sub _half_three {
     $self->note($self->EIGHTH, $self->kick, $self->tick);
 }
 
-sub _half_four {
+sub half_four {
     my $self = shift;
     $self->note($self->EIGHTH, $self->kick, $self->tick) for 0 .. 1;
     $self->note($self->EIGHTH, $self->snare, $self->tick);
     $self->note($self->EIGHTH, $self->kick, $self->tick);
 }
 
-sub _half_four_two {
+sub half_four_two {
     my $self = shift;
     $self->note($self->EIGHTH, $self->tick);
     $self->note($self->EIGHTH, $self->kick, $self->tick);
@@ -95,7 +95,7 @@ sub _half_four_two {
     $self->note($self->EIGHTH, $self->tick);
 }
 
-sub _half_five {
+sub half_five {
     my $self = shift;
     $self->note($self->EIGHTH, $self->kick, $self->tick);
     $self->note($self->EIGHTH, $self->tick);
@@ -110,56 +110,65 @@ sub _default_patterns {
 # Exercises from the see also link.
 2.1 => sub { # Ex. 1
     my $self = shift;
-    $self->_half_one;
-    $self->_half_one;
+    for (0 .. 2) {
+        $self->half_one;
+        $self->half_one;
+    }
 },
 2.2 => sub { # Ex. 2
     my $self = shift;
-    $self->_half_one;
-    $self->_half_two;
+    for (0 .. 2) {
+        $self->half_one;
+        $self->half_two;
+    }
 },
 2.3 => sub { # Ex. 3
     my $self = shift;
-    $self->_half_one;
-    $self->_half_three;
+    for (0 .. 2) {
+        $self->half_one;
+        $self->half_three;
+    }
 },
 2.4 => sub { # Ex. 4
     my $self = shift;
-    $self->_half_four;
-    $self->_half_four_two;
+    for (0 .. 2) {
+        $self->half_four;
+        $self->half_four_two;
+    }
 },
 2.5 => sub { # Ex. 5
     my $self = shift;
-    $self->_half_five;
-    $self->_half_four;
+    for (0 .. 2) {
+        $self->half_five;
+        $self->half_four;
+    }
 },
 2.6 => sub { # Ex. 6
     my $self = shift;
-    $self->_half_five;
-    $self->_half_one;
-    $self->_half_one;
-    $self->_half_four;
-    $self->_half_five;
-    $self->_half_one;
+    $self->half_five;
+    $self->half_one;
+    $self->half_one;
+    $self->half_four;
+    $self->half_five;
+    $self->half_one;
 },
 2.7 => sub { # Ex. 7
     my $self = shift;
-    $self->_half_four;
-    $self->_half_five;
-    $self->_half_five;
-    $self->_half_four_two;
-    $self->_half_four;
-    $self->_half_five;
+    $self->half_four;
+    $self->half_five;
+    $self->half_five;
+    $self->half_four_two;
+    $self->half_four;
+    $self->half_five;
 },
 2.8 => sub { # Ex. 8
     my $self = shift;
-    $self->_half_one;
-    $self->_half_four_two;
-    $self->_half_four;
-    $self->_half_three;
-    $self->_half_one;
-    $self->_half_four_two;
-    #$self->fill(... # TODO
+    $self->half_one;
+    $self->half_four_two;
+    $self->half_four;
+    $self->half_three;
+    $self->half_one;
+    $self->half_four_two;
 },
 
 1.1 => sub {
