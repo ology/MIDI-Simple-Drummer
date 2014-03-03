@@ -5,10 +5,9 @@ use warnings;
 use MIDI::Simple::Drummer::Rock;
 
 my $d = MIDI::Simple::Drummer::Rock->new(
-    -bpm     => shift || 96,
-    -volume  => shift || 100,
-    -phrases => shift || 8,
-    -file    => "$0.mid",
+    -bpm    => shift || 96,
+    -volume => shift || 100,
+    -file   => "$0.mid",
 );
 
 # Common beat() arguments.
