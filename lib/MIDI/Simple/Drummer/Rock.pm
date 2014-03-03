@@ -107,6 +107,22 @@ sub _default_patterns {
     my $self = shift;
     return {
 
+1.1 => sub {
+    my $self = shift;
+    my %args = (-key_patch => CLOSED, @_);
+    $self->_quarter(%args);
+},
+1.2 => sub {
+    my $self = shift;
+    my %args = (-key_patch => BELL, @_);
+    $self->_quarter(%args);
+},
+1.3 => sub {
+    my $self = shift;
+    my %args = (-key_patch => RIDE2, @_);
+    $self->_quarter(%args);
+},
+
 # Exercises from the see also link.
 2.1 => sub { # Ex. 1
     my $self = shift;
@@ -169,22 +185,6 @@ sub _default_patterns {
     $self->half_three;
     $self->half_one;
     $self->half_four_two;
-},
-
-1.1 => sub {
-    my $self = shift;
-    my %args = (-key_patch => CLOSED, @_);
-    $self->_quarter(%args);
-},
-1.2 => sub {
-    my $self = shift;
-    my %args = (-key_patch => BELL, @_);
-    $self->_quarter(%args);
-},
-1.3 => sub {
-    my $self = shift;
-    my %args = (-key_patch => RIDE2, @_);
-    $self->_quarter(%args);
 },
 
 3.1 => sub { # "Syncopated beat 1" en c-hh. qn k1,3,4&. qn s2,4.
