@@ -1,8 +1,8 @@
 package MIDI::Simple::Drummer::Rock;
-our $VERSION = '0.02';
 use strict;
 use warnings;
 use parent 'MIDI::Simple::Drummer';
+our $VERSION = '0.03';
 
 use constant CLOSED => 'Closed Hi-Hat';
 use constant CRASH  => 'Crash Cymbal 1';
