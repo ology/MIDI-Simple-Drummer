@@ -58,6 +58,7 @@ sub _eighth {
 
 sub half_one {
     my $self = shift;
+    my %args = @_;
     $self->note($self->EIGHTH, $self->kick, $self->tick);
     $self->note($self->EIGHTH, $self->tick);
     $self->note($self->EIGHTH, $self->snare, $self->tick);
@@ -66,6 +67,7 @@ sub half_one {
 
 sub half_two {
     my $self = shift;
+    my %args = @_;
     $self->note($self->EIGHTH, $self->kick, $self->tick);
     $self->note($self->EIGHTH, $self->kick, $self->tick);
     $self->note($self->EIGHTH, $self->snare, $self->tick);
@@ -74,6 +76,7 @@ sub half_two {
 
 sub half_three {
     my $self = shift;
+    my %args = @_;
     $self->note($self->EIGHTH, $self->tick);
     $self->note($self->EIGHTH, $self->kick, $self->tick);
     $self->note($self->EIGHTH, $self->snare, $self->tick);
@@ -82,6 +85,7 @@ sub half_three {
 
 sub half_four {
     my $self = shift;
+    my %args = @_;
     $self->note($self->EIGHTH, $self->kick, $self->tick) for 0 .. 1;
     $self->note($self->EIGHTH, $self->snare, $self->tick);
     $self->note($self->EIGHTH, $self->kick, $self->tick);
@@ -89,6 +93,7 @@ sub half_four {
 
 sub half_four_two {
     my $self = shift;
+    my %args = @_;
     $self->note($self->EIGHTH, $self->tick);
     $self->note($self->EIGHTH, $self->kick, $self->tick);
     $self->note($self->EIGHTH, $self->snare, $self->tick);
@@ -97,6 +102,7 @@ sub half_four_two {
 
 sub half_five {
     my $self = shift;
+    my %args = @_;
     $self->note($self->EIGHTH, $self->kick, $self->tick);
     $self->note($self->EIGHTH, $self->tick);
     $self->note($self->EIGHTH, $self->snare, $self->tick);
@@ -126,42 +132,48 @@ sub _default_patterns {
 # Exercises from the see also link.
 2.1 => sub { # Ex. 1
     my $self = shift;
+    my %args = @_;
     for (0 .. 2) {
-        $self->half_one;
+        $self->half_one(%args);
         $self->half_one;
     }
 },
 2.2 => sub { # Ex. 2
     my $self = shift;
+    my %args = @_;
     for (0 .. 2) {
-        $self->half_one;
+        $self->half_one(%args);
         $self->half_two;
     }
 },
 2.3 => sub { # Ex. 3
     my $self = shift;
+    my %args = @_;
     for (0 .. 2) {
-        $self->half_one;
+        $self->half_one(%args);
         $self->half_three;
     }
 },
 2.4 => sub { # Ex. 4
     my $self = shift;
+    my %args = @_;
     for (0 .. 2) {
-        $self->half_four;
+        $self->half_four(%args);
         $self->half_four_two;
     }
 },
 2.5 => sub { # Ex. 5
     my $self = shift;
+    my %args = @_;
     for (0 .. 2) {
-        $self->half_five;
+        $self->half_five(%args);
         $self->half_four;
     }
 },
 2.6 => sub { # Ex. 6
     my $self = shift;
-    $self->half_five;
+    my %args = @_;
+    $self->half_five(%args);
     $self->half_one;
     $self->half_one;
     $self->half_four;
@@ -170,7 +182,8 @@ sub _default_patterns {
 },
 2.7 => sub { # Ex. 7
     my $self = shift;
-    $self->half_four;
+    my %args = @_;
+    $self->half_four(%args);
     $self->half_five;
     $self->half_five;
     $self->half_four_two;
@@ -179,7 +192,8 @@ sub _default_patterns {
 },
 2.8 => sub { # Ex. 8
     my $self = shift;
-    $self->half_one;
+    my %args = @_;
+    $self->half_one(%args);
     $self->half_four_two;
     $self->half_four;
     $self->half_three;
