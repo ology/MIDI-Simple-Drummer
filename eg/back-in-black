@@ -13,7 +13,6 @@ my $d = MIDI::Simple::Drummer::Rock->new(
 # Common beat() arguments.
 my %args = (
     -fill => 1,
-    -patches => ['Crash Cymbal 1']
 );
 
 # Set our custom patterns.
