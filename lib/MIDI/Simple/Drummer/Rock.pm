@@ -60,7 +60,7 @@ sub _kick_fill {
         $args{-note},
         $self->kick,
         $args{-fill}
-            ? $self->strike(@{$args{-patches}})
+            ? $self->strike($args{-patches} ? @{$args{-patches}} : CRASH)
             : $self->tick
     );
 }
