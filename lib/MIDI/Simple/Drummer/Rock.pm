@@ -65,7 +65,7 @@ sub _kick_fill {
     );
 }
 
-sub half_one {
+sub _half_one {
     my $self = shift;
     my %args = @_;
     $self->_kick_fill(-note => $self->EIGHTH, %args);
@@ -74,7 +74,7 @@ sub half_one {
     $self->note($self->EIGHTH, $self->tick);
 }
 
-sub half_two {
+sub _half_two {
     my $self = shift;
     my %args = @_;
     $self->note($self->EIGHTH, $self->kick, $self->tick);
@@ -83,7 +83,7 @@ sub half_two {
     $self->note($self->EIGHTH, $self->tick);
 }
 
-sub half_three {
+sub _half_three {
     my $self = shift;
     my %args = @_;
     $self->note($self->EIGHTH, $self->tick);
@@ -92,7 +92,7 @@ sub half_three {
     $self->note($self->EIGHTH, $self->kick, $self->tick);
 }
 
-sub half_four {
+sub _half_four {
     my $self = shift;
     my %args = @_;
     $self->note($self->EIGHTH, $self->kick, $self->tick) for 0 .. 1;
@@ -100,7 +100,7 @@ sub half_four {
     $self->note($self->EIGHTH, $self->kick, $self->tick);
 }
 
-sub half_four_two {
+sub _half_four_two {
     my $self = shift;
     my %args = @_;
     $self->note($self->EIGHTH, $self->tick);
@@ -109,7 +109,7 @@ sub half_four_two {
     $self->note($self->EIGHTH, $self->tick);
 }
 
-sub half_five {
+sub _half_five {
     my $self = shift;
     my %args = @_;
     $self->note($self->EIGHTH, $self->kick, $self->tick);
@@ -142,62 +142,62 @@ sub _default_patterns {
 2.1 => sub { # Ex. 1
     my $self = shift;
     my %args = @_;
-    $self->half_one(%args);
-    $self->half_one;
+    $self->_half_one(%args);
+    $self->_half_one;
 },
 2.2 => sub { # Ex. 2
     my $self = shift;
     my %args = @_;
-    $self->half_one(%args);
-    $self->half_two;
+    $self->_half_one(%args);
+    $self->_half_two;
 },
 2.3 => sub { # Ex. 3
     my $self = shift;
     my %args = @_;
-    $self->half_one(%args);
-    $self->half_three;
+    $self->_half_one(%args);
+    $self->_half_three;
 },
 2.4 => sub { # Ex. 4
     my $self = shift;
     my %args = @_;
-    $self->half_four(%args);
-    $self->half_four_two;
+    $self->_half_four(%args);
+    $self->_half_four_two;
 },
 2.5 => sub { # Ex. 5
     my $self = shift;
     my %args = @_;
-    $self->half_five(%args);
-    $self->half_four;
+    $self->_half_five(%args);
+    $self->_half_four;
 },
 2.6 => sub { # Ex. 6
     my $self = shift;
     my %args = @_;
-    $self->half_five(%args);
-    $self->half_one;
-    $self->half_one;
-    $self->half_four;
-    $self->half_five;
-    $self->half_one;
+    $self->_half_five(%args);
+    $self->_half_one;
+    $self->_half_one;
+    $self->_half_four;
+    $self->_half_five;
+    $self->_half_one;
 },
 2.7 => sub { # Ex. 7
     my $self = shift;
     my %args = @_;
-    $self->half_four(%args);
-    $self->half_five;
-    $self->half_five;
-    $self->half_four_two;
-    $self->half_four;
-    $self->half_five;
+    $self->_half_four(%args);
+    $self->_half_five;
+    $self->_half_five;
+    $self->_half_four_two;
+    $self->_half_four;
+    $self->_half_five;
 },
 2.8 => sub { # Ex. 8
     my $self = shift;
     my %args = @_;
-    $self->half_one(%args);
-    $self->half_four_two;
-    $self->half_four;
-    $self->half_three;
-    $self->half_one;
-    $self->half_four_two;
+    $self->_half_one(%args);
+    $self->_half_four_two;
+    $self->_half_four;
+    $self->_half_three;
+    $self->_half_one;
+    $self->_half_four_two;
 },
 
 3.1 => sub { # "Syncopated beat 1" en c-hh. qn k1,3,4&. qn s2,4.
