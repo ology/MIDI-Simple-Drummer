@@ -1,7 +1,9 @@
 Revision history for MIDI-Simple-Drummer
 
 {{$NEXT}}
-    - Created eg/back-in-black
+    - Creating eg/back-in-black...
+    - Fixed accidental phrase duplication in Rock patterns.
+    - Modularized Rock "half beat" code.
 
 0.06      2014-01-13 22:45:55 America/New_York
     - Enabled MIDI drumkit types (e.g. "power", "brushes").
