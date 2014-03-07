@@ -25,7 +25,7 @@ $d->patterns('3.2'    => \&beat_three_two);
 $d->patterns('3.3'    => \&beat_three_three);
 
 # Intro
-$d->note($d->QUARTER, $d->strike('Pedal Hi-Hat')) for 0 .. 7;
+$d->count_in(2, 'Pedal Hi-Hat');
 $d->beat(-name => 2.1, %args);
 $d->beat(-name => 2.1) for 0 .. 1;
 $d->fill(-name => 1);
@@ -58,6 +58,7 @@ for (0 .. 2) {
 $d->beat(-name => 2.1, %args);
 $d->beat(-name => 3.2);
 $d->beat(-name => 3.3);
+$d->beat(-name => 3.4);
 
 # Chorus
 # Bridge
