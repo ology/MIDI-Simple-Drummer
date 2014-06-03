@@ -73,13 +73,13 @@ MIDI::Simple::Drummer::Euclidean - Euclidean Rhythms
 
 =head1 DESCRIPTION
 
-Sadly, this module is but a stub.
+Generate Euclidean rhythms and "world beat" grooves.
 
 =head1 METHODS
 
 =head2 euclid()
 
-Thinking out loud. Work in progress...
+Return a list of B<x> onsets or B<.> rests given the C<onsets> and C<beats>.
 
 =head1 SEE ALSO
 
