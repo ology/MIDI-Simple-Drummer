@@ -64,6 +64,20 @@ sub euclid {
     return \@onsets;
 };
 
+sub rotate {
+    my $self = shift;
+    my $phrase = shift;
+
+    my $done = 0;
+    while ( $done == 0 ) {
+        my $i = shift @$phrase;
+        push @$phrase, $i;
+        $done++ if $phrase->[0] eq 'x';
+    }
+
+    return $phrase;
+}
+
 1;
 __END__
 
@@ -80,6 +94,10 @@ Generate Euclidean rhythms and "world beat" grooves.
 =head2 euclid()
 
 Return a list of B<x> onsets or B<.> rests given the C<onsets> and C<beats>.
+
+=head2 rotate()
+
+Rotate the given list of onsets and rests to the next (to the right) onset.
 
 =head1 SEE ALSO
 
