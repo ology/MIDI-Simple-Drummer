@@ -1,8 +1,8 @@
 package MIDI::Simple::Drummer::Euclidean;
-our $VERSION = '0.00_01';
 use strict;
 use warnings;
 use parent 'MIDI::Simple::Drummer';
+our $VERSION = '0.01';
 
 sub new {
     my $self = shift;
@@ -11,18 +11,11 @@ sub new {
         -tr_808 => 0,
         @_
     );
-    # Use the requested kit.
-    if ($self->{-tr_808}) {
-        $self->patch(26);
-    }
 }
 
 sub _default_patterns {
     my $self = shift;
     return {
-
-1 => \&euclid,
-
     };
 }
 
@@ -30,15 +23,28 @@ sub euclid {
     my $self = shift;
     my ($m, $n) = @_;
 
-    my $ones = 1 x $m;
-    my $zeros = 0 x ($n - $m);
+    # Onsets per measure
+    $m ||= 3;
+    # Beats per measure
+    $n ||= $self->beats;
 
-    if (@$n) {
-        return euclid($n % $m, $m);
+    # Line is from x=0, y=1 to x=$BPM, y=$mod+1
+    # Then from that, for each $y from # 1..$mod
+    # figure out the x value to see where beat would be.
+
+    my $intercept = 1;
+
+    # y = mx + b; b is 1 as we're drawing the intercept through that point,
+    # and then (y2-y1)/(x2-x1) reduces to just:
+    my $slope = $m / $n;
+
+    my @onsets = ('.') x $n;
+    for my $y ( 1 .. $m ) {
+        # solve x = (y-b)/m rounding nearest and put the beat there
+        $onsets[ sprintf "%.0f", ( $y - $intercept ) / $slope ] = 'x';
     }
-    else {
-        return $m;
-    }
+
+    return \@onsets;
 };
 
 1;
