@@ -15,6 +15,9 @@ my $y = sub { $d->note($d->EIGHTH, $d->strike) };
 $x = $d->patterns('y', $y);
 is_deeply $x, $y, 'set y pattern';
 
+$x = $d->euclid(4, 5);
+is_deeply $x, [qw(x x x . x)], 'euclid';
+
 #$x = $d->write('Euclidean-Drummer.mid');
 #ok $x eq 'Euclidean-Drummer.mid' && -e $x, 'named write';
 #unlink $x;
