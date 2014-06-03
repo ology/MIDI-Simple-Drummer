@@ -18,7 +18,7 @@ is_deeply $x, $y, 'set y pattern';
 $x = $d->euclid();
 is_deeply $x, [qw(x x x x)], 'euclid';
 
-$d->beats(5);
+$d->beats(6);
 for ( 0 .. $d->phrases) {
     $d->beat(-name => 1);
 }
