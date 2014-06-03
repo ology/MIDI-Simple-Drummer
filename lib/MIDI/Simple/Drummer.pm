@@ -1088,5 +1088,7 @@ importing.
 Kevin Goroway E<lt>kgoroway@yahoo.com<gt> for asking where the time signature
 was and if the rudiments package was going to happen.
 
+Jeremy Mates for the clever Euclidian rhythm algorithm.
+
 =cut
 
