@@ -7,8 +7,9 @@ our $VERSION = '0.01';
 sub new {
     my $self = shift;
     $self->SUPER::new(
+        -onsets => 4,
         -patch  => 25,
-        -tr_808 => 0,
+        -tr808  => 0,
         @_
     );
 }
@@ -16,6 +17,22 @@ sub new {
 sub _default_patterns {
     my $self = shift;
     return {
+
+1 => sub {
+    my $self = shift;
+
+    my $rhythm = $self->euclid($self->{-onsets}, $self->beats);
+
+    for my $i ( @$rhythm ) {
+        if ( $i eq 'x' ) {
+            $self->note($self->EIGHTH, $self->kick);
+        }
+        else {
+            $self->rest($self->EIGHTH);
+        }
+    }
+}
+
     };
 }
 
