@@ -41,7 +41,7 @@ sub euclid {
     my ($m, $n) = @_;
 
     # Onsets per measure
-    $m ||= 3;
+    $m ||= $self->{-onsets};
     # Beats per measure
     $n ||= $self->beats;
 
