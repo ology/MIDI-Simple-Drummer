@@ -140,6 +140,9 @@ sub _setup { # Where's my roadies, Man?
     elsif ($self->{-brushes}) {
         $self->patch(41);
     }
+    if ($self->{-tr808}) {
+        $self->patch(26);
+    }
     else {
         # Set to the assigned -patch.
         $self->patch;
