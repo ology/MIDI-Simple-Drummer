@@ -10,6 +10,7 @@ sub new {
         -onsets => 4,
         -patch  => 25,
         -tr808  => 0,
+        -rhythm => undef,
         @_
     );
 }
@@ -20,9 +21,9 @@ sub _default_patterns {
 
 1 => sub {
     my $self = shift;
-
-    my $rhythm = $self->euclid($self->{-onsets}, $self->beats);
-
+    my $rhythm = $self->{-rhythm}
+        ? $self->{-rhythm}
+        : $self->euclid($self->{-onsets}, $self->beats);
     for my $i ( @$rhythm ) {
         if ( $i eq 'x' ) {
             $self->note($self->EIGHTH, $self->kick);
