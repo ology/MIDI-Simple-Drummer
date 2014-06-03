@@ -1,7 +1,10 @@
 Revision history for MIDI-Simple-Drummer
 
 {{$NEXT}}
-    - Gave life to the Euclidean module via thrig.
+    - Gave life to the Euclidean module via J Mates.
+    - Added the rotate($necklace) method.
+    - Added Euclidean tests!
+    - Removed Funky cruft until it's actually ready for prime time.
 
 0.0601    2014-03-03 19:16:51EST-0500 America/New_York
     - Creating eg/back-in-black...
