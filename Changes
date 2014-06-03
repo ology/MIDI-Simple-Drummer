@@ -1,6 +1,9 @@
 Revision history for MIDI-Simple-Drummer
 
 {{$NEXT}}
+    - Gave life to the Euclidean module via thrig.
+
+0.0601    2014-03-03 19:16:51EST-0500 America/New_York
     - Creating eg/back-in-black...
     - Fixed accidental phrase duplication in Rock patterns.
     - Modularized Rock "half beat" code.
