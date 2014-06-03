@@ -23,6 +23,7 @@ $d->patterns('4 fill' => \&fill_four);
 $d->patterns('3.1'    => \&beat_three_one);
 $d->patterns('3.2'    => \&beat_three_two);
 $d->patterns('3.3'    => \&beat_three_three);
+$d->patterns('3.4'    => \&beat_three_four);
 
 # Intro
 $d->count_in(2, 'Pedal Hi-Hat');
