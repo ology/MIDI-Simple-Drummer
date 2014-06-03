@@ -4,11 +4,10 @@ use warnings;
 
 use Test::More;
 
-BEGIN { use_ok('MIDI::Simple::Drummer::Rock') }
+use_ok('MIDI::Simple::Drummer::Rock');
 
-my $d = eval { MIDI::Simple::Drummer::Rock->new };
+my $d = MIDI::Simple::Drummer::Rock->new;
 isa_ok $d, 'MIDI::Simple::Drummer::Rock';
-ok !$@, 'created with no arguments';
 
 my $x = $d->patterns(0);
 is $x, undef, 'get unknown pattern is undef';
