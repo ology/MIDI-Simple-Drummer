@@ -19,12 +19,17 @@ $x = $d->euclid();
 is_deeply $x, [qw(x x x x)], 'euclid';
 
 $d->beats(6);
+$x = $d->euclid();
+is_deeply $x, [qw(x . x x x .)], 'euclid';
+$d->rotate($x);
+is_deeply $x, [qw(x x x . x .)], 'rotate';
+
 for ( 0 .. $d->phrases) {
     $d->beat(-name => 1);
 }
 
-$x = $d->write('Euclidean-Drummer.mid');
-ok $x eq 'Euclidean-Drummer.mid' && -e $x, 'named write';
+#$x = $d->write('Euclidean-Drummer.mid');
+#ok $x eq 'Euclidean-Drummer.mid' && -e $x, 'named write';
 #unlink $x;
 #ok !-e $x, 'removed';
 
