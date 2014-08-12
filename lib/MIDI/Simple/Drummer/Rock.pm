@@ -252,6 +252,26 @@ sub _default_patterns {
     $self->note($self->SIXTEENTH, $self->snare) for 0 .. 1;
     $self->note($self->EIGHTH, $self->strike(TOM3));
 },
+'7 fill' => sub {
+    my $self = shift;
+    $self->note($self->SIXTEENTH, $self->snare);
+    $self->note($self->EIGHTH, $self->snare);
+    $self->note($self->SIXTEENTH, $self->strike(TOM1));
+    $self->note($self->EIGHTH, $self->strike(TOM1));
+    $self->note($self->SIXTEENTH, $self->strike(TOM3)) for 0 .. 1;
+    $self->note($self->SIXTEENTH, $self->snare) for 0 .. 3;
+    $self->note($self->SIXTEENTH, $self->strike(TOM3)) for 0 .. 1;
+    $self->note($self->EIGHTH, $self->strike(TOM3));
+},
+'8 fill' => sub {
+    my $self = shift;
+    $self->note($self->EIGHTH, $self->snare);
+    $self->note($self->EIGHTH, $self->kick) for 0 .. 1;
+    $self->note($self->EIGHTH, $self->snare);
+    $self->note($self->EIGHTH, $self->kick) for 0 .. 1;
+    $self->note($self->EIGHTH, $self->snare);
+    $self->note($self->EIGHTH, $self->kick);
+},
 
     };
 }
