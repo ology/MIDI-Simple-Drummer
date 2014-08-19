@@ -29,6 +29,8 @@ is_deeply $x, [qw(x . x x x .)], 'euclid';
 $d->rotate($x);
 is_deeply $x, [qw(x x x . x .)], 'rotate';
 
+# Change-up the beat with a user defined one
+$d->{-rhythm} = [qw(x x . . x)];
 for ( 0 .. $d->phrases) {
     $d->beat(-name => 1);
 }
