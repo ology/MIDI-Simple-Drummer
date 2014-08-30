@@ -1,7 +1,7 @@
 package MIDI::Simple::Drummer;
 # ABSTRACT: An algorithmic MIDI drummer
 
-our $VERSION = '0.07';
+our $VERSION = '0.0701';
 
 use strict;
 use warnings;
@@ -562,10 +562,6 @@ sub _default_patterns {
 
 1;
 __END__
-
-=head1 NAME
-
-MIDI::Simple::Drummer - An algorithmic MIDI drummer
 
 =head1 SYNOPSIS
 
