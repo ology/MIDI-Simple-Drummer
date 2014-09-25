@@ -11,6 +11,7 @@ sub new {
         -patch  => 25,
         -tr808  => 0,
         -rhythm => undef,
+        -pad    => 'kick',
         @_
     );
 }
@@ -26,7 +27,7 @@ sub _default_patterns {
         : $self->euclid($self->{-onsets}, $self->beats);
     for my $i ( @$rhythm ) {
         if ( $i eq 'x' ) {
-            $self->note($self->EIGHTH, $self->kick);
+            $self->note($self->EIGHTH, $self->{-pad});
         }
         else {
             $self->rest($self->EIGHTH);
