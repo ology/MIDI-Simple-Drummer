@@ -111,6 +111,8 @@ sub _setup { # Where's my roadies, Man?
         $self->{-divisions} ||= 4;
         $self->{-signature} = "$self->{-beats}/$self->{-divisions}";
     }
+    # TODO Set signature: $self->{-score}->noop(...
+#    ('time_signature', dtime, nn, dd, cc, bb)
 
     # Reset the backbeat if the signature is a 3 multiple.
     my $x = $self->{-beats} / 3;
