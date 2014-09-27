@@ -113,6 +113,7 @@ sub _setup { # Where's my roadies, Man?
     }
     # TODO Set signature: $self->{-score}->noop(...
 #    ('time_signature', dtime, nn, dd, cc, bb)
+# http://www.recordingblogs.com/sa/tabid/88/Default.aspx?topic=MIDI+Time+Signature+meta+message
 
     # Reset the backbeat if the signature is a 3 multiple.
     my $x = $self->{-beats} / 3;
