@@ -113,6 +113,7 @@ sub _setup { # Where's my roadies, Man?
     }
 
     # XXX "Invalid time signature" sayeth Timidity
+    # http://www.somascape.org/midi/tech/mfile.html <- Reference
     $self->{-score}->time_signature(
         0,
         $self->{-beats},
