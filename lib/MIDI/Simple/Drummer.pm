@@ -116,8 +116,8 @@ sub _setup { # Where's my roadies, Man?
         0,
         $self->{-beats},
         sqrt( $self->{-divisions} ),
-        ( $self->{-beats} == 3 ? 24 : 18 ),
-        '08'
+        ( $self->{-divisions} == 8 ? 0x24 : 0x18 ),
+        8
     );
 
     # Reset the backbeat if the signature is a 3 multiple.
