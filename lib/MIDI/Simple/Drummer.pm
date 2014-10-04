@@ -112,7 +112,7 @@ sub _setup { # Where's my roadies, Man?
         $self->{-signature} = "$self->{-beats}/$self->{-divisions}";
     }
 
-    $score->time_signature(
+    $self->{-score}->time_signature(
         0,
         $self->{-beats},
         sqrt( $self->{-divisions} ),
