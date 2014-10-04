@@ -111,10 +111,14 @@ sub _setup { # Where's my roadies, Man?
         $self->{-divisions} ||= 4;
         $self->{-signature} = "$self->{-beats}/$self->{-divisions}";
     }
-    # TODO Set signature: $self->{-score}->noop(...
-#    ('time_signature', dtime, nn, dd, cc, bb)
-# http://www.recordingblogs.com/sa/tabid/88/Default.aspx?topic=MIDI+Time+Signature+meta+message
-# http://www.somascape.org/midi/tech/mfile.html
+
+    $score->time_signature(
+        0,
+        $self->{-beats},
+        sqrt( $self->{-divisions} ),
+        ( $self->{-beats} == 3 ? 24 : 18 ),
+        '08'
+    );
 
     # Reset the backbeat if the signature is a 3 multiple.
     my $x = $self->{-beats} / 3;
