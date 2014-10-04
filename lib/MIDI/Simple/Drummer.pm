@@ -1,7 +1,7 @@
 package MIDI::Simple::Drummer;
 # ABSTRACT: An algorithmic MIDI drummer
 
-our $VERSION = '0.08';
+our $VERSION = '0.0702';
 
 use strict;
 use warnings;
