@@ -118,7 +118,7 @@ sub _setup { # Where's my roadies, Man?
         0,
         $self->{-beats},
         sqrt( $self->{-divisions} ),
-        ( $self->{-divisions} == 8 ? 0x24 : 0x18 ),
+        ( $self->{-divisions} == 8 ? 24 : 18 ),
         8
     );
 
