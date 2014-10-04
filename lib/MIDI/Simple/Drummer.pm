@@ -112,6 +112,7 @@ sub _setup { # Where's my roadies, Man?
         $self->{-signature} = "$self->{-beats}/$self->{-divisions}";
     }
 
+    # XXX "Invalid time signature" sayeth Timidity
     $self->{-score}->time_signature(
         0,
         $self->{-beats},
