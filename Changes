@@ -1,7 +1,7 @@
 Revision history for MIDI-Simple-Drummer
 
 {{$NEXT}}
-    - Set the MIDI time_signature finally!
+    - Fixed the MIDI time_signature finally!
 
 0.0701    2014-08-30 09:25:54-04:00 America/New_York
     - Gave life to the Euclidean module via J Mates.
