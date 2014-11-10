@@ -1,0 +1,311 @@
+=head1 My Robot Drummer...
+
+=head2 DIY Beats
+
+=head1 MIDI::Simple::Drummer
+
+=over
+
+=item 1
+
+L<It's on CPAN|https://metacpan.org/pod/MIDI::Simple::Drummer>
+and will install on any machine.
+
+=item 2
+
+It only depends on
+L<MIDI::Simple|https://metacpan.org/pod/MIDI::Simple>,
+which depends on nothing but Perl itself!
+
+=back
+
+=head1 Static not dynamic
+
+=begin html
+
+<img src="pix/animal.jpg" style="float:right; vertical-align:top"/>
+
+=end html
+
+=over
+
+=item This package renders a F<.mid> file.
+
+=item It does not interact with you.
+
+=back
+
+=head1 Why make a MIDI drummer?
+
+=over
+
+=item The metronome is boring!
+
+=item Metronomes go on forever, which is not real.
+
+=item Songs have parts, including an end.
+
+=item Drummers cue your place in the song.
+
+=item I miss my virtuoso drummer and teacher.
+
+=back
+
+=head1 What Song Do You Think This Is?
+
+G<pix/back_in_black.png>
+
+=head1 Back In Black!
+
+G<pix/back_in_black.png>
+
+=head1 The General MIDI Kit
+
+The GMK is pretty feeble but works just fine and is part of every machine.
+
+=over
+
+=item Drums: snare, two basses and six toms
+
+=item Cymbals: hi-hat (closed/open/pedal), two crashes, a China, a Splash, two rides and the ride bell
+
+=item Miscelaneous other instruments like the venerable cowbell, bongos and congos, etc.
+
+=back
+
+=head1 Open the .mid in your favorite sequencer
+
+G<pix/garageband.jpg>
+
+And fiddle about. Every sequencer has better patches than the GMK.
+
+=head1 The GMK is not Neil Peart's kit!
+
+G<pix/neil-peart.jpg>
+
+=head1 Let's Get This Party Started!
+
+=over
+
+=item First, let's check out the essential bits...
+
+=back
+
+=begin html
+
+<img src="pix/My-Nerd-Drums.jpg" style="float:right; vertical-align:top"/>
+
+=end html
+
+=head1 The Kit
+
+=over
+
+=item The kit is just a hash of internal method names, like
+
+=begin for perl
+
+ kick => 'Acoustic Bass Drum',
+ snare => 'Acoustic Snare',
+
+=end perl
+
+=item You can add, subtract or modify anything in the set.
+
+=begin for perl
+
+ $d->kit(kick => 'Cowbell');
+
+=end perl
+
+=back
+
+=head1 Patterns and grooves, fills and frilly bits
+
+=over
+
+=item Patterns and fills are just a hash-ref of beat names (currently numbers).
+
+=item Use The Source, Luke.
+
+=back
+
+=head1 Example rock pattern and fill
+
+=begin for perl
+
+5 => sub { # "Syncopated beat 2" en c-hh. qn k1,3,3&,4&. qn s2,4.
+ my $self = shift;
+ my %args = @_;
+ for my $beat (1 .. $self->beats) {
+  $self->note($self->EIGHTH,
+    $self->backbeat_rhythm(%args, -beat => $beat));
+  $self->note($self->EIGHTH,
+    ($beat == 3 || $beat == 4
+      ? ($self->kick, $self->tick) : $self->tick));
+ }
+},
+'1 fill' => sub {
+ my $self = shift;
+ $self->note($self->QUARTER, $self->snare) for 0 .. 1;
+ $self->note($self->EIGHTH, $self->snare)  for 0 .. 3;
+},
+
+=end perl
+
+=head1 Some Dynamics
+
+=begin html
+
+<img src="pix/Meg-White.jpg" style="float:right; vertical-align:top"/>
+
+=end html
+
+=over
+
+=item Intelligently modulate dynamics.
+
+=item Add nuance methods like accent and crescendo, legato, etc.
+
+=back
+
+=begin for perl
+
+#
+sub accent { # Pump up the [dynamics] (default Volume)!
+ my $self = shift;
+ $self->{-accent} = shift if @_;
+ my $accent = $self->{-accent} + $self->volume;
+ $accent = $MIDI::Simple::Volume{fff} # Max MIDI is fff
+   if $accent > $MIDI::Simple::Volume{fff};
+ return $accent;
+}
+
+=end perl
+
+=head1 The Ugly Setup
+
+=begin for perl
+
+#
+sub _setup { # Where's my Roadies, Man?
+ my $self = shift;
+ $self->{-score} ||= MIDI::Simple->new_score;
+ $self->{-score}->noop('c'.$self->{-channel}, 'V'.$self->{-volume});
+ $self->{-score}->set_tempo(int(60_000_000 / $self->{-bpm}));
+ $self->{-kit} ||= $self->_default_kit();
+ $self->{-patterns} ||= $self->_default_patterns();
+ return $self;
+}
+
+=end perl
+
+=head1 The Lovely, Flexible Syntax
+
+=begin for perl
+
+#
+use MIDI::Simple::Drummer::Rock;
+my $d = MIDI::Simple::Drummer::Rock->new();
+$d->count_in;
+$d->patterns('end fill' => \&fin);
+$d->fill(-name => 'end');
+$d->write;
+sub fin {
+ my $d = shift;
+ $d->note('en', $d->crash) for 1 .. 2;
+ $d->note('sn', $d->snare) for 0 .. 2;
+ $d->rest('sn');
+ $d->note('en', $d->kick) for 1 .. 2;
+ $d->note('en', $d->strike('Splash Cymbal', $d->name_of('kick')));
+}
+
+=end perl
+
+=head1 Any sufficiently advanced drummer...
+
+=over
+
+=item ...will probably still sound like a robot.
+
+=item But there is hope!  There is AI.  And anyway, thare are other "humanized" machines out there already.
+
+=item And frankly, some people just want to get away from Humans and their feeble "capabilities" and experiment with B<The Future>.
+
+=back
+
+=head1 The Future[TM]
+
+=over
+
+=item *
+
+Drummers that do crazy, combinatorial things.  (Stunt drumming, if you will.)
+
+=item *
+
+Drummers that systematically run through experimental beat patterns.
+
+=item *
+
+Evolutionary drummers. Duh.
+
+=item *
+
+Markov chains and stochastic functions.
+
+=item *
+
+Use this (or its methods) as a basis for modern drummers, who use Moose, etc.
+
+=item *
+
+Real-time interaction?  That is, live jamming.  This is a sticky wicket...
+
+=back
+
+=head1 To do
+
+=over
+
+=item *
+
+Multi-track!
+
+=item *
+
+Comprehend time signature and keep a running clock to know where we
+are in time, at all times.
+
+=item *
+
+It don't mean a thing if it ain't got that swing.
+That is, make a I<MIDI::Simple::Drummer::Jazz> package.
+
+=item *
+
+Add 32nd and 64th durations to the I<%MIDI::Simple::Length> hash.
+
+=item *
+
+Import patterns via the I<read_score()> method in
+L<MIDI::Simple|http://search.cpan.org/~conklin/MIDI-Perl/>?
+
+=item *
+
+Leverage the I<from_drum_tab()> method in
+L<MIDI::Tab|http://search.cpan.org/~rsymes/MIDI-Tab/>?
+
+=back
+
+=head1 See also
+
+=over
+
+=item The F<eg/*> and F<t/*> files, that come with the distribution.
+
+=item Style package(s) like L<MIDI::Simple::Drummer::Rock|http://search.cpan.org/~gene/MIDI-Simple-Drummer-0.00_21/lib/MIDI/Simple/Drummer/Rock.pm>.
+
+=back
+
+=cut
