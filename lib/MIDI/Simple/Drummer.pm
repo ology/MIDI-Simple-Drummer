@@ -1,7 +1,7 @@
 package MIDI::Simple::Drummer;
 # ABSTRACT: An algorithmic MIDI drummer
 
-our $VERSION = '0.08';
+our $VERSION = '0.0801';
 
 use strict;
 use warnings;
@@ -633,7 +633,7 @@ __END__
   }
   sub backbeat { # kick/snare
     my $self = shift;
-    $self->note($self->div_name, $self->rotate($_)) for 1 .. $self->beats;
+    $self->note($self->QUARTER, $self->rotate($_)) for 1 .. $self->beats;
   }
 
 =head1 DESCRIPTION

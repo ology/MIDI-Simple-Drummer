@@ -1,6 +1,9 @@
 Revision history for MIDI-Simple-Drummer
 
 {{$NEXT}}
+    - Fix crucial SYNOPSIS typo.
+
+0.08      2014-10-12 21:06:54-04:00 America/New_York
     - Fixed the MIDI time_signature finally!
 
 0.0701    2014-08-30 09:25:54-04:00 America/New_York
