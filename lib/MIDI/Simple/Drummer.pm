@@ -593,28 +593,33 @@ __END__
 
   # A rock drummer:
   use MIDI::Simple::Drummer::Rock;
-  $d = MIDI::Simple::Drummer::Rock->new(-bpm => 100);
+  my $d = MIDI::Simple::Drummer::Rock->new(
+    -bpm     => 100,
+    -volume  => 100,
+    -phrases => 8,
+    -file    => 'rock-drums.mid',
+  );
   my ($beat, $fill) = (0, 0);
+  my @rotate = qw( 2.1 2.2 2.4 );
   $d->count_in;
   for my $p (1 .. $d->phrases) {
-    if ($p % 2 > 0) {
-        $beat = $d->beat(-name => 3, -fill => $fill);
+    if($p % 2 > 0) {
+        $beat = $d->beat(-name => 2.3, -fill => $fill);
+        $beat = $d->beat(-name => 2.3);
     }
     else {
-        $beat = $d->beat(-name => 4);
+        $beat = $d->beat(-name => (@rotate)[int(rand @rotate)]);
         $fill = $d->fill(-last => $fill);
     }
   }
-  $d->patterns(fin => \&fin);
-  $d->beat(-name => 'fin');
+  $d->patterns('end fill' => \&fin);
+  $d->fill(-name => 'end');
   $d->write;
   sub fin {
     my $d = shift;
-    $d->note($d->EIGHTH, $d->option_strike;
-    $d->note($d->EIGHTH, $d->strike('Splash Cymbal','Bass Drum 1'));
-    $d->note($d->TRIPLET_SIXTEENTH, $d->snare) for 0 .. 2;
-    $d->rest($d->SIXTEENTH);
-    $d->note($d->EIGHTH, $d->strike('Splash Cymbal','Bass Drum 1'));
+    $d->accent;
+    # Crash and kick, simultaneously.
+    $d->note('qn', $d->strike('Crash Cymbal 1', $d->name_of('kick')));
   }
 
   # Multi-tracking:
