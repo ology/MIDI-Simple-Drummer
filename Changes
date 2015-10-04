@@ -1,6 +1,7 @@
 Revision history for MIDI-Simple-Drummer
 
 {{$NEXT}}
+    - Removed unneeded, accidentally included distribution files.
 
 0.0801    2015-10-04 16:35:01-05:00 America/Chicago
     - Fix crucial SYNOPSIS typo.
