@@ -1,6 +1,7 @@
 Revision history for MIDI-Simple-Drummer
 
 {{$NEXT}}
+    - Replaced the broken rock SYNOPSIS example with a working example.
 
 0.0802    2015-10-04 16:44:34-05:00 America/Chicago
     - Removed unneeded, accidentally included distribution files.
