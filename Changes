@@ -1,6 +1,8 @@
 Revision history for MIDI-Simple-Drummer
 
 {{$NEXT}}
+
+0.0803    2015-10-04 17:53:32-05:00 America/Chicago
     - Replaced the broken rock SYNOPSIS example with a working example.
 
 0.0802    2015-10-04 16:44:34-05:00 America/Chicago
