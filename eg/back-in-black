@@ -64,6 +64,15 @@ $d->beat(-name => 3.3);
 $d->beat(-name => 3.4);
 
 # Chorus
+$d->beat(-name => 3.5);
+$d->beat(-name => 2.1, %args) for 0 .. 4;
+$d->beat(-name => 2.2, %args);
+$d->fill(-name => 4);
+$d->beat(-name => 3.5);
+$d->beat(-name => 2.1, %args) for 0 .. 4;
+$d->beat(-name => 2.2, %args); # TODO New beat needed here
+$d->fill(-name => 4);
+
 # Bridge
 # Chorus
 # Outro
