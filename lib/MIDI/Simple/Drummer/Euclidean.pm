@@ -2,7 +2,7 @@ package MIDI::Simple::Drummer::Euclidean;
 use strict;
 use warnings;
 use parent 'MIDI::Simple::Drummer';
-our $VERSION = '0.01';
+our $VERSION = '0.0101';
 
 sub new {
     my $self = shift;
@@ -27,8 +27,8 @@ sub _default_patterns {
         : $self->euclid($self->{-onsets}, $self->beats);
     for my $i ( @$rhythm ) {
         if ( $i eq 'x' ) {
-            my $pad = $self->{-pad};
-            $self->note($self->EIGHTH, $self->$pad );
+            my $pad = $self->{-pad} || $self->snare;
+            $self->note($self->EIGHTH, $pad );
         }
         else {
             $self->rest($self->EIGHTH);
