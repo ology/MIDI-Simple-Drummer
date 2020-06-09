@@ -1061,6 +1061,8 @@ The I<MIDI::Simple::Drummer::*> styles
 
 L<MIDI::Simple> itself
 
+L<Music::Duration>
+
 L<MIDI::Drummer::Tiny> - A Moo-based simplified drum module
 
 L<https://en.wikipedia.org/wiki/General_MIDI#Percussion>
