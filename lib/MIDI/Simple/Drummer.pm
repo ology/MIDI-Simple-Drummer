@@ -662,7 +662,7 @@ kit elements are named and what the patterns do.  For these things, "Use The
 Source, Luke."  Also, check out the included style sub-classes, the F<eg/*>
 files (and the F<*.mid> files they produce).
 
-The default drum kit is the B<exciting>, General MIDI Kit.  Fortunately, you can
+The default drum kit is the B<exciting> General MIDI Kit.  Fortunately, you can
 import the F<.mid> file into your DAW and reassign better patches.  Using the
 C<-patch> parameter, you can change drum kits (to brushes or TR-808 for
 instance) and also have various extended MIDI voices available.
