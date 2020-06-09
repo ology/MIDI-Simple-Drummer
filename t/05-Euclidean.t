@@ -23,6 +23,7 @@ $d->beats(6);
 for ( 0 .. $d->phrases) {
     $d->beat(-name => 1);
 }
+
 done_testing();
 __END__
 
