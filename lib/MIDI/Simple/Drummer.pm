@@ -574,8 +574,9 @@ __END__
 
 =head1 SYNOPSIS
 
-  # A glorified metronome:
   use MIDI::Simple::Drummer;
+
+  # A glorified metronome:
   my $d = MIDI::Simple::Drummer->new(-bpm => 100);
   $d->count_in;
   for(1 .. $d->phrases * $d->bars) {
@@ -584,8 +585,7 @@ __END__
   }
 
   # Shuffle:
-  use MIDI::Simple::Drummer;
-  my $d = MIDI::Simple::Drummer->new(-bpm => 100);
+  $d = MIDI::Simple::Drummer->new(-bpm => 100);
   $d->count_in;
   for(1 .. $d->phrases * $d->bars) {
     $d->note($d->TRIPLET_EIGHTH, $d->backbeat_rhythm(-beat => $_));
@@ -595,7 +595,7 @@ __END__
 
   # A rock drummer:
   use MIDI::Simple::Drummer::Rock;
-  my $d = MIDI::Simple::Drummer::Rock->new(
+  $d = MIDI::Simple::Drummer::Rock->new(
     -bpm     => 100,
     -volume  => 100,
     -phrases => 8,
@@ -625,8 +625,7 @@ __END__
   }
 
   # Multi-tracking:
-  use MIDI::Simple::Drummer;
-  my $d = MIDI::Simple::Drummer->new(-file => "$0.mid");
+  $d = MIDI::Simple::Drummer->new(-file => "$0.mid");
   $d->patterns(b1 => \&hihat);
   $d->patterns(b2 => \&backbeat);
   $d->sync_tracks(
