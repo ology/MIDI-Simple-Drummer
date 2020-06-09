@@ -1055,20 +1055,15 @@ better patches.
 
 =head1 SEE ALSO
 
-The F<eg/*> and F<t/*> files, that come with this distribution show
-how to use it.
+The F<eg/*> and F<t/*> files, that come with this distribution
 
-The I<MIDI::Simple::Drummer::*> styles, which you can make (and upload).
+The I<MIDI::Simple::Drummer::*> styles
 
-L<MIDI::Simple> itself, of course.
+L<MIDI::Simple> itself
+
+L<MIDI::Drummer::Tiny> - A Moo-based simplified drum module
 
 L<https://en.wikipedia.org/wiki/General_MIDI#Percussion>
-
-L<http://maps.google.com/maps?q=mike+avery+joplin> - my drum teacher.
-
-This distribution at
-L<https://github.com/ology/Music/tree/master/MIDI-Simple-Drummer>,
-where interim changes are made, long before any CPAN release.
 
 =head1 TO DO
 
