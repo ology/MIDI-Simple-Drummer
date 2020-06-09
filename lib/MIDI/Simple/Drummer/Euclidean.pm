@@ -2,7 +2,6 @@ package MIDI::Simple::Drummer::Euclidean;
 use strict;
 use warnings;
 use parent 'MIDI::Simple::Drummer';
-our $VERSION = '0.0101';
 
 sub new {
     my $self = shift;
@@ -85,21 +84,17 @@ sub rotate {
 1;
 __END__
 
-=head1 NAME
-
-MIDI::Simple::Drummer::Euclidean - Euclidean Rhythms
-
 =head1 DESCRIPTION
 
 Generate Euclidean rhythms and "world beat" grooves.
 
 =head1 METHODS
 
-=head2 euclid()
+=head2 euclid
 
 Return a list of B<x> onsets or B<.> rests given the C<onsets> and C<beats>.
 
-=head2 rotate()
+=head2 rotate
 
 Rotate the given list of onsets and rests to the next (to the right) onset.
 

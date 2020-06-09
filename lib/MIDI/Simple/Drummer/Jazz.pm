@@ -1,5 +1,4 @@
 package MIDI::Simple::Drummer::Jazz;
-our $VERSION = '0.02';
 use strict;
 use warnings;
 use parent 'MIDI::Simple::Drummer';
@@ -131,10 +130,6 @@ sub pedal { return shift->_set_get('pedal', @_) }
 1;
 __END__
 
-=head1 NAME
-
-MIDI::Simple::Drummer::Jazz - Jazz drum grooves
-
 =head1 DESCRIPTION
 
 This package contains a collection of triplet based patterns, loaded by
@@ -147,12 +142,12 @@ Additionally, the methods below are available.
 
 =head1 METHODS
 
-=head2 ride1(), ride2(), bell()
+=head2 ride1, ride2, bell
 
 Strike (or set) the rides, individually.  By default, these are the
 kit rides.  Imagine that!
 
-=head2 pedal()
+=head2 pedal
 
 "Depress" the pedal hi-hat.
 

@@ -1,19 +1,11 @@
 package MIDI::Simple::Drummer::Rudiments;
-
-our $VERSION = '0.04';
-
 use strict;
 use warnings;
-
 use parent 'MIDI::Simple::Drummer';
 
 use constant PAN_LEFT   => 0;
 use constant PAN_CENTER => 64;
 use constant PAN_RIGHT  => 1;
-
-=head1 NAME
-
-MIDI::Simple::Drummer::Rudiments - Drum rudiments
 
 =head1 SYNOPSIS
 
@@ -29,7 +21,7 @@ This package contains rudiment patterns.
 
 =head1 METHODS
 
-=head2 new()
+=head2 new
 
 Sets pan_width to 1/4 distance from center.
 Sets the reverb effect to 1 and chorus to 0.
@@ -94,7 +86,7 @@ sub _default_patterns {
 
 =head1 I. Roll Rudiments
 
-=head2 single_stroke_roll()
+=head2 single_stroke_roll
 
  tap tap tap tap tap tap tap tap
  r   l   r   l   r   l   r   l
@@ -112,7 +104,7 @@ sub single_stroke_roll { # 1
     $self->alternate_note(%args);
 }
 
-=head2 single_stroke_four()
+=head2 single_stroke_four
 
 2. Single Stroke Four
 
@@ -133,7 +125,7 @@ sub single_stroke_four { # 2
     $self->single_stroke_n(%args);
 }
 
-=head2 single_stroke_seven()
+=head2 single_stroke_seven
 
 3. Single Stroke Seven
 
@@ -154,7 +146,7 @@ sub single_stroke_seven { # 3
 
 =head1 B. Multiple Bounce Rudiments
 
-=head2 multiple_bounce_roll()
+=head2 multiple_bounce_roll
 
 Not yet implemented...
 
@@ -165,7 +157,7 @@ sub multiple_bounce_roll { # 4 TODO
     # TODO Set $multiple and then do a figure below.
 }
 
-=head2 triple_stroke_roll()
+=head2 triple_stroke_roll
 
 5. Triple Stroke Roll
 
@@ -186,7 +178,7 @@ sub triple_stroke_roll { # 5
     $self->alternate_note(%args);
 }
 
-=head2 double_stroke_open_roll()
+=head2 double_stroke_open_roll
 
 6. Double Stroke Open Roll (Long Roll)
 
@@ -207,7 +199,7 @@ sub double_stroke_open_roll { # 6
     $self->alternate_note(%args);
 }
 
-=head2 five_stroke_roll()
+=head2 five_stroke_roll
 
 7. Five Stroke Roll
 
@@ -237,7 +229,7 @@ sub five_stroke_roll { # 7
     $self->accent_note($args{accent});
 }
 
-=head2 six_stroke_roll()
+=head2 six_stroke_roll
 
 8. Six Stroke Roll
 
@@ -270,7 +262,7 @@ sub six_stroke_roll { #8
     $self->accent_note($args{accent});
 }
 
-=head2 seven_stroke_roll()
+=head2 seven_stroke_roll
 
 9. Seven Stroke Roll
 
@@ -301,7 +293,7 @@ sub seven_stroke_roll { # 9
     $self->accent_note($args{accent});
 }
 
-=head2 nine_stroke_roll()
+=head2 nine_stroke_roll
 
 10. Nine Stroke Roll
 
@@ -331,7 +323,7 @@ sub nine_stroke_roll { # 10
     $self->accent_note($args{accent});
 }
 
-=head2 ten_stroke_roll()
+=head2 ten_stroke_roll
 
 11. Ten Stroke Roll
 
@@ -365,7 +357,7 @@ sub ten_stroke_roll { # 11
     $self->accent_note($args{accent});
 }
 
-=head2 eleven_stroke_roll()
+=head2 eleven_stroke_roll
 
 12. Eleven Stroke Roll
 
@@ -395,7 +387,7 @@ sub eleven_stroke_roll { # 12
     $self->accent_note($args{accent});
 }
 
-=head2 thirteen_stroke_roll()
+=head2 thirteen_stroke_roll
 
 13. Thirteen Stroke Roll
 
@@ -426,7 +418,7 @@ sub thirteen_stroke_roll { # 13
     $self->accent_note($args{accent});
 }
 
-=head2 fifteen_stroke_roll()
+=head2 fifteen_stroke_roll
 
 14. Fifteen Stroke Roll
 
@@ -456,7 +448,7 @@ sub fifteen_stroke_roll { # 14
     $self->accent_note($args{accent});
 }
 
-=head2 seventeen_stroke_roll()
+=head2 seventeen_stroke_roll
 
 15. Seventeen Stroke Roll
 
@@ -488,7 +480,7 @@ sub seventeen_stroke_roll { # 15
 
 =head1 II. Diddle Rudiments
 
-=head2 single_paradiddle()
+=head2 single_paradiddle
 
 16. Single Paradiddle
 
@@ -513,7 +505,7 @@ sub single_paradiddle { # 16
     $self->alternate_note(%args, groups_of => 2);
 }
 
-=head2 double_paradiddle()
+=head2 double_paradiddle
 
 17. Double Paradiddle
 
@@ -540,7 +532,7 @@ sub double_paradiddle { # 17
     $self->alternate_note(%args, groups_of => 2);
 }
 
-=head2 triple_paradiddle()
+=head2 triple_paradiddle
 
 18. Triple Paradiddle
 
@@ -567,7 +559,7 @@ sub triple_paradiddle { # 18
     $self->alternate_note(%args, groups_of => 2);
 }
 
-=head2 paradiddle_diddle()
+=head2 paradiddle_diddle
 
 19. Paradiddle-Diddle
 
@@ -594,7 +586,7 @@ sub paradiddle_diddle { # 19
 
 =head1 III. Flam Rudiments
 
-=head2 flam()
+=head2 flam
 
 20. Flam
 
@@ -613,7 +605,7 @@ sub flam { # 20
     $self->_flambit(PAN_LEFT, $args{note}, 1);
 }
 
-=head2 flam_accent()
+=head2 flam_accent
 
 21. Flam Accent
 
@@ -637,7 +629,7 @@ sub flam_accent { # 21
     $self->alternate_note(%args);
 }
 
-=head2 flam_tap()
+=head2 flam_tap
 
 22. Flam Tap
 
@@ -661,7 +653,7 @@ sub flam_tap { # 22
     $self->note($args{note}, $self->strike);
 }
 
-=head2 flamacue()
+=head2 flamacue
 
 23. Flamacue
 
@@ -688,7 +680,7 @@ sub flamacue { # 23
     $self->_flambit(PAN_LEFT, $args{note}, 0);
 }
 
-=head2 flam_paradiddle()
+=head2 flam_paradiddle
 
 24. Flam Paradiddle
 
@@ -717,7 +709,7 @@ sub flam_paradiddle { # 24
     $self->note($args{note}, $self->strike);
 }
 
-=head2 flammed_mill()
+=head2 flammed_mill
 
 25. Single flammed Mill
 
@@ -739,7 +731,7 @@ sub flammed_mill { # 25
 
 }
 
-=head2 flam_paradiddle_diddle()
+=head2 flam_paradiddle_diddle
 
 26. Flam Paradiddle-Diddle
 
@@ -764,7 +756,7 @@ sub flam_paradiddle_diddle { # 26
     $self->alternate_note(%args, groups_of => 2);
 }
 
-=head2 pataflafla()
+=head2 pataflafla
 
 27. Pataflafla
 
@@ -785,7 +777,7 @@ sub pataflafla { # 27
     }
 }
 
-=head2 swiss_army_triplet()
+=head2 swiss_army_triplet
 
 28. Swiss Army Triplet
 
@@ -807,7 +799,7 @@ sub swiss_army_triplet { # 28
     }
 }
 
-=head2 inverted_flam_tap()
+=head2 inverted_flam_tap
 
 29. Inverted Flam Tap
 
@@ -831,7 +823,7 @@ sub inverted_flam_tap { # 29
     }
 }
 
-=head2 flam_drag()
+=head2 flam_drag
 
 30. Flam Drag
 
@@ -893,7 +885,7 @@ sub _flambit {
 
 =head1 IV. Drag Rudiments
 
-=head2 drag()
+=head2 drag
 
 31. Drag (Half drag or ruff)
 
@@ -909,7 +901,7 @@ sub drag { # 31
     $self->_dragit(PAN_LEFT, $args{note}, 0);
 }
 
-=head2 single_drag_tap()
+=head2 single_drag_tap
 
 32. Single Drag Tap
 
@@ -932,7 +924,7 @@ sub single_drag_tap { # 32
 
 }
 
-=head2 double_drag_tap()
+=head2 double_drag_tap
 
 33. Double Drag Tap
 
@@ -956,7 +948,7 @@ sub double_drag_tap { # 33
     $self->accent_note($args{note});
 }
 
-=head2 lesson_25_two_and_three()
+=head2 lesson_25_two_and_three
 
 34. Lesson 25 (Two and Three)
 
@@ -974,7 +966,7 @@ sub lesson_25_two_and_three { # 34
     $self->accent_note($args{note});
 }
 
-=head2 single_dragadiddle()
+=head2 single_dragadiddle
 
 35. Single Dragadiddle
 
@@ -998,7 +990,7 @@ sub single_dragadiddle { # 35
     $self->note($args{note}, $self->strike);
 }
 
-=head2 drag_paradiddle_1()
+=head2 drag_paradiddle_1
 
 36. Drag Paradiddle #1
 
@@ -1032,7 +1024,7 @@ sub drag_paradiddle_1 { # 36
 
 }
 
-=head2 drag_paradiddle_2()
+=head2 drag_paradiddle_2
 
 37. Drag Paradiddle #2
 
@@ -1066,7 +1058,7 @@ sub drag_paradiddle_2 { # 37
 
 }
 
-=head2 single_ratamacue()
+=head2 single_ratamacue
 
 38. Single Ratamacue
 
@@ -1097,7 +1089,7 @@ sub single_ratamacue { # 38
     $self->accent_note($args{accent});
 }
 
-=head2 double_ratamacue()
+=head2 double_ratamacue
 
 39. Double Ratamacue
 
@@ -1131,7 +1123,7 @@ sub double_ratamacue { # 39
 
 }
 
-=head2 triple_ratamacue()
+=head2 triple_ratamacue
 
 40. Triple Ratamacue
 
@@ -1205,10 +1197,10 @@ sub _dragit { # Common drag direction & accent.
     }
 }
 
-=head2 pan_left(), pan_center(), pan_right()
+=head2 pan_left, pan_center, pan_right
 
  $d->pan_left($width);
- $d->pan_center();
+ $d->pan_center;
  $d->pan_right($width);
 
 Convenience methods to pan in different directions.
@@ -1228,9 +1220,9 @@ sub pan_right {
     $self->pan(PAN_CENTER + $self->pan_width);
 }
 
-=head2 alternate_pan()
+=head2 alternate_pan
 
- $d->alternate_pan();
+ $d->alternate_pan;
  $d->alternate_pan($direction);
  $d->alternate_pan($direction, $width);
 
@@ -1259,7 +1251,7 @@ sub alternate_pan {
     return $pan, $width;
 }
 
-=head2 alternate_note()
+=head2 alternate_note
 
 Abstract method for alternating a note strike based on the beat and note value,
 given the following parameters.
@@ -1306,7 +1298,7 @@ sub alternate_note {
     }
 }
 
-=head2 single_stroke_n()
+=head2 single_stroke_n
 
 Abstract method for multiple types of single stroke rolls of B<n> maximum beats.
 

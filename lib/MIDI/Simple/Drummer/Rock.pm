@@ -2,7 +2,6 @@ package MIDI::Simple::Drummer::Rock;
 use strict;
 use warnings;
 use parent 'MIDI::Simple::Drummer';
-our $VERSION = '0.03';
 
 use constant CLOSED => 'Closed Hi-Hat';
 use constant CRASH  => 'Crash Cymbal 1';
@@ -278,10 +277,6 @@ sub _default_patterns {
 
 1;
 __END__
-
-=head1 NAME
-
-MIDI::Simple::Drummer::Rock - Rock drum grooves
 
 =head1 DESCRIPTION
 
