@@ -84,7 +84,7 @@ sub new { # Is there a drummer in the house?
     bless $self, $class;
 
     # Perform any pre-flight default setting.
-    $self->_setup();
+    $self->_setup;
 
     return $self;
 }
@@ -98,8 +98,8 @@ sub _setup { # Where's my roadies, Man?
     $self->{-score}->set_tempo(int(60_000_000 / $self->{-bpm}));
 
     # Give unto us a drum, so that we might bang upon it all day, instead of working.
-    $self->{-kit} ||= $self->_default_kit();
-    $self->{-patterns} ||= $self->_default_patterns();
+    $self->{-kit} ||= $self->_default_kit;
+    $self->{-patterns} ||= $self->_default_patterns;
 
     # Set the groove dimensions if a time signature is given.
     if ($self->{-signature}) {
@@ -631,7 +631,7 @@ __END__
     sub { $d->beat(-name => 'b1') },
     sub { $d->beat(-name => 'b2') },
   );
-  $d->write();
+  $d->write;
   sub hihat { # tick
     my $self = shift;
     $self->note($self->EIGHTH, $self->tick) for 1 .. 2 * $self->beats;
@@ -668,7 +668,7 @@ available.
 
 =head1 METHODS
 
-=head2 new()
+=head2 new
 
   my $d = MIDI::Simple::Drummer->new(%arguments);
 
@@ -702,7 +702,7 @@ Return a new C<MIDI::Simple::Drummer> instance with these default arguments:
 These arguments can all be overridden in the constuctor or accessors of the same
 name.
 
-=head2 volume(), pan(), pan_width(), bpm()
+=head2 volume, pan, pan_width, bpm
 
   $x = $d->method;
   $d->method($x);
@@ -712,7 +712,7 @@ Return and set the volume, pan, pan_width and beats-per-minute methods.
 MIDI pan (C<CC#10>) goes from F<1> left to F<127> right.  That puts the middle
 at F<63>.
 
-=head2 phrases(), bars(), beats(), divisions()
+=head2 phrases, bars, beats, divisions
 
 B<phrases> is the number of bars (or measures) you want to play.
 
@@ -729,42 +729,42 @@ signature; the part of the measure that "gets the beat" or simply, "the pulse."
 These are all variables that you can use as rhythm metrics to control the groove.
 They are just numbers, not objects or lists.
 
-=head2 signature()
+=head2 signature
 
 Get or set the string ratio of B<-beats> over B<-divisions>.  By default this is
 not defined, allowing unbridled free-form expression.
 
-=head2 div_name()
+=head2 div_name
 
 The name of the denominator of the time signature.
 
-=head2 patch()
+=head2 patch
 
 The drum kit.
 
 1: Standard. 33: Jazz. 41: Brushes. Etc.
 
-=head2 channel()
+=head2 channel
 
 Get or set the MIDI channel.
 
-=head2 chorus(), reverb()
+=head2 chorus, reverb
 
 Effects 0 (off) to 127 (full)
 
-=head2 file()
+=head2 file
 
 Get or set the name for the F<.mid> file to write.
 
-=head2 sync_tracks()
+=head2 sync_tracks
 
 Combine beats in parallel with an argument list of anonymous subroutines.
 
-=head2 patterns()
+=head2 patterns
 
 Return or set known style patterns.
 
-=head2 score()
+=head2 score
 
   $x = $d->score;
   $x = $d->score($score);
@@ -774,24 +774,24 @@ Return or set known style patterns.
 Return or set the L<MIDI::Simple/score> if provided as the first argument.  If
 there are any other arguments, they are treated as MIDI score settings.
 
-=head2 accent_note()
+=head2 accent_note
 
   $x = $d->accent_note($d->EIGHTH);
 
 Accent a single note.
 
-=head2 accent()
+=head2 accent
 
-  $x = $d->accent();
+  $x = $d->accent;
 
 Either return the current volume plus the accent increment or set the accent
 increment.  This has an upper limit of MIDI fff.
 
-=head2 duck()
+=head2 duck
 
 This is the mirror opposite of the C<accent> method.
 
-=head2 strike()
+=head2 strike
 
   $x = $d->strike;
   $x = $d->strike('Cowbell');
@@ -802,7 +802,7 @@ Return note values for percussion names from the standard MIDI percussion set
 (with L<MIDI/notenum2percussion>) in either scalar or list context. (Default
 predefined snare patch)
 
-=head2 option_strike()
+=head2 option_strike
 
   $x = $d->option_strike;
   $x = $d->option_strike('Short Guiro','Short Whistle','Vibraslap');
@@ -810,28 +810,28 @@ predefined snare patch)
 Return a note value from a list of patches (default predefined crash cymbals).
 If another set of patches is given, one of those is chosen at random.
 
-=head2 note()
+=head2 note
 
   $d->note($d->SIXTEENTH, $d->snare);
   $d->note('sn', 'n38');
 
 Add a note to the score.  This is a pass-through to L<MIDI::Simple/n>.
 
-=head2 rest()
+=head2 rest
 
   $d->rest($d->SIXTEENTH);
   $d->rest('sn');
 
 Add a rest to the score.  This is a pass-through to L<MIDI::Simple/r>.
 
-=head2 metronome()
+=head2 metronome
 
   $d->metronome;
   $d->metronome('Mute Triangle');
 
 Add (beats * phrases) of the C<Pedal Hi-Hat>, unless another patch is provided.
 
-=head2 count_in()
+=head2 count_in
 
   $d->count_in;
   $d->count_in(2);
@@ -841,7 +841,7 @@ And a-one and a-two!E<lt>E<sol>Lawrence WelkE<gt> ..11E<lt>E<sol>FZE<gt>
 
 If No arguments are provided, the C<Closed Hi-Hat> patch is used.
 
-=head2 rotate()
+=head2 rotate
 
   $x = $d->rotate;
   $x = $d->rotate(3);
@@ -850,7 +850,7 @@ If No arguments are provided, the C<Closed Hi-Hat> patch is used.
 Rotate through a list of patches according to the given beat number.  (Default
 backbeat patches)
 
-=head2 backbeat_rhythm()
+=head2 backbeat_rhythm
 
   $x = $d->backbeat_rhythm;
   $x = $d->backbeat_rhythm(-beat => $y);
@@ -869,7 +869,7 @@ B<patches> is a list of possible patches to use instead of the crash cymbals.
 B<tick> is the patch to use instead of the closed hi-hat.
 B<fill> is the fill pattern we last played.
 
-=head2 beat()
+=head2 beat
 
   $x = $d->beat;
   $x = $d->beat(-name => $n);
@@ -892,11 +892,11 @@ C<-last>, or if there is no given pattern to play, another is chosen.
 
 For C<-type =E<gt> 'fill'>, we append a named fill to the MIDI score.
 
-=head2 fill()
+=head2 fill
 
 This is an alias to C<beat(-type =E<gt> 'fill')>.
 
-=head2 patterns()
+=head2 patterns
 
   $x = $d->patterns;
   $x = $d->patterns('rock_1');
@@ -908,7 +908,7 @@ This is an alias to C<beat(-type =E<gt> 'fill')>.
 Return or set the code references to the named patterns.  If no argument is
 given, all the known patterns are returned.
 
-=head2 write()
+=head2 write
 
   $x = $d->write;
   $x = $d->write('Buddy-Rich.mid');
@@ -919,7 +919,7 @@ successful.  If no filename is given, we use the preset C<-file> attribute.
 
 =head1 KIT ACCESS
 
-=head2 kit()
+=head2 kit
 
   $x = $d->kit;
   $x = $d->kit('snare');
@@ -929,14 +929,14 @@ successful.  If no filename is given, we use the preset C<-file> attribute.
 
 Return or set part or all of the percussion set.
 
-=head2 name_of()
+=head2 name_of
 
   $x = $d->name_of('kick'); # "Acoustic Bass Drum"
   @x = $d->name_of('crash'); # ('Chinese Cymbal', 'Crash Cymbal 1...)
 
 Return the instrument names behind the kit nick-name lists.
 
-=head2 hhat()
+=head2 hhat
 
     $x = $d->hhat;
     $x = $d->hhat('Cabasa','Maracas','Claves');
@@ -944,7 +944,7 @@ Return the instrument names behind the kit nick-name lists.
 Strike or set the "hhat" patches.  By default, these are the C<Closed Hi-Hat>,
 C<Open Hi-Hat> and the C<Pedal Hi-Hat.>
 
-=head2 crash()
+=head2 crash
 
     $x = $d->crash;
     $x = $d->crash(@crashes);
@@ -952,7 +952,7 @@ C<Open Hi-Hat> and the C<Pedal Hi-Hat.>
 Strike or set the "crash" patches.  By default, these are the C<Chinese Cymbal>,
 C<Crash Cymbal 1>, C<Crash Cymbal 2> and the C<Splash Cymbal.>
 
-=head2 ride()
+=head2 ride
 
     $x = $d->ride;
     $x = $d->ride(@rides);
@@ -960,7 +960,7 @@ C<Crash Cymbal 1>, C<Crash Cymbal 2> and the C<Splash Cymbal.>
 Strike or set the "ride" patches.  By default, these are the C<Ride Bell>,
 C<Ride Cymbal 1> and the C<Ride Cymbal 2.>
 
-=head2 tom()
+=head2 tom
 
     $x = $d->tom;
     $x = $d->tom('Low Conga','Mute Hi Conga','Open Hi Conga');
@@ -968,28 +968,28 @@ C<Ride Cymbal 1> and the C<Ride Cymbal 2.>
 Strike or set the "tom" patches.  By default, these are the C<High Tom>,
 C<Hi-Mid Tom>, etc.
 
-=head2 kick()
+=head2 kick
 
     $x = $d->kick;
     $x = $d->kick('Bass Drum 1');
 
 Strike or set the "kick" patch.  By default, this is the C<Acoustic Bass Drum>.
 
-=head2 tick()
+=head2 tick
 
     $x = $d->tick;
     $x = $d->tick('Mute Triangle');
 
 Strike or set the "tick" patch.  By default, this is the C<Closed Hi-Hat>.
 
-=head2 snare()
+=head2 snare
 
     $x = $d->snare;
     $x = $d->snare('Electric Snare');
 
 Strike or set the "snare" patches.  By default, this is the C<Acoustic Snare.>
 
-=head2 backbeat()
+=head2 backbeat
 
     $x = $d->backbeat;
     $x = $d->backbeat('Bass Drum 1','Side Stick');
@@ -1034,20 +1034,20 @@ Return C<'yn'>.
 
 Return C<'xn'>.
 
-=head2 _p2n()
+=head2 _p2n
 
 Return C<%MIDI::percussion2notenum> a la L<MIDI/GOODIES>.
 
-=head2 _n2p()
+=head2 _n2p
 
 Return the inverse: C<%MIDI::notenum2percussion>.
 
-=head2 _default_patterns()
+=head2 _default_patterns
 
 Patterns provided by default. This is C<{}>, that is, nothing.  This is defined
 in a I<MIDI::Simple::Drummer::*> style package.
 
-=head2 _default_kit()
+=head2 _default_kit
 
 Kit provided by default. This is a subset of the B<exciting> general MIDI kit.
 This can also be defined in a I<MIDI::Simple::Drummer::*> style package, to use
