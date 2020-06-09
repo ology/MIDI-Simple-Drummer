@@ -1067,21 +1067,21 @@ L<https://en.wikipedia.org/wiki/General_MIDI#Percussion>
 
 =head1 TO DO
 
-* Be smart about swing timing (e.g. $d->TRIPLET_XXXX).
+Be smart about swing timing (e.g. $d->TRIPLET_XXXX).
 
-* Handle double and half time (via DIVISION hashref).
+Handle double and half time (via DIVISION hashref).
 
-* Use "relative rhythm metrics" if given a time signature.
+Use "relative rhythm metrics" if given a time signature.
 
-* Use L<MIDI::Score/quantize>?
+Use L<MIDI::Score/quantize>?
 
-* Keep a running clock/total to know where we are in time, at all times.
+Keep a running clock/total to know where we are in time, at all times.
 
-* Intelligently modulate dynamics to add nuance and "humanize."
+Intelligently modulate dynamics to add nuance and "humanize."
 
-* Make a C<MIDI::Simple::Drummer::AC\x{26A1}DC> (Phil Rudd) style.
+Make a C<MIDI::Simple::Drummer::AC\x{26A1}DC> (Phil Rudd) style.
 
-* Leverage L<MIDI::Tab/from_drum_tab> or L<MIDI::Simple/read_score>?
+Leverage L<MIDI::Tab/from_drum_tab> or L<MIDI::Simple/read_score>?
 
 =head1 CREDITS
 
