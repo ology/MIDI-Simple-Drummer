@@ -647,13 +647,13 @@ This is a "robotic" drummer that provides algorithmic methods to make beats,
 rhythms, noise, what have you.  It is also a glorified metronome.
 
 This is not a traditional "drum machine" that is controlled in a mechanical
-or "arithmetic" sense.  It is a "sufficiently intelligent" drummer, with which
-you can practice, improvise, compose, record and experiment.
+or "arithmetic" sense.  It is a drummer, with which you can practice, improvise,
+compose, record and experiment.
 
 The "beats" are entirely constructed with Perl, and as such, any algorithmic
-procedure can be used to generate the phrases - Bayesian stochastic,
-evolutionary game simulation, L-system, recursive descent grammar, Markov chain,
-Quantum::Whatever...
+procedure can be used to generate the phrases - Bayesian, stochastic,
+evolutionary, game simulation, L-system, recursive descent grammar, Markov
+chain...
 
 Note that B<you>, the programmer (and de facto drummer), should know what the
 kit elements are named and what the patterns do.  For these things, "Use The
@@ -661,10 +661,9 @@ Source, Luke."  Also, check out the included style sub-classes, the F<eg/*>
 files (and the F<*.mid> files they produce).
 
 The default drum kit is the B<exciting>, General MIDI Kit.  Fortunately, you can
-import the F<.mid> file into your DAW with auto-separated tracks of "virtual
-instruments."  But using the C<-patch> parameter, you can change drum kits (to
-brushes or TR-808 for instance) and also have various extended MIDI voices
-available.
+import the F<.mid> file into your DAW and reassign better patches.  Using the
+C<-patch> parameter, you can change drum kits (to brushes or TR-808 for
+instance) and also have various extended MIDI voices available.
 
 =head1 METHODS
 
@@ -699,8 +698,7 @@ Return a new C<MIDI::Simple::Drummer> instance with these default arguments:
   -patterns  => {}  # To be filled at run-time
   -score     => MIDI::Simple->new_score
 
-These arguments can all be overridden in the constuctor or accessors of the same
-name.
+These arguments can all be overridden in the constuctor with accessors.
 
 =head2 volume, pan, pan_width, bpm
 
@@ -731,8 +729,7 @@ They are just numbers, not objects or lists.
 
 =head2 signature
 
-Get or set the string ratio of B<-beats> over B<-divisions>.  By default this is
-not defined, allowing unbridled free-form expression.
+Get or set the string ratio of B<-beats> over B<-divisions>.
 
 =head2 div_name
 
@@ -813,14 +810,14 @@ If another set of patches is given, one of those is chosen at random.
 =head2 note
 
   $d->note($d->SIXTEENTH, $d->snare);
-  $d->note('sn', 'n38');
+  $d->note('sn', 'n38'); # Same
 
 Add a note to the score.  This is a pass-through to L<MIDI::Simple/n>.
 
 =head2 rest
 
   $d->rest($d->SIXTEENTH);
-  $d->rest('sn');
+  $d->rest('sn'); # Same
 
 Add a rest to the score.  This is a pass-through to L<MIDI::Simple/r>.
 
