@@ -27,8 +27,9 @@ sub _default_patterns {
         : $self->euclid($self->{-onsets}, $self->beats);
     for my $i ( @$rhythm ) {
         if ( $i eq 'x' ) {
-            my $pad = $self->{-pad} || $self->snare;
-            $self->note($self->EIGHTH, $pad );
+            my $pad = $self->{-pad};
+            my $note = $self->$pad || $self->snare;
+            $self->note($self->EIGHTH, $note );
         }
         else {
             $self->rest($self->EIGHTH);
