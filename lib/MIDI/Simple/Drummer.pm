@@ -19,12 +19,13 @@ BEGIN {
         s => { number => 16, ordinal => '16th', name => 'sixteenth' },
         y => { number => 32, ordinal => '32nd', name => 'thirtysecond' },
         x => { number => 64, ordinal => '64th', name => 'sixtyfourth' },
+        o => { number => 128, ordinal => '128th', name => 'onetwentyeighth' },
     };
 
     # Add constants for each known duration.
     for my $n (keys %MIDI::Simple::Length) {
         # Get the duration part of the note name.
-        my $name = $n =~ /([whqesyx])n$/ ? $1 : '';
+        my $name = $n =~ /([whqesyxo])n$/ ? $1 : '';
 
         if ($name) {
             # Create a meaningful prefix for the named constant.
