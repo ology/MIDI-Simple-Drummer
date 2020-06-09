@@ -861,9 +861,13 @@ Add a rotating backbeat to the score.
 Arguments:
 
 B<beat> is the beat we are on.
+
 B<backbeat> is the list of patches to use instead of the stock bass and snare.
+
 B<patches> is a list of possible patches to use instead of the crash cymbals.
+
 B<tick> is the patch to use instead of the closed hi-hat.
+
 B<fill> is the fill pattern we last played.
 
 =head2 beat
