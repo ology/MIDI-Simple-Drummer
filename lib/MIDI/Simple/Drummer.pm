@@ -24,14 +24,14 @@ BEGIN {
     # Add constants for each known duration.
     for my $n (keys %MIDI::Simple::Length) {
         # Get the duration part of the note name.
-        my $name = $n =~ /([whqesyx])n$/o ? $1 : '';
+        my $name = $n =~ /([whqesyx])n$/ ? $1 : '';
 
         if ($name) {
             # Create a meaningful prefix for the named constant.
             my $prefix = '';
-            $prefix .= 'triplet'       if $n =~ /t\w/o;
-            $prefix .= 'double_dotted' if $n =~ /^dd/o;
-            $prefix .= 'dotted'        if $n =~ /^d[^d]/o;
+            $prefix .= 'triplet'       if $n =~ /t\w/;
+            $prefix .= 'double_dotted' if $n =~ /^dd/;
+            $prefix .= 'dotted'        if $n =~ /^d[^d]/;
             $prefix .= '_' if $prefix;
 
             # Add name-based duration.
