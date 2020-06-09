@@ -4,6 +4,7 @@ Revision history for MIDI-Simple-Drummer
     - Update dist.ini directives.
     - Improve documentation.
     - Add the 128th duration.
+    - Cleaned-up test code.
 
 0.0803    2015-10-04 17:53:32-05:00 America/Chicago
     - Replaced the broken rock SYNOPSIS example with a working example.
