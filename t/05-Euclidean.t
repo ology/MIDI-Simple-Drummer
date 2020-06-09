@@ -15,17 +15,17 @@ my $y = sub { $d->note($d->EIGHTH, $d->strike) };
 $x = $d->patterns('y', $y);
 is_deeply $x, $y, 'set y pattern';
 
-$x = $d->euclid();
+$x = $d->euclid;
 is_deeply $x, [qw(x x x x)], 'euclid';
-
-$d->beats(6);
-
-for ( 0 .. $d->phrases) {
-    $d->beat(-name => 1);
-}
 
 done_testing();
 __END__
+
+$d->beats(6);
+
+for (0 .. $d->phrases) {
+    $d->beat(-name => 1);
+}
 
 $x = $d->euclid();
 is_deeply $x, [qw(x . x x x .)], 'euclid';
