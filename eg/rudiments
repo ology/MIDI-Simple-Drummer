@@ -13,9 +13,10 @@ $d->count_in;
 
 $d->snare('Electric Snare');
 
-# 2 paradiddle_diddles, 2 single_paradiddles
+# 2 paradiddle_diddles
 #$d->beat( -name => 19 );
 #$d->beat( -name => 19 );
+# 2 single_paradiddles
 #$d->beat( -name => 16 );
 #$d->beat( -name => 16 );
 
