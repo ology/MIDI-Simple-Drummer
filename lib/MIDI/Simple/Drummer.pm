@@ -641,9 +641,7 @@ Source, Luke."  Also, check out the included style sub-classes, the F<eg/*>
 files (and the F<*.mid> files they produce).
 
 The default drum kit is the B<exciting> General MIDI Kit.  Fortunately, you can
-import the F<.mid> file into your DAW and reassign better patches.  Using the
-C<-patch> parameter, you can change drum kits (to brushes or TR-808 for
-instance) and also have various extended MIDI voices available.
+import the F<.mid> file into your DAW and reassign better patches.
 
 =head1 METHODS
 
@@ -659,9 +657,6 @@ Return a new C<MIDI::Simple::Drummer> instance with these default arguments:
   -pan        = 64   # 0L .. 64M .. 127R
   -pan_width  = 0    # 0 .. 64 from center
   -patch      = 0    # Drum kit patch number
-  -power      = 0    # A rock kit
-  -room       = 0    # "
-  -brushes    = 0    # A jazz kit
   -reverb     = 20   # Effect 0-127
   -chorus     = 0    # "
   # Rhythm metrics:
