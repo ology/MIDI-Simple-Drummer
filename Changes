@@ -1,6 +1,8 @@
 Revision history for MIDI-Simple-Drummer
 
 {{$NEXT}}
+
+0.0807 2020-07-14 22:47:13
     - Do not include the slideshow POD.
     - Add missing changes to the previous release (below).
 
