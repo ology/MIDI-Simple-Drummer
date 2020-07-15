@@ -1,6 +1,7 @@
 Revision history for MIDI-Simple-Drummer
 
 {{$NEXT}}
+    - Clean up test code a bit.
 
 0.0805 2020-06-09 16:29:49
     - Fix child module POD.
