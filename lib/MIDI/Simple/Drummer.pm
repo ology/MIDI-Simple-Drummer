@@ -61,9 +61,6 @@ sub new { # Is there a drummer in the house?
         -pan        => 64,
         -pan_width  => 0,
         -patch      => 0,
-        -power      => 0,
-        -room       => 0,
-        -brushes    => 0,
         -reverb     => 20,
         -chorus     => 0,
         # Rhythm
@@ -138,24 +135,6 @@ sub _setup { # Where's my roadies, Man?
     $self->reverb;
     $self->chorus;
     $self->pan_width;
-
-    # Use the requested kit.
-    if ($self->{-room}) {
-        $self->patch(9);
-    }
-    elsif ($self->{-power}) {
-        $self->patch(17);
-    }
-    elsif ($self->{-brushes}) {
-        $self->patch(41);
-    }
-    if ($self->{-tr808}) {
-        $self->patch(26);
-    }
-    else {
-        # Set to the assigned -patch.
-        $self->patch;
-    }
 
     return $self;
 }
