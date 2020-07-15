@@ -6,8 +6,7 @@ use parent 'MIDI::Simple::Drummer';
 sub new {
     my $self = shift;
     $self->SUPER::new(
-        -patch   => 33, # Jazz
-        -brushes => 0,
+        -patch => 33,
         @_
     );
 }

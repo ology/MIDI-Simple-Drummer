@@ -8,7 +8,6 @@ sub new {
     $self->SUPER::new(
         -onsets => 4,
         -patch  => 25,
-        -tr808  => 0,
         -rhythm => undef,
         -pad    => 'kick',
         @_
