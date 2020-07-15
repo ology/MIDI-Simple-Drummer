@@ -1,6 +1,7 @@
 Revision history for MIDI-Simple-Drummer
 
 {{$NEXT}}
+    - Remove leftover references to "alternate kits."
 
 0.0807 2020-07-14 22:47:13
     - Do not include the slideshow POD.
