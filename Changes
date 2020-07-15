@@ -1,7 +1,11 @@
 Revision history for MIDI-Simple-Drummer
 
 {{$NEXT}}
+
+0.0806 2020-07-14 22:30:53
     - Clean up test code a bit.
+    - Remove references to "alternate kits" that didn't work.
+    - Add the eg/rock-exercises program.
 
 0.0805 2020-06-09 16:29:49
     - Fix child module POD.
