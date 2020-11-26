@@ -2,12 +2,12 @@ package MIDI::Simple::Drummer;
 
 # ABSTRACT: An algorithmic MIDI drummer
 
-our $VERSION = '0.0808';
+our $VERSION = '0.0809';
 
 use strict;
 use warnings;
 
-use MIDI::Simple;
+use MIDI::Simple ();
 use Music::Duration;
 
 BEGIN {
