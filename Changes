@@ -2,6 +2,7 @@ Revision history for MIDI-Simple-Drummer
 
 {{$NEXT}}
     - Don't import anything from MIDI::Simple.
+    - Update 32nd, 64th & 128th note duration values.
 
 0.0808 2020-07-15 01:23:32
     - Remove leftover references to "alternate kits."
