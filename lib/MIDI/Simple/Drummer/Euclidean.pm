@@ -40,12 +40,12 @@ sub _default_patterns {
 
 sub euclid {
     my $self = shift;
-    my ($m, $n) = @_;
+    my ($p, $q) = @_;
 
     # Onsets per measure
-    $m ||= $self->{-onsets};
+    $p ||= $self->{-onsets};
     # Beats per measure
-    $n ||= $self->beats;
+    $q ||= $self->beats;
 
     # Line is from x=0, y=1 to x=$BPM, y=$mod+1
     # Then from that, for each $y from # 1..$mod
@@ -55,10 +55,11 @@ sub euclid {
 
     # y = mx + b; b is 1 as we're drawing the intercept through that point,
     # and then (y2-y1)/(x2-x1) reduces to just:
-    my $slope = $m / $n;
+    my $slope = $p / $q;
 
-    my @onsets = ('.') x $n;
-    for my $y ( 1 .. $m ) {
+    my @onsets = ('.') x $q;
+
+    for my $y ( 1 .. $p ) {
         # solve x = (y-b)/m rounding nearest and put the beat there
         $onsets[ sprintf "%.0f", ( $y - $intercept ) / $slope ] = 'x';
     }
