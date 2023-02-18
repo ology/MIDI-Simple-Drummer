@@ -2,6 +2,7 @@
 use strict;
 use warnings;
 
+use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Simple-Drummer);
 use MIDI::Simple::Drummer::Euclidean;
 
 my $d = MIDI::Simple::Drummer::Euclidean->new(
@@ -13,15 +14,15 @@ my $d = MIDI::Simple::Drummer::Euclidean->new(
 
 $d->sync_tracks(
     sub {
-        $d->{-pad} = '40';
-        $d->{-rhythm} = [qw( x . x x x . )];
+        $d->{-pad} = 'kick';
+        $d->{-rhythm} = [qw( x . x x x . x . )];
         $d->beat(-name => 1);
     },
     sub {
-        $d->{-pad} = '36';
-        $d->{-rhythm} = [qw( . x . x x . )];
+        $d->{-pad} = 'snare';
+        $d->{-rhythm} = [qw( . x . x x . . x )];
         $d->beat(-name => 1);
     },
-);
+) for 1 .. 4;
 
 $d->write();
