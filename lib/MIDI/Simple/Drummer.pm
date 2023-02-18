@@ -13,13 +13,13 @@ use Music::Duration ();
 BEGIN {
     # Define a division structure to use for durations.
     use constant DIVISION => {
-        w => { number =>  1, ordinal =>  '1st', name => 'whole' },
-        h => { number =>  2, ordinal =>  '2nd', name => 'half' },
-        q => { number =>  4, ordinal =>  '4th', name => 'quarter' },
-        e => { number =>  8, ordinal =>  '8th', name => 'eighth' },
-        s => { number => 16, ordinal => '16th', name => 'sixteenth' },
-        x => { number => 32, ordinal => '32nd', name => 'thirtysecond' },
-        y => { number => 64, ordinal => '64th', name => 'sixtyfourth' },
+        w => { number =>   1, ordinal =>   '1st', name => 'whole' },
+        h => { number =>   2, ordinal =>   '2nd', name => 'half' },
+        q => { number =>   4, ordinal =>   '4th', name => 'quarter' },
+        e => { number =>   8, ordinal =>   '8th', name => 'eighth' },
+        s => { number =>  16, ordinal =>  '16th', name => 'sixteenth' },
+        x => { number =>  32, ordinal =>  '32nd', name => 'thirtysecond' },
+        y => { number =>  64, ordinal =>  '64th', name => 'sixtyfourth' },
         z => { number => 128, ordinal => '128th', name => 'onetwentyeighth' },
     };
 
