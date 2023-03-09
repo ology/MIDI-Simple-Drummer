@@ -2,7 +2,7 @@ package MIDI::Simple::Drummer;
 
 # ABSTRACT: An algorithmic MIDI drummer
 
-our $VERSION = '0.0812';
+our $VERSION = '0.0813';
 
 use strict;
 use warnings;
@@ -623,7 +623,7 @@ __END__
 
 =head1 DESCRIPTION
 
-* While still viable, this module has most been superseded by
+* While still viable, this module has mostly been superseded by
 L<MIDI::Drummer::Tiny>.
 
 This is a "robotic" drummer that provides algorithmic methods to make beats,
