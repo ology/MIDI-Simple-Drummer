@@ -623,6 +623,9 @@ __END__
 
 =head1 DESCRIPTION
 
+* While still viable, this module has most been superseded by
+L<MIDI::Drummer::Tiny>.
+
 This is a "robotic" drummer that provides algorithmic methods to make beats,
 rhythms, noise, what have you.  It is also a glorified metronome.
 
