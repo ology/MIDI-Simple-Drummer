@@ -2,7 +2,7 @@
 use strict;
 use warnings;
 
-use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(Music-Duration);
+use if $ENV{USER} eq "gene", lib => map { "$ENV{HOME}/sandbox/$_/lib" } qw(Music-Duration);
 use MIDI::Simple::Drummer;
 
 my $d = MIDI::Simple::Drummer->new(
