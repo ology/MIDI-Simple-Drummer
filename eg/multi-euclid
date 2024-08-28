@@ -2,7 +2,6 @@
 use strict;
 use warnings;
 
-use if $ENV{USER} eq "gene", lib => map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Simple-Drummer);
 use MIDI::Simple::Drummer::Euclidean;
 
 my $d = MIDI::Simple::Drummer::Euclidean->new(
